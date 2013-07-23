@@ -25,11 +25,9 @@
 # https://service.sumologic.com/ui/help/Default.htm#Using_sumo.conf.htm
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 
-
-
-    template "/etc/sumo.conf" do
-        source 'sumo.conf.erb'
-        owner "root"
-        group "root"
-        mode 0644
-    end
+template '/etc/sumo.conf' do
+  source 'sumo.conf.erb'
+  owner 'root'
+  group 'root'
+  mode 0644
+end

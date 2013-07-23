@@ -1,0 +1,39 @@
+{
+    "api.version": "v1",
+    "sources": [
+        {
+            "name": "Syslog File",
+            "sourceType": "LocalFile",
+            "alive": true,
+            "status": "",
+            "automaticDateParsing": true,
+            "multilineProcessingEnabled": false,
+            "useAutolineMatching": true,
+            "forceTimeZone": false,
+            "defaultDateFormat": "",
+            "timeZone": "UTC",
+            "description": "",
+            "filters": [],
+            "category": "OS/Linux/System",
+            "blacklist": "",
+            "pathExpression": "/var/log/syslog"
+        },
+        {
+            "name": "Secure",
+            "sourceType": "LocalFile",
+            "alive": true,
+            "status": "",
+            "automaticDateParsing": true,
+            "multilineProcessingEnabled": false,
+            "useAutolineMatching": true,
+            "forceTimeZone": false,
+            "defaultDateFormat": "",
+            "timeZone": "UTC",
+            "description": "",
+            "filters": [],
+            "category": "OS/Linux/Security",
+            "blacklist": "",
+            "pathExpression": "/var/log/auth.log"
+        }
+    ]
+}
