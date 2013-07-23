@@ -26,10 +26,10 @@
 # https://service.sumologic.com/ui/help/Default.htm#Using_sumo.conf.htm
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 
-case node['platform']
-    when "redhat", "centos", "scientific", "fedora", "amazon", "oracle"
+case node['platform_family']
+    when 'rhel' 
       json_source = 'sumo-rhel.json.erb'
-    when "suse", "debian", "ubuntu"
+    when 'debian' 
       json_source = 'sumo-debian.json.erb'
     else
       json_source = 'sumo.json.erb'

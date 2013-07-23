@@ -40,5 +40,5 @@ else
     include_recipe 'sumologic-collector::sumoconf'
     include_recipe 'sumologic-collector::sumojson'
     include_recipe 'sumologic-collector::install'
-    #include_recipe 'sumologic-collector::cleanup'
+    include_recipe 'sumologic-collector::cleanup'
 end
