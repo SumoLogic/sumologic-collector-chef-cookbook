@@ -26,11 +26,11 @@
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 #
 
-if File.exists? "#{node['sumologic']['installDir']}"
+if File.exists? node['sumologic']['installDir']
     Chef::Log.info "Sumo Logic install detected."
     # Sumo Logic does exist
     # -Add in any update recipes here.
-    else
+else
     Chef::Log.info "Sumo Logic was not detected proceeding with installation and configuration."
     # Sumo Logic does not exist
     # 1. Set up sumo.conf for unattended install and activation
@@ -40,5 +40,5 @@ if File.exists? "#{node['sumologic']['installDir']}"
     include_recipe 'sumologic-collector::sumoconf'
     include_recipe 'sumologic-collector::sumojson'
     include_recipe 'sumologic-collector::install'
-    include_recipe 'sumologic-collector::cleanup'
+    #include_recipe 'sumologic-collector::cleanup'
 end
