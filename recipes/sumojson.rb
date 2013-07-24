@@ -26,11 +26,18 @@
 # https://service.sumologic.com/ui/help/Default.htm#Using_sumo.conf.htm
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 
+case node['platform_family']
+    when 'rhel' 
+      json_source = 'sumo-rhel.json.erb'
+    when 'debian' 
+      json_source = 'sumo-debian.json.erb'
+    else
+      json_source = 'sumo.json.erb'
+end
 
-
-    template "/etc/sumo.json" do
-        source 'sumo.json.erb'
-        owner "root"
-        group "root"
-        mode 0644
-    end
+template '/etc/sumo.json' do
+  source json_source 
+  owner 'root'
+  group 'root'
+  mode 0644
+end
