@@ -21,7 +21,8 @@
 
 # default sumocollector attributes
 
-
+#Collector Name if not set defaults to chef node name
+default['sumologic']['name']      = nil
 
 #Collector Activation User Credentials
 default['sumologic']['userID']    = "YOUR_EMAIL"
@@ -66,4 +67,3 @@ case platform
         default['sumologic']['downloadURL'] = ""
     
 end
-
