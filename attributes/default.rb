@@ -44,13 +44,13 @@ default['sumologic']['json_config_cookbook'] = 'sumologic-collector'
 # your own custom sumo.conf template.
 default['sumologic']['conf_config_cookbook'] = 'sumologic-collector'
 
-# Default sumo_json_template is set to nil so that it's determined in the 
-# template based on platform_family.  Override if you want to use a custom
-# template name from a custom configuration cookbook.
+# Default sumo.json template is set to nil so that it's determined in the 
+# template based on platform_family.  Override this if you want to use a 
+# custom template name from a custom sumo.json configuration cookbook.
 default['sumologic']['json_template'] = nil
 
-# Default sumo_conf_template.  Override if you want to use a custom template
-# name from a custom configuration cookbook.
+# Default sumo.conf template.  Override this if you want to use a custom 
+# template name from a custom sumo.conf configuration cookbook.
 default['sumologic']['conf_template'] = nil
 
 #Platform Specific Attributes
