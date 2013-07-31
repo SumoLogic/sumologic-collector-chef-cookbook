@@ -26,16 +26,23 @@
 # https://service.sumologic.com/ui/help/Default.htm#Using_sumo.conf.htm
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 
-case node['platform_family']
-    when 'rhel' 
-      json_source = 'sumo-rhel.json.erb'
-    when 'debian' 
-      json_source = 'sumo-debian.json.erb'
-    else
-      json_source = 'sumo.json.erb'
+# If there is a json_source specified via attributes use that one
+# otherwise pick a default json template based on platform family.
+if node['sumologic']['json_template'].nil?
+  case node['platform_family']
+      when 'rhel' 
+        json_source = 'sumo-rhel.json.erb'
+      when 'debian' 
+        json_source = 'sumo-debian.json.erb'
+      else
+        json_source = 'sumo.json.erb'
+  end
+else
+  json_source = node['sumologic']['json_template']
 end
 
 template '/etc/sumo.json' do
+  cookbook node['sumologic']['json_config_cookbook']
   source json_source 
   owner 'root'
   group 'root'

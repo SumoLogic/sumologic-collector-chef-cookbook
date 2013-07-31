@@ -25,8 +25,15 @@
 # https://service.sumologic.com/ui/help/Default.htm#Using_sumo.conf.htm
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 
+if node['sumologic']['conf_template'].nil?
+  conf_source = 'sumo.conf.erb'
+else
+  conf_source = node['sumologic']['conf_template']
+end
+
 template '/etc/sumo.conf' do
-  source 'sumo.conf.erb'
+  cookbook node['sumologic']['conf_config_cookbook']
+  source conf_source 
   owner 'root'
   group 'root'
   mode 0644
