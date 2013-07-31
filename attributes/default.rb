@@ -18,52 +18,69 @@
 # limitations under the License.
 #
 
-
 # default sumocollector attributes
 
-#Collector Name if not set defaults to chef node name
+# Collector Name if not set defaults to chef node name
 default['sumologic']['name']      = nil
 
-#Collector Activation User Credentials
-default['sumologic']['userID']    = "YOUR_EMAIL"
-default['sumologic']['password']  = "YOUR_PASSWORD"
+# Collector Activation User Credentials
+default['sumologic']['userID']    = 'YOUR_EMAIL'
+default['sumologic']['password']  = 'YOUR_PASSWORD'
 
 
-#Ephemeral node (collector config deleted after 2 days of no heartbeat - data is not deleted from Sumo Logic)
-default['sumologic']['ephemeral'] = "true"
+# Ephemeral node (collector config deleted after 2 days of no heartbeat - data is not deleted from Sumo Logic)
+default['sumologic']['ephemeral'] = 'true'
 
-#Default Time Zone for Sources
-default['sumologic']['sources']['default_timezone'] = "UTC"
+# Default Time Zone for Sources
+default['sumologic']['sources']['default_timezone'] = 'UTC'
+
+# Default json.conf configuration templates cookbook
+# Replace this with a custom cookbook name if you want to create
+# your own custom sumo.json or template.
+default['sumologic']['json_config_cookbook'] = 'sumologic-collector'
+
+# Default sumo.conf configuration templates cookbook
+# Replace this with a custom cookbook name if you want to create
+# your own custom sumo.conf template.
+default['sumologic']['conf_config_cookbook'] = 'sumologic-collector'
+
+# Default sumo_json_template is set to nil so that it's determined in the 
+# template based on platform_family.  Override if you want to use a custom
+# template name from a custom configuration cookbook.
+default['sumologic']['json_template'] = nil
+
+# Default sumo_conf_template.  Override if you want to use a custom template
+# name from a custom configuration cookbook.
+default['sumologic']['conf_template'] = nil
 
 #Platform Specific Attributes
 case platform
     # Currently have all linux variants using the scripted installer
-    when "redhat", "centos", "scientific", "fedora", "suse", "amazon", "oracle", "debian", "ubuntu"
-        #Install Path
-        default['sumologic']['installDir']     = "/opt/SumoCollector"
+    when 'redhat', 'centos', 'scientific', 'fedora', 'suse', 'amazon', 'oracle', 'debian', 'ubuntu'
+        # Install Path
+        default['sumologic']['installDir']     = '/opt/SumoCollector'
     
-        #Installer Name
-        default['sumologic']['installerName'] = node['kernel']['machine'] =~ /^i[36']86$/ ? "SumoCollector_linux32.sh" : "SumoCollector_linux64.sh"
+        # Installer Name
+        default['sumologic']['installerName'] = node['kernel']['machine'] =~ /^i[36']86$/ ? 'SumoCollector_linux32.sh' : 'SumoCollector_linux64.sh'
     
-        #Install Command
+        # Install Command
         default['sumologic']['installerCmd'] = "sh #{default['sumologic']['installerName']} -q -dir #{default['sumologic']['installDir']}"
     
-        #Download Path - Either 32bit or 64bit according to the architecture
-        default['sumologic']['downloadURL'] = node['kernel']['machine'] =~ /^i[36']86$/ ? "https://collectors.sumologic.com/rest/download/linux/32" : "https://collectors.sumologic.com/rest/download/linux/64"
+        # Download Path - Either 32bit or 64bit according to the architecture
+        default['sumologic']['downloadURL'] = node['kernel']['machine'] =~ /^i[36']86$/ ? 'https://collectors.sumologic.com/rest/download/linux/32' : 'https://collectors.sumologic.com/rest/download/linux/64'
     
     else
-        #Just have empty install commands for now as a placeholder
+        # Just have empty install commands for now as a placeholder
     
-        #Install Path
-        default['sumologic']['installDir']     = "/opt/SumoCollector"
+        # Install Path
+        default['sumologic']['installDir']     = '/opt/SumoCollector'
         
-        #Installer Name - Either 32bit or 64bit according to the architecture
-        default['sumologic']['installerName'] = ""
+        # Installer Name - Either 32bit or 64bit according to the architecture
+        default['sumologic']['installerName'] = ''
         
-        #Install Command
-        default['sumologic']['installerCmd'] = ""
+        # Install Command
+        default['sumologic']['installerCmd'] = '' 
     
-        #Download Path - Either 32bit or 64bit according to the architecture
-        default['sumologic']['downloadURL'] = ""
-    
+        # Download Path - Either 32bit or 64bit according to the architecture
+        default['sumologic']['downloadURL'] = ''
 end
