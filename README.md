@@ -64,7 +64,7 @@ within a wrapper cookbook for generating custom sumo.conf and sumo.json configur
     <th>Not Required</th>
   </tr>
   <tr>
-    <th>['sumologic']['conf_config_cookbook']</th>
+    <th>['sumologic']['conf_config_cookbook'] Default: sumologic-collector</th>
     <th>String</th>
     <th>User defined cookbook for generating custom sumo.conf templates</th>
     <th>Not Required</th>
@@ -73,7 +73,7 @@ within a wrapper cookbook for generating custom sumo.conf and sumo.json configur
     <th>['sumologic']['conf_template'] </th>
     <th>String</th>
     <th>User defined sumo.conf template name</th>
-    <th>Required</th>
+    <th>Not Required</th>
   </tr>
 </table>
 
