@@ -48,6 +48,35 @@ Attributes
   </tr>
 </table>
 
+The following attributes are not required but can be used to define custom cookbooks and templates 
+within a wrapper cookbook for generating custom sumo.conf and sumo.json configuration files.
+<table>
+  <tr>
+    <th>['sumologic']['json_config_cookbook'] Default: sumologic-collector</th>
+    <th>String</th>
+    <th>User defined cookbook for generating custom sumo.json templates</th>
+    <th>Not Required</th>
+  </tr>
+  <tr>
+    <th>['sumologic']['json_template']</th>
+    <th>String</th>
+    <th>User defined sumo.json template name</th>
+    <th>Not Required</th>
+  </tr>
+  <tr>
+    <th>['sumologic']['conf_config_cookbook'] Default: sumologic-collector</th>
+    <th>String</th>
+    <th>User defined cookbook for generating custom sumo.conf templates</th>
+    <th>Not Required</th>
+  </tr>
+  <tr>
+    <th>['sumologic']['conf_template'] </th>
+    <th>String</th>
+    <th>User defined sumo.conf template name</th>
+    <th>Not Required</th>
+  </tr>
+</table>
+
 Usage
 -----
 
