@@ -77,6 +77,31 @@ within a wrapper cookbook for generating custom sumo.conf and sumo.json configur
   </tr>
 </table>
 
+The following attributes are not required but can be used to define an encrypted data bag containing the authentication credentials. The data bag that this points to should have 'email' and 'password' keys containing the email address and password to use to authenticate this collector. 
+
+<table>
+  <tr>
+    <th>['sumologic']['credentials']['bag_name']</th>
+    <th>String</th>
+    <th>Name of the data bag.</th>
+    <th>Required</th>
+  </tr>
+  <tr>
+    <th>['sumologic']['credentials']['item_name']</th>
+    <th>String</th>
+    <th>Name of the item within the data bag. </th>
+    <th>Required</th>
+  </tr>
+  <tr>
+    <th>['sumologic']['credentials']['secret_file']</th>
+    <th>String</th>
+    <th>Path to the local file containing the encryption secret key.</th>
+    <th>Optional</th>
+  </tr>
+</table>
+
+
+
 Usage
 -----
 
