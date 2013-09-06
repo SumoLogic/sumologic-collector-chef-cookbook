@@ -31,10 +31,33 @@ else
   conf_source = node['sumologic']['conf_template']
 end
 
+credentials = {}
+
+if !node[:sumologic][:credentials].nil?
+  creds = node[:sumologic][:credentials]
+  
+  if !creds[:secret_file].nil?
+    secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file]) 
+    edbag = Chef::EncryptedDataBagItem.load(creds[:bag_name], creds[:item_name], secret)
+    credentials[:email],credentials[:password] = edbag[:email.to_s], edbag[:password.to_s] # Chef::EncryptedDataBagItem 10.28 doesn't work with symbols
+  else
+    bag = data_bag_item(creds[:bag_name], creds[:item_name])
+    credentials[:email],credentials[:password] = bag[:email.to_s], bag[:password.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
+  end
+else
+ credentials[:email],credentials[:password] = node[:sumologic][:userID], node[:sumologic][:password] 
+end
+
 template '/etc/sumo.conf' do
   cookbook node['sumologic']['conf_config_cookbook']
   source conf_source 
   owner 'root'
   group 'root'
   mode 0644
+  variables({
+    :email  => credentials[:email],
+    :password => credentials[:password],
+  })
 end
+
+
