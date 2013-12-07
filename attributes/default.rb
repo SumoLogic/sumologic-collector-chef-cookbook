@@ -23,10 +23,20 @@
 # Collector Name if not set defaults to chef node name
 default['sumologic']['name']      = nil
 
-# Collector Activation User Credentials
-default['sumologic']['userID']    = 'YOUR_EMAIL'
-default['sumologic']['password']  = 'YOUR_PASSWORD'
+#Choose either Email or AccessID authentication
+default['sumologic']['useAccessID'] = true
 
+# Collector Activation User Credentials
+#default['sumologic']['userID']    = 'YOUR_EMAIL'
+#default['sumologic']['password']  = 'YOUR_PASSWORD'
+
+# Collector Activation User Credentials
+default['sumologic']['accessID']    = 'YOUR_ID'
+default['sumologic']['accessKey']  = 'YOUR_KEY'
+
+# Data Bag for Collector Credentials
+default['sumologic']['credentials']['bag_name'] = 'sumo-creds'
+default['sumologic']['credentials']['item_name'] = 'api-creds'
 
 # Ephemeral node (collector config deleted after 2 days of no heartbeat - data is not deleted from Sumo Logic)
 default['sumologic']['ephemeral'] = 'true'

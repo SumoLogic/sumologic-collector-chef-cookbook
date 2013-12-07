@@ -17,16 +17,34 @@ Attributes
 
 <table>
   <tr>
+    <th>['sumologic']['useAccessID']</th>
+    <th>String</th>
+    <th>Flag to indicate whether you will use AccessID-Key or Email-Password for authentication</th>
+    <th>Optional</th>
+  </tr>
+  <tr>
     <th>['sumologic']['userID']</th>
     <th>String</th>
     <th>Sumo Logic User ID</th>
-    <th>Required</th>
+    <th>Optional</th>
   </tr>
   <tr>
     <th>['sumologic']['password']</th>
     <th>String</th>
     <th>Sumo Logic Password</th>
-    <th>Required</th>
+    <th>Optional</th>
+  </tr>
+  <tr>
+    <th>['sumologic']['accessID']</th>
+    <th>String</th>
+    <th>Sumo Logic Access ID</th>
+    <th>Optional</th>
+  </tr>
+  <tr>
+    <th>['sumologic']['accessKey']</th>
+    <th>String</th>
+    <th>Sumo Logic Access Key</th>
+    <th>Optional</th>
   </tr>
   <tr>
     <th>['sumologic']['ephemeral']</th>

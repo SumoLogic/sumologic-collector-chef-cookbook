@@ -6,6 +6,10 @@ This file is used to list changes made in each version of sumologic-collector.
 
 * Initial release of sumologic-collector
 
+## 1.2.00:
+
+* Updated cookbook to support Access IDs and Keys
+
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
 
