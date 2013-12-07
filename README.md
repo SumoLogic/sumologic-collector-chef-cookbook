@@ -18,9 +18,9 @@ Attributes
 <table>
   <tr>
     <th>['sumologic']['useAccessID']</th>
-    <th>String</th>
-    <th>Flag to indicate whether you will use AccessID-Key or Email-Password for authentication</th>
-    <th>Optional</th>
+    <th>Boolean</th>
+    <th>Indicates whether you will use AccessID-Key or Email-Password for authentication</th>
+    <th>Required</th>
   </tr>
   <tr>
     <th>['sumologic']['userID']</th>
