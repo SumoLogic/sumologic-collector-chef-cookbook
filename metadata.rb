@@ -1,4 +1,4 @@
-name             'sumologic-collector'
+name             'sumo-collector-chef-cookbook'
 maintainer       'Ben Newton'
 maintainer_email 'ben@sumologic.com'
 license          'Apache v2.0'
