@@ -1,6 +1,6 @@
 #
 # Author:: Ben Newton (<ben@sumologic.com>)
-# Cookbook Name:: sumologic-collector
+# Cookbook Name:: sumo-collector
 # Recipe:: Install, Register, and Configure Collector
 #
 # Copyright 2013, Sumo Logic

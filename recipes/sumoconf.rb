@@ -1,6 +1,6 @@
 #
 # Author:: Ben Newton (<ben@sumologic.com>)
-# Cookbook Name:: sumologic-collector
+# Cookbook Name:: sumo-collector
 # Recipe:: Configure sumo.conf for unattended installs and activation
 #
 # Copyright 2013, Sumo Logic
@@ -32,28 +32,28 @@ credentials = {}
 
 if !node[:sumologic][:credentials].nil?
   creds = node[:sumologic][:credentials]
-  
+
   if !creds[:secret_file].nil?
-    secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file]) 
+    secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file])
     edbag = Chef::EncryptedDataBagItem.load(creds[:bag_name], creds[:item_name], secret)
-    
+
     # Check to see if we use AccessID
     if node['sumologic']['useAccessID']
             credentials[:accessID],credentials[:accessKey] = edbag[:accessID.to_s], edbag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
     else
             credentials[:email],credentials[:password] = edbag[:email.to_s], edbag[:password.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
     end
-    
+
   else
     bag = data_bag_item(creds[:bag_name], creds[:item_name])
-    
+
     # Check to see if we use AccessID
     if node['sumologic']['useAccessID']
         credentials[:accessID],credentials[:accessKey] = bag[:accessID.to_s], bag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
     else
         credentials[:email],credentials[:password] = bag[:email.to_s], bag[:password.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
     end
-    
+
   end
 else
     # Check to see if we use AccessID
@@ -80,7 +80,7 @@ if node['sumologic']['useAccessID']
 
     template '/etc/sumo.conf' do
       cookbook node['sumologic']['conf_config_cookbook']
-      source conf_source 
+      source conf_source
       owner 'root'
       group 'root'
       mode 0644
@@ -89,7 +89,7 @@ if node['sumologic']['useAccessID']
         :accessKey => credentials[:accessKey],
       })
     end
-      
+
 else
 
     template '/etc/sumo.conf' do

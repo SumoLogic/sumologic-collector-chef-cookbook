@@ -1,6 +1,6 @@
 #
 # Author:: Ben Newton (<ben@sumologic.com>)
-# Cookbook Name:: sumologic-collector
+# Cookbook Name:: sumo-collector
 # Recipe:: Delete sumo.conf and json file
 #
 # Copyright 2013, Sumo Logic
@@ -19,11 +19,11 @@
 #
 
 # Deleting the sumo.conf file because it has a username and password, and the json to just be tidy
-    
+
 file '/etc/sumo.conf' do
   action :delete
 end
-    
+
 file '/etc/sumo.json' do
   action :delete
 end
