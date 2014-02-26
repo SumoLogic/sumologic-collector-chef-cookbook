@@ -1,4 +1,3 @@
----
 driver_plugin: vagrant
 driver_config:
   require_chef_omnibus: true
@@ -16,5 +15,5 @@ platforms:
 suites:
 - name: default
   run_list:
-    - recipe[sumologic-collector]
+    - recipe[sumo-collector]
     - recipe[minitest-handler]
