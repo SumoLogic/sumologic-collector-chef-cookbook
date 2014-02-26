@@ -1,6 +1,6 @@
 #
 # Author:: Ben Newton (<ben@sumologic.com>)
-# Cookbook Name:: sumologic-collector
+# Cookbook Name:: sumo-collector
 # Recipe:: Default Recipe Attributes
 #
 # Copyright 2013, Sumo Logic
@@ -47,19 +47,19 @@ default['sumologic']['sources']['default_timezone'] = 'UTC'
 # Default json.conf configuration templates cookbook
 # Replace this with a custom cookbook name if you want to create
 # your own custom sumo.json or template.
-default['sumologic']['json_config_cookbook'] = 'sumologic-collector'
+default['sumologic']['json_config_cookbook'] = 'sumo-collector'
 
 # Default sumo.conf configuration templates cookbook
 # Replace this with a custom cookbook name if you want to create
 # your own custom sumo.conf template.
-default['sumologic']['conf_config_cookbook'] = 'sumologic-collector'
+default['sumologic']['conf_config_cookbook'] = 'sumo-collector'
 
-# Default sumo.json template is set to nil so that it's determined in the 
-# template based on platform_family.  Override this if you want to use a 
+# Default sumo.json template is set to nil so that it's determined in the
+# template based on platform_family.  Override this if you want to use a
 # custom template name from a custom sumo.json configuration cookbook.
 default['sumologic']['json_template'] = nil
 
-# Default sumo.conf template.  Override this if you want to use a custom 
+# Default sumo.conf template.  Override this if you want to use a custom
 # template name from a custom sumo.conf configuration cookbook.
 default['sumologic']['conf_template'] = nil
 
@@ -69,28 +69,28 @@ case platform
     when 'redhat', 'centos', 'scientific', 'fedora', 'suse', 'amazon', 'oracle', 'debian', 'ubuntu'
         # Install Path
         default['sumologic']['installDir']     = '/opt/SumoCollector'
-    
+
         # Installer Name
         default['sumologic']['installerName'] = node['kernel']['machine'] =~ /^i[36']86$/ ? 'SumoCollector_linux32.sh' : 'SumoCollector_linux64.sh'
-    
+
         # Install Command
         default['sumologic']['installerCmd'] = "sh #{default['sumologic']['installerName']} -q -dir #{default['sumologic']['installDir']}"
-    
+
         # Download Path - Either 32bit or 64bit according to the architecture
         default['sumologic']['downloadURL'] = node['kernel']['machine'] =~ /^i[36']86$/ ? 'https://collectors.sumologic.com/rest/download/linux/32' : 'https://collectors.sumologic.com/rest/download/linux/64'
-    
+
     else
         # Just have empty install commands for now as a placeholder
-    
+
         # Install Path
         default['sumologic']['installDir']     = '/opt/SumoCollector'
-        
+
         # Installer Name - Either 32bit or 64bit according to the architecture
         default['sumologic']['installerName'] = ''
-        
+
         # Install Command
-        default['sumologic']['installerCmd'] = '' 
-    
+        default['sumologic']['installerCmd'] = ''
+
         # Download Path - Either 32bit or 64bit according to the architecture
         default['sumologic']['downloadURL'] = ''
 end

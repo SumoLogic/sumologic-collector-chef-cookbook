@@ -37,8 +37,8 @@ else
     # 2. Set up JSON for source configuration
     # 3. Install collector
     # 4. Clean up config files
-    include_recipe 'sumologic-collector::sumoconf'
-    include_recipe 'sumologic-collector::sumojson'
-    include_recipe 'sumologic-collector::install'
-    include_recipe 'sumologic-collector::cleanup'
+    include_recipe 'sumo-collector::sumoconf'
+    include_recipe 'sumo-collector::sumojson'
+    include_recipe 'sumo-collector::install'
+    include_recipe 'sumo-collector::cleanup'
 end
