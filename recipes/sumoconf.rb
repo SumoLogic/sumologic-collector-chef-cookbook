@@ -37,31 +37,13 @@ if !node[:sumologic][:credentials].nil?
     secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file])
     edbag = Chef::EncryptedDataBagItem.load("sumo-config", "access-creds", secret)
 
-    # Check to see if we use AccessID
-    if node['sumologic']['useAccessID']
-            credentials[:accessID],credentials[:accessKey] = edbag[:accessID.to_s], edbag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
-    else
-            credentials[:email],credentials[:password] = edbag[:email.to_s], edbag[:password.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
-    end
-
+    credentials[:accessID],credentials[:accessKey] = edbag[:accessID.to_s], edbag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
   else
-    bag = data_bag_item("sumo-config", "access-creds")
-
-    # Check to see if we use AccessID
-    if node['sumologic']['useAccessID']
-        credentials[:accessID],credentials[:accessKey] = bag[:accessID.to_s], bag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
-    else
-        credentials[:email],credentials[:password] = bag[:email.to_s], bag[:password.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
-    end
-
+    credentials[:accessID],credentials[:accessKey] = bag[:accessID.to_s], bag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
   end
 else
-    # Check to see if we use AccessID
-    if node['sumologic']['useAccessID']
-        credentials[:accessID],credentials[:accessKey] = node[:sumologic][:accessID], node[:sumologic][:accessKey]
-    else
-        credentials[:email],credentials[:password] = node[:sumologic][:userID], node[:sumologic][:password]
-    end
+  bag = data_bag_item("sumo-config", "access-creds")
+  credentials[:accessID],credentials[:accessKey] = bag[:accessID.to_s], bag[:accessKey.to_s]
 end
 
 #Check to see if the default sumo.conf was overridden
