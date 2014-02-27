@@ -35,7 +35,7 @@ if !node[:sumologic][:credentials].nil?
 
   if !creds[:secret_file].nil?
     secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file])
-    edbag = Chef::EncryptedDataBagItem.load(creds[:bag_name], creds[:item_name], secret)
+    edbag = Chef::EncryptedDataBagItem.load("sumo-config", "access-creds", secret)
 
     # Check to see if we use AccessID
     if node['sumologic']['useAccessID']
@@ -45,7 +45,7 @@ if !node[:sumologic][:credentials].nil?
     end
 
   else
-    bag = data_bag_item(creds[:bag_name], creds[:item_name])
+    bag = data_bag_item("sumo-config", "access-creds")
 
     # Check to see if we use AccessID
     if node['sumologic']['useAccessID']

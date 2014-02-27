@@ -1,20 +1,33 @@
-sumologic-collector Cookbook
+sumo-collector Cookbook
 ============================
-This cookbook will install either the 32-bit and 64-bit Sumo Logic Linux collector using the shell script installer (based on the CPU type). It first sets up the files required for an unattended install (sumo.conf and the JSON configuration file) with the standard linux system log files, downloads the latest installer, and then runs the installer. If the requirements are met, then the collector will automatically install and activate itself. The JSON template can be edited for your environment's specifications.
+This cookbook installs the Sumo Logic collector on Linux using the shell script
+installer. Here are the steps it follows:
 
-Requirements
+  1. Sets up `sumo.conf` and `sumo.json` with standard Linux logs
+  2. Downloads latest installer
+  3. Runs installer
+  4. Starts collector and registers with the Sumo Logic service
+
+The collector Requires outbound access to https://collectors.sumologic.com.
+Edit `sumo.json` to add/edit/remove sources.  After installation you can
+[test connectivity](https://service.sumologic.com/ui/help/Default.htm#Testing_Connectivity.htm).
+
+Installation
 ------------
-Most importantly, you need access to the following URL on each server:
-  - https://collectors.sumologic.com
+    knife cookbook github install SumoLogic/sumo-collector-chef-cookbook
 
-This will allow for activation and downloading the installer.
+REQUIRED Setup
+--------------
+    knife data bag create sumo-config access-creds
 
-For additional requirements, see this URL:
-  - https://service.sumologic.com/ui/help/Default.htm#Testing_Connectivity.htm
+    {
+      "id": "access-creds",
+      "accessID": "<access_id>",
+      "accessKey": "<access_key>"
+    }
 
 Attributes
 ----------
-
 <table>
   <tr>
     <th>['sumologic']['useAccessID']</th>
@@ -66,8 +79,8 @@ Attributes
   </tr>
 </table>
 
-The following attributes are not required but can be used to define custom cookbooks and templates 
-within a wrapper cookbook for generating custom sumo.conf and sumo.json configuration files.
+Optional Attributes for Custom Collector Configurations
+-------------------------------------------------------
 <table>
   <tr>
     <th>['sumologic']['json_config_cookbook'] Default: sumologic-collector</th>
@@ -95,29 +108,6 @@ within a wrapper cookbook for generating custom sumo.conf and sumo.json configur
   </tr>
 </table>
 
-The following attributes are not required but can be used to define an encrypted data bag containing the authentication credentials. The data bag that this points to should have 'email' and 'password' keys containing the email address and password to use to authenticate this collector. 
-
-<table>
-  <tr>
-    <th>['sumologic']['credentials']['bag_name']</th>
-    <th>String</th>
-    <th>Name of the data bag.</th>
-    <th>Required</th>
-  </tr>
-  <tr>
-    <th>['sumologic']['credentials']['item_name']</th>
-    <th>String</th>
-    <th>Name of the item within the data bag. </th>
-    <th>Required</th>
-  </tr>
-  <tr>
-    <th>['sumologic']['credentials']['secret_file']</th>
-    <th>String</th>
-    <th>Path to the local file containing the encryption secret key.</th>
-    <th>Optional</th>
-  </tr>
-</table>
-
 
 
 Usage
@@ -129,7 +119,7 @@ Just include `sumologic-collector` in your node's `run_list`:
 {
   "name":"my_node",
   "run_list": [
-    "recipe[sumologic-collector]"
+    "recipe[sumo-collector]"
   ]
 }
 ```
