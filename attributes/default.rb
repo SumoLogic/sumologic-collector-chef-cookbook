@@ -26,10 +26,6 @@ default['sumologic']['name']      = nil
 #Choose either Email or AccessID authentication
 default['sumologic']['useAccessID'] = true
 
-# Collector Credentials
-default['sumologic']['accessID']   = nil
-default['sumologic']['accessKey']  = nil
-
 # Data Bag for Collector Credentials
 default['sumologic']['credentials']['bag_name'] = 'sumo-config'
 default['sumologic']['credentials']['item_name'] = 'access-creds'
