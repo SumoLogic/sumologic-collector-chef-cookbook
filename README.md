@@ -12,6 +12,12 @@ The collector Requires outbound access to https://collectors.sumologic.com.
 Edit `sumo.json` to add/edit/remove sources.  After installation you can
 [test connectivity](https://service.sumologic.com/ui/help/Default.htm#Testing_Connectivity.htm).
 
+Pre-Requisites
+--------------
+
+You will need at least one [Access Key](http://help.sumologic.com/i19.69v2/Default.htm#Generating_Collector_Installation_API_Keys.htm)
+before proceeding.
+
 Installation
 ------------
     knife cookbook github install SumoLogic/sumo-collector-chef-cookbook
@@ -29,24 +35,6 @@ REQUIRED Setup
 Attributes
 ----------
 <table>
-  <tr>
-    <th>['sumologic']['useAccessID']</th>
-    <th>Boolean</th>
-    <th>Indicates whether you will use AccessID-Key or Email-Password for authentication</th>
-    <th>Required</th>
-  </tr>
-  <tr>
-    <th>['sumologic']['userID']</th>
-    <th>String</th>
-    <th>Sumo Logic User ID</th>
-    <th>Optional</th>
-  </tr>
-  <tr>
-    <th>['sumologic']['password']</th>
-    <th>String</th>
-    <th>Sumo Logic Password</th>
-    <th>Optional</th>
-  </tr>
   <tr>
     <th>['sumologic']['accessID']</th>
     <th>String</th>

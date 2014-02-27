@@ -27,16 +27,10 @@
 #
 
 if File.exists? node['sumologic']['installDir']
-    Chef::Log.info "Sumo Logic install detected."
-    # Sumo Logic does exist
-    # -Add in any update recipes here.
+    Chef::Log.info "Sumo Logic Collector found."
+    # TODO recipe update
 else
-    Chef::Log.info "Sumo Logic was not detected proceeding with installation and configuration."
-    # Sumo Logic does not exist
-    # 1. Set up sumo.conf for unattended install and activation
-    # 2. Set up JSON for source configuration
-    # 3. Install collector
-    # 4. Clean up config files
+    Chef::Log.info "Installing Sumo Logic Collector..."
     include_recipe 'sumo-collector::sumoconf'
     include_recipe 'sumo-collector::sumojson'
     include_recipe 'sumo-collector::install'
