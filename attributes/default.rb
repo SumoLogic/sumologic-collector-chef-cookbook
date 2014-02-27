@@ -26,17 +26,13 @@ default['sumologic']['name']      = nil
 #Choose either Email or AccessID authentication
 default['sumologic']['useAccessID'] = true
 
-# Collector Activation User Credentials
-#default['sumologic']['userID']    = 'YOUR_EMAIL'
-#default['sumologic']['password']  = 'YOUR_PASSWORD'
-
-# Collector Activation User Credentials
-default['sumologic']['accessID']    = 'YOUR_ID'
-default['sumologic']['accessKey']  = 'YOUR_KEY'
+# Collector Credentials
+default['sumologic']['accessID']   = nil
+default['sumologic']['accessKey']  = nil
 
 # Data Bag for Collector Credentials
-default['sumologic']['credentials']['bag_name'] = 'sumo-creds'
-default['sumologic']['credentials']['item_name'] = 'api-creds'
+default['sumologic']['credentials']['bag_name'] = 'sumo-config'
+default['sumologic']['credentials']['item_name'] = 'access-creds'
 
 # Ephemeral node (collector config deleted after 2 days of no heartbeat - data is not deleted from Sumo Logic)
 default['sumologic']['ephemeral'] = 'true'
