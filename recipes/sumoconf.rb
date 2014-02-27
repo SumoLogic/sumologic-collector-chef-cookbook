@@ -25,10 +25,7 @@
 # https://service.sumologic.com/ui/help/Default.htm#Using_sumo.conf.htm
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 
-
-#Use the credentials variable to keep the proper credentials - regardless of source
 credentials = {}
-
 
 if !node[:sumologic][:credentials].nil?
   creds = node[:sumologic][:credentials]
@@ -57,35 +54,14 @@ else
     conf_source = node['sumologic']['conf_template']
 end
 
-# Two different templates - one for email/pwd, one for access id/key
-if node['sumologic']['useAccessID']
-
-    template '/etc/sumo.conf' do
-      cookbook node['sumologic']['conf_config_cookbook']
-      source conf_source
-      owner 'root'
-      group 'root'
-      mode 0644
-      variables({
-        :accessID  => credentials[:accessID],
-        :accessKey => credentials[:accessKey],
-      })
-    end
-
-else
-
-    template '/etc/sumo.conf' do
-        cookbook node['sumologic']['conf_config_cookbook']
-        source conf_source
-        owner 'root'
-        group 'root'
-        mode 0644
-        variables({
-          :email  => credentials[:email],
-          :password => credentials[:password],
-        })
-    end
-
+template '/etc/sumo.conf' do
+  cookbook node['sumologic']['conf_config_cookbook']
+  source conf_source
+  owner 'root'
+  group 'root'
+  mode 0644
+  variables({
+    :accessID  => credentials[:accessID],
+    :accessKey => credentials[:accessKey],
+  })
 end
-
-
