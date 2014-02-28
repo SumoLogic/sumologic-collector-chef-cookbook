@@ -18,11 +18,11 @@ Installation
 1. Create an [Access Key](http://help.sumologic.com/i19.69v2/Default.htm#Generating_Collector_Installation_API_Keys.htm)
 2. Install the cookbook in your Chef repo:
 
-    knife cookbook github install SumoLogic/sumo-collector-chef-cookbook
+```knife cookbook github install SumoLogic/sumo-collector-chef-cookbook```
 
 3. Create a data bag with your access credentials:
 
-    knife data bag create sumo-config access-creds
+```knife data bag create sumo-config access-creds```
 
 ```json
 {
