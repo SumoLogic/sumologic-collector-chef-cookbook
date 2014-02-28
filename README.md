@@ -34,7 +34,7 @@ Installation
 
 4. Upload the cookbook to your Chef Server:
 
-    knife cookbook upload sumo-collector
+```knife cookbook upload sumo-collector```
 
 5. Add the `sumo-collector` receipe to your node run lists.  This step depends
 on your node configuration, so specifics will not be described in this README.md.
