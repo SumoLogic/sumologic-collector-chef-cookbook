@@ -1,6 +1,6 @@
 #
 # Author:: Ben Newton (<ben@sumologic.com>)
-# Cookbook Name:: sumo-collector
+# Cookbook Name:: sumologic-collector
 # Recipe:: Configure sumo.conf for unattended installs and activation
 #
 # Copyright 2013, Sumo Logic

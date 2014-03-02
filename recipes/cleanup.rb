@@ -1,6 +1,6 @@
 #
 # Author:: Ben Newton (<ben@sumologic.com>)
-# Cookbook Name:: sumo-collector
+# Cookbook Name:: sumologic-collector
 # Recipe:: Delete sumo.conf and json file
 #
 # Copyright 2013, Sumo Logic

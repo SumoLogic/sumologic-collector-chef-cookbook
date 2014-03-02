@@ -1,6 +1,6 @@
 #
 # Author:: Ben Newton (<ben@sumologic.com>)
-# Cookbook Name:: sumo-collector
+# Cookbook Name:: sumologic-collector
 # Recipe:: Install, Register, and Configure Collector
 #
 # Copyright 2013, Sumo Logic
@@ -31,8 +31,8 @@ if File.exists? node['sumologic']['installDir']
     # TODO recipe update
 else
     Chef::Log.info "Installing Sumo Logic Collector..."
-    include_recipe 'sumo-collector::sumoconf'
-    include_recipe 'sumo-collector::sumojson'
-    include_recipe 'sumo-collector::install'
-    include_recipe 'sumo-collector::cleanup'
+    include_recipe 'sumologic-collector::sumoconf'
+    include_recipe 'sumologic-collector::sumojson'
+    include_recipe 'sumologic-collector::install'
+    include_recipe 'sumologic-collector::cleanup'
 end

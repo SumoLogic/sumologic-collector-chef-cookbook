@@ -15,5 +15,5 @@ platforms:
 suites:
 - name: default
   run_list:
-    - recipe[sumo-collector]
+    - recipe[sumologic-collector]
     - recipe[minitest-handler]

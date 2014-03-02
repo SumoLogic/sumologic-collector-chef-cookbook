@@ -1,6 +1,6 @@
 #
 # Author:: Ben Newton (<ben@sumologic.com>)
-# Cookbook Name:: sumo-collector
+# Cookbook Name:: sumologic-collector
 # Recipe:: Default Recipe Attributes
 #
 # Copyright 2013, Sumo Logic
@@ -32,12 +32,12 @@ default['sumologic']['sources']['default_timezone'] = 'UTC'
 # Default json.conf configuration templates cookbook
 # Replace this with a custom cookbook name if you want to create
 # your own custom sumo.json or template.
-default['sumologic']['json_config_cookbook'] = 'sumo-collector'
+default['sumologic']['json_config_cookbook'] = 'sumologic-collector'
 
 # Default sumo.conf configuration templates cookbook
 # Replace this with a custom cookbook name if you want to create
 # your own custom sumo.conf template.
-default['sumologic']['conf_config_cookbook'] = 'sumo-collector'
+default['sumologic']['conf_config_cookbook'] = 'sumologic-collector'
 
 # Default sumo.json template is set to nil so that it's determined in the
 # template based on platform_family.  Override this if you want to use a
