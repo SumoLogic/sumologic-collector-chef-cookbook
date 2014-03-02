@@ -45,11 +45,7 @@ end
 
 #Check to see if the default sumo.conf was overridden
 if node['sumologic']['conf_template'].nil?
-        if node['sumologic']['useAccessID']
-            conf_source = 'sumo.conf.accessID.erb'
-        else
-            conf_source = 'sumo.conf.email.erb'
-        end
+        conf_source = 'sumo.conf.accessID.erb'
 else
     conf_source = node['sumologic']['conf_template']
 end
