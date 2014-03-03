@@ -18,7 +18,7 @@ Installation
 1. Create an [Access Key](http://help.sumologic.com/i19.69v2/Default.htm#Generating_Collector_Installation_API_Keys.htm)
 2. Install the cookbook in your Chef repo:
 
-```knife cookbook github install SumoLogic/sumo-collector-chef-cookbook```
+```knife cookbook github install SumoLogic/sumologic-collector-chef-cookbook```
 
 3. Specify data bag and item with your access credentials.  The data item should
 contain attributes `accessID` and `accessKey`.  The default data bag/item is
