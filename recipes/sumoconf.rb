@@ -25,85 +25,40 @@
 # https://service.sumologic.com/ui/help/Default.htm#Using_sumo.conf.htm
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 
-
-#Use the credentials variable to keep the proper credentials - regardless of source
 credentials = {}
-
 
 if !node[:sumologic][:credentials].nil?
   creds = node[:sumologic][:credentials]
-  
+
   if !creds[:secret_file].nil?
-    secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file]) 
+    secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file])
     edbag = Chef::EncryptedDataBagItem.load(creds[:bag_name], creds[:item_name], secret)
-    
-    # Check to see if we use AccessID
-    if node['sumologic']['useAccessID']
-            credentials[:accessID],credentials[:accessKey] = edbag[:accessID.to_s], edbag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
-    else
-            credentials[:email],credentials[:password] = edbag[:email.to_s], edbag[:password.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
-    end
-    
+
+    credentials[:accessID],credentials[:accessKey] = edbag[:accessID.to_s], edbag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
   else
     bag = data_bag_item(creds[:bag_name], creds[:item_name])
-    
-    # Check to see if we use AccessID
-    if node['sumologic']['useAccessID']
-        credentials[:accessID],credentials[:accessKey] = bag[:accessID.to_s], bag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
-    else
-        credentials[:email],credentials[:password] = bag[:email.to_s], bag[:password.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
-    end
-    
+    credentials[:accessID],credentials[:accessKey] = bag[:accessID.to_s], bag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
   end
 else
-    # Check to see if we use AccessID
-    if node['sumologic']['useAccessID']
-        credentials[:accessID],credentials[:accessKey] = node[:sumologic][:accessID], node[:sumologic][:accessKey]
-    else
-        credentials[:email],credentials[:password] = node[:sumologic][:userID], node[:sumologic][:password]
-    end
+  bag = data_bag_item(creds[:bag_name], creds[:item_name])
+  credentials[:accessID],credentials[:accessKey] = bag[:accessID.to_s], bag[:accessKey.to_s]
 end
 
 #Check to see if the default sumo.conf was overridden
 if node['sumologic']['conf_template'].nil?
-        if node['sumologic']['useAccessID']
-            conf_source = 'sumo.conf.accessID.erb'
-        else
-            conf_source = 'sumo.conf.email.erb'
-        end
+        conf_source = 'sumo.conf.accessID.erb'
 else
     conf_source = node['sumologic']['conf_template']
 end
 
-# Two different templates - one for email/pwd, one for access id/key
-if node['sumologic']['useAccessID']
-
-    template '/etc/sumo.conf' do
-      cookbook node['sumologic']['conf_config_cookbook']
-      source conf_source 
-      owner 'root'
-      group 'root'
-      mode 0644
-      variables({
-        :accessID  => credentials[:accessID],
-        :accessKey => credentials[:accessKey],
-      })
-    end
-      
-else
-
-    template '/etc/sumo.conf' do
-        cookbook node['sumologic']['conf_config_cookbook']
-        source conf_source
-        owner 'root'
-        group 'root'
-        mode 0644
-        variables({
-          :email  => credentials[:email],
-          :password => credentials[:password],
-        })
-    end
-
+template '/etc/sumo.conf' do
+  cookbook node['sumologic']['conf_config_cookbook']
+  source conf_source
+  owner 'root'
+  group 'root'
+  mode 0644
+  variables({
+    :accessID  => credentials[:accessID],
+    :accessKey => credentials[:accessKey],
+  })
 end
-
-

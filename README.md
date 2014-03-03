@@ -1,142 +1,101 @@
 sumologic-collector Cookbook
 ============================
-This cookbook will install either the 32-bit and 64-bit Sumo Logic Linux collector using the shell script installer (based on the CPU type). It first sets up the files required for an unattended install (sumo.conf and the JSON configuration file) with the standard linux system log files, downloads the latest installer, and then runs the installer. If the requirements are met, then the collector will automatically install and activate itself. The JSON template can be edited for your environment's specifications.
+This cookbook installs the Sumo Logic collector on Linux using the shell script
+installer. Here are the steps it follows:
 
-Requirements
+1. Sets up `sumo.conf` and `sumo.json` with standard Linux logs
+2. Downloads latest installer
+3. Runs installer
+4. Starts collector and registers with the Sumo Logic service
+
+The collector Requires outbound access to https://collectors.sumologic.com.
+Edit `sumo.json` to add/edit/remove sources.  After installation you can
+[test connectivity](https://service.sumologic.com/ui/help/Default.htm#Testing_Connectivity.htm).
+
+
+Installation
 ------------
-Most importantly, you need access to the following URL on each server:
-  - https://collectors.sumologic.com
+1. Create an [Access Key](http://help.sumologic.com/i19.69v2/Default.htm#Generating_Collector_Installation_API_Keys.htm)
+2. Install the cookbook in your Chef repo:
 
-This will allow for activation and downloading the installer.
+```knife cookbook github install SumoLogic/sumo-collector-chef-cookbook```
 
-For additional requirements, see this URL:
-  - https://service.sumologic.com/ui/help/Default.htm#Testing_Connectivity.htm
+3. Specify data bag and item with your access credentials.  The data item should
+contain attributes `accessID` and `accessKey`.  The default data bag/item is
+`['sumo-creds']['api-creds']`
+
+4. Upload the cookbook to your Chef Server:
+
+```knife cookbook upload sumologic-collector```
+
+5. Add the `sumologic-collector` receipe to your node run lists.  This step depends
+on your node configuration, so specifics will not be described in this README.md.
 
 Attributes
 ----------
 
 <table>
   <tr>
-    <th>['sumologic']['useAccessID']</th>
-    <th>Boolean</th>
-    <th>Indicates whether you will use AccessID-Key or Email-Password for authentication</th>
-    <th>Required</th>
+    <td>['sumologic']['ephemeral']</td>
+    <td>Boolean</td>
+    <td>Sumo Logic Ephemeral Setting</td>
+    <td>Required</td>
   </tr>
   <tr>
-    <th>['sumologic']['userID']</th>
-    <th>String</th>
-    <th>Sumo Logic User ID</th>
-    <th>Optional</th>
+    <td>['sumologic']['sources']['default_timezone']</td>
+    <td>String</td>
+    <td>Timezone for source setup (defaults to UTC)</td>
+    <td>Required</td>
   </tr>
   <tr>
-    <th>['sumologic']['password']</th>
-    <th>String</th>
-    <th>Sumo Logic Password</th>
-    <th>Optional</th>
+    <td>['sumologic']['installDir'] </td>
+    <td>String</td>
+    <td>Sumo Logic Install Directory</td>
+    <td>Required</td>
   </tr>
   <tr>
-    <th>['sumologic']['accessID']</th>
-    <th>String</th>
-    <th>Sumo Logic Access ID</th>
-    <th>Optional</th>
+    <td>['sumologic']['ephemeral']</td>
+    <td>Boolean</td>
+    <td>Sumo Logic Ephemeral Setting</td>
+    <td>Required</td>
   </tr>
   <tr>
-    <th>['sumologic']['accessKey']</th>
-    <th>String</th>
-    <th>Sumo Logic Access Key</th>
-    <th>Optional</th>
+    <td>['sumologic']['sources']['default_timezone']</td>
+    <td>String</td>
+    <td>Timezone for source setup (defaults to UTC)</td>
+    <td>Required</td>
   </tr>
   <tr>
-    <th>['sumologic']['ephemeral']</th>
-    <th>Boolean</th>
-    <th>Sumo Logic Ephemeral Setting</th>
-    <th>Required</th>
+    <td>['sumologic']['installDir'] </td>
+    <td>String</td>
+    <td>Sumo Logic Install Directory</td>
+    <td>Required</td>
   </tr>
   <tr>
-    <th>['sumologic']['sources']['default_timezone']</th>
-    <th>String</th>
-    <th>Timezone for source setup (defaults to UTC)</th>
-    <th>Required</th>
+    <td>['sumologic']['credentials']['bag_name']</td>
+    <td>String</td>
+    <td>Name of the data bag.</td>
+    <td>Required</td>
   </tr>
   <tr>
-    <th>['sumologic']['installDir'] </th>
-    <th>String</th>
-    <th>Sumo Logic Install Directory</th>
-    <th>Required</th>
+    <td>['sumologic']['credentials']['item_name']</td>
+    <td>String</td>
+    <td>Name of the item within the data bag. </td>
+    <td>Required</td>
+  </tr>
+  <tr>
+    <td>['sumologic']['credentials']['secret_file']</td>
+    <td>String</td>
+    <td>Path to the local file containing the encryption secret key.</td>
+    <td>Optional</td>
   </tr>
 </table>
-
-The following attributes are not required but can be used to define custom cookbooks and templates 
-within a wrapper cookbook for generating custom sumo.conf and sumo.json configuration files.
-<table>
-  <tr>
-    <th>['sumologic']['json_config_cookbook'] Default: sumologic-collector</th>
-    <th>String</th>
-    <th>User defined cookbook for generating custom sumo.json templates</th>
-    <th>Not Required</th>
-  </tr>
-  <tr>
-    <th>['sumologic']['json_template']</th>
-    <th>String</th>
-    <th>User defined sumo.json template name</th>
-    <th>Not Required</th>
-  </tr>
-  <tr>
-    <th>['sumologic']['conf_config_cookbook'] Default: sumologic-collector</th>
-    <th>String</th>
-    <th>User defined cookbook for generating custom sumo.conf templates</th>
-    <th>Not Required</th>
-  </tr>
-  <tr>
-    <th>['sumologic']['conf_template'] </th>
-    <th>String</th>
-    <th>User defined sumo.conf template name</th>
-    <th>Not Required</th>
-  </tr>
-</table>
-
-The following attributes are not required but can be used to define an encrypted data bag containing the authentication credentials. The data bag that this points to should have 'email' and 'password' keys containing the email address and password to use to authenticate this collector. 
-
-<table>
-  <tr>
-    <th>['sumologic']['credentials']['bag_name']</th>
-    <th>String</th>
-    <th>Name of the data bag.</th>
-    <th>Required</th>
-  </tr>
-  <tr>
-    <th>['sumologic']['credentials']['item_name']</th>
-    <th>String</th>
-    <th>Name of the item within the data bag. </th>
-    <th>Required</th>
-  </tr>
-  <tr>
-    <th>['sumologic']['credentials']['secret_file']</th>
-    <th>String</th>
-    <th>Path to the local file containing the encryption secret key.</th>
-    <th>Optional</th>
-  </tr>
-</table>
-
-
-
-Usage
------
-
-Just include `sumologic-collector` in your node's `run_list`:
-
-```json
-{
-  "name":"my_node",
-  "run_list": [
-    "recipe[sumologic-collector]"
-  ]
-}
-```
 
 Contributing
 ------------
-This cookbook is meant to help customers use chef to install Sumo Logic collectors, so please feel to fork this repository, and make whatever changes you need for your environment.
+This cookbook is meant to help customers use Chef to install Sumo Logic
+collectors, so please feel to fork this repository, and make whatever changes
+you need for your environment.
 
 
 License and Authors

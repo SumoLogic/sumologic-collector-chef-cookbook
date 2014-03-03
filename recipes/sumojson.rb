@@ -30,9 +30,9 @@
 # otherwise pick a default json template based on platform family.
 if node['sumologic']['json_template'].nil?
   case node['platform_family']
-      when 'rhel' 
+      when 'rhel'
         json_source = 'sumo-rhel.json.erb'
-      when 'debian' 
+      when 'debian'
         json_source = 'sumo-debian.json.erb'
       else
         json_source = 'sumo.json.erb'
@@ -43,7 +43,7 @@ end
 
 template '/etc/sumo.json' do
   cookbook node['sumologic']['json_config_cookbook']
-  source json_source 
+  source json_source
   owner 'root'
   group 'root'
   mode 0644
