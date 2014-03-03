@@ -21,7 +21,8 @@ Installation
 ```knife cookbook github install SumoLogic/sumo-collector-chef-cookbook```
 
 3. Specify data bag and item with your access credentials.  The data item should
-contain attributes `accessID` and `accessKey`.
+contain attributes `accessID` and `accessKey`.  The default data bag/item is
+`['sumo-creds']['api-creds']`
 
 4. Upload the cookbook to your Chef Server:
 

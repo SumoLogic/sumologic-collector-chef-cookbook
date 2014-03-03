@@ -32,14 +32,14 @@ if !node[:sumologic][:credentials].nil?
 
   if !creds[:secret_file].nil?
     secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file])
-    edbag = Chef::EncryptedDataBagItem.load("sumo-config", "access-creds", secret)
+    edbag = Chef::EncryptedDataBagItem.load(creds[:bag_name], creds[:item_name], secret)
 
     credentials[:accessID],credentials[:accessKey] = edbag[:accessID.to_s], edbag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
   else
     credentials[:accessID],credentials[:accessKey] = bag[:accessID.to_s], bag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
   end
 else
-  bag = data_bag_item("sumo-config", "access-creds")
+  bag = data_bag_item(creds[:bag_name], creds[:item_name])
   credentials[:accessID],credentials[:accessKey] = bag[:accessID.to_s], bag[:accessKey.to_s]
 end
 
