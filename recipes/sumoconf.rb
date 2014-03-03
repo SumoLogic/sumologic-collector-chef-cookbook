@@ -36,6 +36,7 @@ if !node[:sumologic][:credentials].nil?
 
     credentials[:accessID],credentials[:accessKey] = edbag[:accessID.to_s], edbag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
   else
+    bag = data_bag_item(creds[:bag_name], creds[:item_name])
     credentials[:accessID],credentials[:accessKey] = bag[:accessID.to_s], bag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
   end
 else
