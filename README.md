@@ -42,12 +42,6 @@ Attributes
     <td>Required</td>
   </tr>
   <tr>
-    <td>['sumologic']['sources']['default_timezone']</td>
-    <td>String</td>
-    <td>Timezone for source setup (defaults to UTC)</td>
-    <td>Required</td>
-  </tr>
-  <tr>
     <td>['sumologic']['installDir'] </td>
     <td>String</td>
     <td>Sumo Logic Install Directory</td>

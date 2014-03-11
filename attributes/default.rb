@@ -30,9 +30,6 @@ default['sumologic']['credentials']['item_name'] = 'api-creds'
 # Ephemeral node (collector config deleted after 2 days of no heartbeat - data is not deleted from Sumo Logic)
 default['sumologic']['ephemeral'] = 'true'
 
-# Default Time Zone for Sources
-default['sumologic']['sources']['default_timezone'] = 'UTC'
-
 # Default json.conf configuration templates cookbook
 # Replace this with a custom cookbook name if you want to create
 # your own custom sumo.json or template.
