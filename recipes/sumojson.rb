@@ -28,7 +28,9 @@
 
 # If there is a json_source specified via attributes use that one
 # otherwise pick a default json template based on platform family.
-if node['sumologic']['json_template'].nil?
+if node['sumologic']['json_template']
+  json_source = node['sumologic']['json_template']
+else
   case node['platform_family']
       when 'rhel'
         json_source = 'sumo-rhel.json.erb'
@@ -37,8 +39,6 @@ if node['sumologic']['json_template'].nil?
       else
         json_source = 'sumo.json.erb'
   end
-else
-  json_source = node['sumologic']['json_template']
 end
 
 template '/etc/sumo.json' do
