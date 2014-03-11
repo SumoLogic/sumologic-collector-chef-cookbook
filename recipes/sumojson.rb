@@ -41,10 +41,25 @@ else
   end
 end
 
+sources = []
+if node['sumologic']['sources']
+  json_source = 'custom.json.erb'
+
+  sources = node['sumologic']['sources'].dup # get data as mutable objects
+
+  hostName = node['fqdn'] || Chef::Config[:node_name]
+  sources.each do |src|
+    src['hostName'] ||= hostName
+  end
+end
+
 template '/etc/sumo.json' do
   cookbook node['sumologic']['json_config_cookbook']
   source json_source
   owner 'root'
   group 'root'
   mode 0644
+  variables({
+    :sources => sources,
+  })
 end
