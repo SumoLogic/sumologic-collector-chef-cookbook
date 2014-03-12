@@ -25,40 +25,47 @@
 # https://service.sumologic.com/ui/help/Default.htm#Using_sumo.conf.htm
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 
+
+#Use the credentials variable to keep the proper credentials - regardless of source
 credentials = {}
 
-if !node[:sumologic][:credentials].nil?
+
+if node[:sumologic][:credentials]
   creds = node[:sumologic][:credentials]
 
-  if !creds[:secret_file].nil?
-    secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file])
-    edbag = Chef::EncryptedDataBagItem.load(creds[:bag_name], creds[:item_name], secret)
-
-    credentials[:accessID],credentials[:accessKey] = edbag[:accessID.to_s], edbag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
+  if creds[:secret_file]
+    secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file]) 
+    bag = Chef::EncryptedDataBagItem.load(creds[:bag_name], creds[:item_name], secret)
   else
     bag = data_bag_item(creds[:bag_name], creds[:item_name])
-    credentials[:accessID],credentials[:accessKey] = bag[:accessID.to_s], bag[:accessKey.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
   end
+   
+  [:accessID,:accessKey,:email,:password].each do |sym|
+    credentials[sym] = bag[sym.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
+  end
+    
 else
-  bag = data_bag_item(creds[:bag_name], creds[:item_name])
-  credentials[:accessID],credentials[:accessKey] = bag[:accessID.to_s], bag[:accessKey.to_s]
+  [:accessID,:accessKey,:email,:password].each do |sym|
+    credentials[sym]  = node[:sumologic][sym] 
+  end 
 end
 
 #Check to see if the default sumo.conf was overridden
-if node['sumologic']['conf_template'].nil?
-        conf_source = 'sumo.conf.accessID.erb'
-else
-    conf_source = node['sumologic']['conf_template']
-end
+conf_source = node['sumologic']['conf_template'] || 'sumo.conf.erb'
 
 template '/etc/sumo.conf' do
   cookbook node['sumologic']['conf_config_cookbook']
-  source conf_source
+  source conf_source 
   owner 'root'
   group 'root'
   mode 0644
+  # this may look strange, but one pair will be nil, so it all works out
   variables({
     :accessID  => credentials[:accessID],
     :accessKey => credentials[:accessKey],
+    :email     => credentials[:email],
+    :password  => credentials[:password],
   })
 end
+      
+
