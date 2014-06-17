@@ -16,7 +16,7 @@ Edit `sumo.json` to add/edit/remove sources.  After installation you can
 Installation
 ------------
 1. Create an [Access Key](http://help.sumologic.com/i19.69v2/Default.htm#Generating_Collector_Installation_API_Keys.htm)
-2. Install the cookbook in your Chef repo (your knife version should be at least 11.10.4):
+2. Install the cookbook in your Chef repo (your knife version should be at least 11.10.4 and you should have the [knife github plugin][https://github.com/websterclay/knife-github-cookbooks] installed):
 
 ```knife cookbook github install SumoLogic/sumologic-collector-chef-cookbook```
 
