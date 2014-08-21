@@ -72,7 +72,8 @@ case platform
         default['sumologic']['sumo_json_path'] = '/etc/sumo.json'
     when 'windows'
         # Install Path
-        default['sumologic']['installDir']     = 'C:/sumo' #'C:/Program Files/Sumo Logic Collector'
+        default['sumologic']['installDir']     = 'C:/sumo'  # We'd like to set this to C:/Program Files/Sumo Logic Collector', but there are issues with the Program Files directory.
+                                                            # See this for more info: https://tickets.opscode.com/browse/CHEF-4453
 
         # Installer Name
         default['sumologic']['installerName'] = node['kernel']['machine'] =~ /^x86_64$/ ? 'SumoCollector_windows-x64.exe' : 'SumoCollector_windows.exe'
