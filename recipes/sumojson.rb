@@ -36,6 +36,8 @@ else
         json_source = 'sumo-rhel.json.erb'
       when 'debian'
         json_source = 'sumo-debian.json.erb'
+      when 'windows'
+        json_source = 'sumo-windows.json.erb'
       else
         json_source = 'sumo.json.erb'
   end
@@ -53,12 +55,21 @@ if node['sumologic']['sources']
   end
 end
 
-template '/etc/sumo.json' do
+# Create the json file's parent directory (generally for Windows support)
+directory ::File.dirname(node['sumologic']['sumo_json_path']) do
+  recursive true
+end
+
+template node['sumologic']['sumo_json_path'] do
   cookbook node['sumologic']['json_config_cookbook']
   source json_source
-  owner 'root'
-  group 'root'
-  mode 0644
+
+  unless platform?('windows')
+    owner 'root'
+    group 'root'
+    mode 0644
+  end
+
   variables({
     :sources => sources,
   })

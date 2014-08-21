@@ -22,6 +22,7 @@
 #
 # Sumo Logic Help Links
 # https://service.sumologic.com/ui/help/Default.htm#Unattended_Installation_from_a_Linux_Script_using_the_Collector_Management_API.htm
+# https://service.sumologic.com/ui/help/Default.htm#Deploying_a_Windows_Collector_Automatically.htm
 # https://service.sumologic.com/ui/help/Default.htm#Using_sumo.conf.htm
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 
@@ -53,12 +54,21 @@ end
 #Check to see if the default sumo.conf was overridden
 conf_source = node['sumologic']['conf_template'] || 'sumo.conf.erb'
 
-template '/etc/sumo.conf' do
+# Create the conf file's parent directory (generally for Windows support)
+directory ::File.dirname(node['sumologic']['sumo_conf_path']) do
+  recursive true
+end
+
+template node['sumologic']['sumo_conf_path'] do
   cookbook node['sumologic']['conf_config_cookbook']
-  source conf_source 
-  owner 'root'
-  group 'root'
-  mode 0644
+  source conf_source
+
+  unless platform?('windows')
+    owner 'root'
+    group 'root'
+    mode 0644
+  end
+  
   # this may look strange, but one pair will be nil, so it all works out
   variables({
     :accessID  => credentials[:accessID],
@@ -67,5 +77,3 @@ template '/etc/sumo.conf' do
     :password  => credentials[:password],
   })
 end
-      
-
