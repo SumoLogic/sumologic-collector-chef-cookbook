@@ -20,11 +20,11 @@
 
 # Deleting the sumo.conf file because it has a username and password, and the json to just be tidy
 
-file '/etc/sumo.conf' do
+file node['sumologic']['sumo_conf_path'] do
   action :delete
 end
 
-file '/etc/sumo.json' do
+file node['sumologic']['sumo_json_path'] do
   action :delete
 end
 
