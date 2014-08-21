@@ -1,9 +1,9 @@
 sumologic-collector Cookbook
 ============================
-This cookbook installs the Sumo Logic collector on Linux using the shell script
-installer. Here are the steps it follows:
+This cookbook installs the Sumo Logic collector. Linux installs use the shell script
+installer and Windows uses the exe installer. Here are the steps it follows:
 
-1. Sets up `sumo.conf` and `sumo.json` with standard Linux logs
+1. Sets up `sumo.conf` and `sumo.json`. By default the standard Linux logs are captured. On Windows the application and system event logs are captured.
 2. Downloads latest installer
 3. Runs installer
 4. Starts collector and registers with the Sumo Logic service
@@ -45,12 +45,6 @@ Attributes
     <td>['sumologic']['installDir'] </td>
     <td>String</td>
     <td>Sumo Logic Install Directory</td>
-    <td>Required</td>
-  </tr>
-  <tr>
-    <td>['sumologic']['ephemeral']</td>
-    <td>Boolean</td>
-    <td>Sumo Logic Ephemeral Setting</td>
     <td>Required</td>
   </tr>
   <tr>
