@@ -1,5 +1,5 @@
 name=<%= node['sumologic']['name'] ? node['sumologic']['name'] : node.name %>
-sources=/etc/sumo.json
+sources=<%= node['sumologic']['sumo_json_path'] %>
 ephemeral=<%= node['sumologic']['ephemeral'] %>
 <%=
   attribs = []
