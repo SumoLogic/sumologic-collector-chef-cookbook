@@ -65,6 +65,29 @@ case platform
         # Download Path - Either 32bit or 64bit according to the architecture
         default['sumologic']['downloadURL'] = node['kernel']['machine'] =~ /^i[36']86$/ ? 'https://collectors.sumologic.com/rest/download/linux/32' : 'https://collectors.sumologic.com/rest/download/linux/64'
 
+        # Path to 'sumo.conf'
+        default['sumologic']['sumo_conf_path'] = '/etc/sumo.conf'
+
+        # Path to 'sumo.json'
+        default['sumologic']['sumo_json_path'] = '/etc/sumo.json'
+    when 'windows'
+        # Install Path
+        default['sumologic']['installDir']     = 'C:/sumo' #'C:/Program Files/Sumo Logic Collector'
+
+        # Installer Name
+        default['sumologic']['installerName'] = node['kernel']['machine'] =~ /^x86_64$/ ? 'SumoCollector_windows-x64.exe' : 'SumoCollector_windows.exe'
+
+        # Install Command
+        default['sumologic']['installerCmd'] = "start /wait #{default['sumologic']['installerName']} -q -dir #{default['sumologic']['installDir']}"
+
+        # Download Path - Either 32bit or 64bit according to the architecture
+        default['sumologic']['downloadURL'] = node['kernel']['machine'] =~ /^x86_64$/ ? 'https://collectors.sumologic.com/rest/download/win64' : 'https://collectors.sumologic.com/rest/download/windows'
+
+        # Path to 'sumo.conf'
+        default['sumologic']['sumo_conf_path'] = 'C:/sumo/sumo.conf'
+
+        # Path to 'sumo.json'
+        default['sumologic']['sumo_json_path'] = 'C:/sumo/sumo.json'
     else
         # Just have empty install commands for now as a placeholder
 
@@ -79,4 +102,10 @@ case platform
 
         # Download Path - Either 32bit or 64bit according to the architecture
         default['sumologic']['downloadURL'] = ''
+
+        # Path to 'sumo.conf'
+        default['sumologic']['sumo_conf_path'] = '/etc/sumo.conf'
+
+        # Path to 'sumo.json'
+        default['sumologic']['sumo_json_path'] = '/etc/sumo.json'
 end
