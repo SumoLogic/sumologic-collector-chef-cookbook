@@ -49,6 +49,15 @@ default['sumologic']['json_template'] = nil
 # template name from a custom sumo.conf configuration cookbook.
 default['sumologic']['conf_template'] = nil
 
+default['sumologic']['use_proxy'] = false
+default['sumologic']['proxy'] = {
+  'host' => nil,
+  'port' => nil
+}
+
+default['sumologic']['collectorTarUrl'] = 'https://collectors.sumologic.com/rest/download/tar'
+default['sumologic']['collectorTarName'] = 'sumocollector.tar.gz'
+
 #Platform Specific Attributes
 case platform
     # Currently have all linux variants using the scripted installer
