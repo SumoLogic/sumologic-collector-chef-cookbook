@@ -15,3 +15,7 @@ ephemeral=<%= node['sumologic']['ephemeral'] %>
 
   attribs.join("\n")
 %>
+<% if node['sumologic']['local_management'] -%>
+syncSources=<%= node['sumologic']['sumo_json_path'] %> 
+<% end -%>
+

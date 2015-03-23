@@ -66,7 +66,7 @@ template node['sumologic']['sumo_conf_path'] do
   unless platform?('windows')
     owner 'root'
     group 'root'
-    mode 0644
+    mode 0600
   end
   
   # this may look strange, but one pair will be nil, so it all works out
