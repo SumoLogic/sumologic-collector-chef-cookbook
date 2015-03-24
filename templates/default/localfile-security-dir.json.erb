@@ -1,0 +1,21 @@
+{
+    "api.version": "v1",
+    "source": 
+        {
+            "name": "Security Log File",
+            "sourceType": "LocalFile",
+            "automaticDateParsing": true,
+            "multilineProcessingEnabled": false,
+            "useAutolineMatching": true,
+            "forceTimeZone": false,
+            "timeZone": "UTC",
+            "category": "OS/Linux/Security",
+		<% case node["platform_family"] -%>
+		<%	when 'rhel'	%>
+            "pathExpression":"/var/log/secure"
+		<%	when 'debian' %>
+            "pathExpression":"/var/log/auth.log"
+		<% end -%>
+        }
+}
+
