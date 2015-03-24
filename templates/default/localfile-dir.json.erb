@@ -1,0 +1,24 @@
+{
+    "api.version": "v1",
+    "source": 
+        {
+		"name":<% if @source_name -%>"<%=@source_name%>",
+			<% else %>"Local File",<% end -%>
+		"sourceType": "LocalFile",
+		"automaticDateParsing": true,
+		"multilineProcessingEnabled": false,
+		"useAutolineMatching": true,
+		"forceTimeZone": false,
+		"timeZone": "UTC",
+		<% if @source_category %>
+		"category": "<%=@source_category%>",
+		<% end -%> 
+	<% if @pathExpression%>
+		"pathExpression":"<%=@pathExpression%>"
+	<% else %>
+		"pathExpression":"/var/log/*.log"
+	<% end -%>
+        }
+}
+
+

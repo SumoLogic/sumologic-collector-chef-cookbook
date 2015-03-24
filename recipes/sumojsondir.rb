@@ -41,16 +41,32 @@ end
 if !platform?('windows')
 	template "#{node['sumologic']['sumo_json_path']}/localfile-system.json" do
 	  cookbook node['sumologic']['json_config_cookbook']
-	  source "localfile-system.json.erb"
+	  source "localfile-system-dir.json.erb"
 	end
 
 	template "#{node['sumologic']['sumo_json_path']}/localfile-security.json" do
 	  cookbook node['sumologic']['json_config_cookbook']
-	  source "localfile-security.json.erb"
+	  source "localfile-security-dir.json.erb"
+	end
+
+	template "#{node['sumologic']['sumo_json_path']}/localfile-generic.json" do
+	  cookbook node['sumologic']['json_config_cookbook']
+	  source "localfile-dir.json.erb"
+	  variables ({:source_name=>"Generic",:source_category=>"Chef",:pathExpression=>"/tmp/chef_client.log"})
+	end
+
+	template "#{node['sumologic']['sumo_json_path']}/rfile.json" do
+	  cookbook node['sumologic']['json_config_cookbook']
+	  source "rfile-dir.json.erb"
+	end
+
+	template "#{node['sumologic']['sumo_json_path']}/syslog.json" do
+	  cookbook node['sumologic']['json_config_cookbook']
+	  source "syslog-dir.json.erb"
 	end
 elsif platform?('windows')
 		template "#{node['sumologic']['sumo_json_path']}/sumo-windows.json" do
 		  cookbook node['sumologic']['json_config_cookbook']
-		  source "sumo-windows.json.erb"
+		  source "sumo-windows-dir.json.erb"
 		 end
 end

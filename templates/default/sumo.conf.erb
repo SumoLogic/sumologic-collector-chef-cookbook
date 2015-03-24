@@ -1,5 +1,7 @@
 name=<%= node['sumologic']['name'] ? node['sumologic']['name'] : node.name %>
-sources=<%= node['sumologic']['sumo_json_path'] %>
+<% if !node['sumologic']['use_json_path_dir'] -%>
+sources=<%=node['sumologic']['sumo_json_path']%>
+<% end -%>
 ephemeral=<%= node['sumologic']['ephemeral'] %>
 <%=
   attribs = []
@@ -16,6 +18,6 @@ ephemeral=<%= node['sumologic']['ephemeral'] %>
   attribs.join("\n")
 %>
 <% if node['sumologic']['local_management'] -%>
-syncSources=<%= node['sumologic']['sumo_json_path'] %> 
+syncSources=<%=node['sumologic']['sumo_json_path']%>
 <% end -%>
 
