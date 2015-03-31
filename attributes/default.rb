@@ -27,7 +27,7 @@ default['sumologic']['name']      = nil
 # Enable Local Configuration Collector Management by default. With this one can update the collector's sources through their local json configuration files. 
 default['sumologic']['local_management']     =  true 
 # IMPORTANT: Set this to true if the sumo_json_path is a directory 
-default['sumologic']['use_json_path_dir']     = true 
+default['sumologic']['use_json_path_dir']     = false 
 
 # Data Bag for Collector Credentials
 default['sumologic']['credentials']['bag_name'] = 'sumo-creds'
