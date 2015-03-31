@@ -1,7 +1,7 @@
 #
 # Author:: Duc Ha (<duc@sumologic.com>)
 # Cookbook Name:: sumologic-collector
-# Recipe:: Configure a directory with individual json files for configuring sources
+# Recipe:: Configure a directory with individual json files for configuring sources. The directory path is specified by the attribute `default['sumologic']['sumo_json_path']`
 #
 #
 # Copyright 2015, Sumo Logic
@@ -49,21 +49,23 @@ if !platform?('windows')
 	  source "localfile-security-dir.json.erb"
 	end
 
-	template "#{node['sumologic']['sumo_json_path']}/localfile-generic.json" do
-	  cookbook node['sumologic']['json_config_cookbook']
-	  source "localfile-dir.json.erb"
-	  variables ({:source_name=>"Generic",:source_category=>"Chef",:pathExpression=>"/tmp/chef_client.log"})
-	end
+	# This is an example of another local file source, note the use of variables in this template
+	#template "#{node['sumologic']['sumo_json_path']}/localfile-generic.json" do
+	#  cookbook node['sumologic']['json_config_cookbook']
+	#  source "localfile-dir.json.erb"
+	#  variables ({:source_name=>"Generic",:source_category=>"Chef",:pathExpression=>"/var/log/chef*.log"})
+	#end
 
-	template "#{node['sumologic']['sumo_json_path']}/rfile.json" do
-	  cookbook node['sumologic']['json_config_cookbook']
-	  source "rfile-dir.json.erb"
-	end
+	# Below are examples of some other source types: remote file and syslog
+	#template "#{node['sumologic']['sumo_json_path']}/rfile.json" do
+	#  cookbook node['sumologic']['json_config_cookbook']
+	#  source "rfile-dir.json.erb"
+	#end
 
-	template "#{node['sumologic']['sumo_json_path']}/syslog.json" do
-	  cookbook node['sumologic']['json_config_cookbook']
-	  source "syslog-dir.json.erb"
-	end
+	#template "#{node['sumologic']['sumo_json_path']}/syslog.json" do
+	#  cookbook node['sumologic']['json_config_cookbook']
+	#  source "syslog-dir.json.erb"
+	#end
 elsif platform?('windows')
 		template "#{node['sumologic']['sumo_json_path']}/sumo-windows.json" do
 		  cookbook node['sumologic']['json_config_cookbook']
