@@ -83,9 +83,9 @@ case platform
         # Path to 'sumo.conf'
         default['sumologic']['sumo_conf_path'] = '/etc/sumo.conf'
 
-        # Path to 'sumo.json'
-        #default['sumologic']['sumo_json_path'] = '/etc/sumo.json'
-        default['sumologic']['sumo_json_path'] = '/tmp/SLJSON'
+        # Path to 'sumo.json' or the json directory
+        default['sumologic']['sumo_json_path'] = '/etc/sumo.json'
+        #default['sumologic']['sumo_json_path'] = '/tmp/JSONDIR'
     when 'windows'
         # Install Path
         default['sumologic']['installDir']     = 'C:/sumo'  # We'd like to set this to C:/Program Files/Sumo Logic Collector', but there are issues with the Program Files directory.
@@ -103,8 +103,9 @@ case platform
         # Path to 'sumo.conf'
         default['sumologic']['sumo_conf_path'] = 'C:/sumo/sumo.conf'
 
-        # Path to 'sumo.json'
+        # Path to 'sumo.json' or the json directory
         default['sumologic']['sumo_json_path'] = 'C:/sumo/sumo.json'
+        #default['sumologic']['sumo_json_path'] = 'C:/sumo/JSONDIR'
     else
         # Just have empty install commands for now as a placeholder
 
@@ -123,8 +124,9 @@ case platform
         # Path to 'sumo.conf'
         default['sumologic']['sumo_conf_path'] = '/etc/sumo.conf'
 
-        # Path to 'sumo.json'
+        # Path to 'sumo.json' or the json directory
         default['sumologic']['sumo_json_path'] = '/etc/sumo.json'
+        #default['sumologic']['sumo_json_path'] = '/tmp/JSONDIR'
 end
 
 
