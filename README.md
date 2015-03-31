@@ -8,7 +8,8 @@ installer and on Windows uses the exe installer. Here are the steps it follows:
 3. Runs installer
 4. Starts collector and registers with the Sumo Logic service
 
-For update of an existing collector, the collector must have been switched to use Local Configuration Mangement. See section [Make the switch](https://service.sumologic.com/help/Default.htm#Using_Local_Configuration_File_Management.htm) for more details. The steps the cookbook follows:
+For collector update, the existing collector must have been switched to use Local Configuration Mangement - see section [Make the switch](https://service.sumologic.com/help/Default.htm#Using_Local_Configuration_File_Management.htm) for more details. The steps the cookbook follows:
+
 1. Verify that the collector folder exists.
 2. (Optional) Recreate `sumo.conf` and `sumo.json` (or the json files under the json folder).
 3. Restart the collector for the changes to take effect.   
@@ -21,10 +22,10 @@ Edit `sumo.json` (or the json files under the json folder) to add/edit/remove so
 Note
 ------
 Starting from 19.107, there are 2 major extensions to SumoLogic collectors:
-* You can configure a collector's parameters from a set of json files under a common folder. Each of the json file will represent a source on that collector. Updates made to a json file will then be reflected on its corresponding source. Note that the format of this kind of file is *slightly different* from that of the traditional single json file (sumo.json) and they are *not* compatible. You also need to use the parameter `syncSources` instead of `sources` inside `sumo.conf`. See more details [here](https://service.sumologic.com/help/Default.htm#Using_sumo.conf.htm).
-* You can change a collector's existing parameters through local configuration json file(s) on an ongoing basis. Before this, using collector API was the only option. More information about this is [here](https://service.sumologic.com/help/Default.htm#Using_Local_Configuration_File_Management.htm)
+* You can configure a collector's parameters from a set of json files under a common folder. Each of the json file will represent a source on that collector. Updates made to a json file will then be reflected on its corresponding source. Note that the format of this kind of file is **slightly different** from that of the traditional single json file (sumo.json) and they are **not** compatible. You also need to use the parameter `syncSources` instead of `sources` inside `sumo.conf`. See more details [here](https://service.sumologic.com/help/Default.htm#Using_sumo.conf.htm).
+* You can change a collector's existing parameters through local configuration json file(s) continuously. Before this, using collector API was the only option. More information about this is [here](https://service.sumologic.com/help/Default.htm#Using_Local_Configuration_File_Management.htm)
  
-Setup
+Installation
 ------------
 1. Create an [Access Key](http://help.sumologic.com/i19.69v2/Default.htm#Generating_Collector_Installation_API_Keys.htm)
 2. Install the cookbook in your Chef repo (your knife version should be at least 11.10.4 and you should have the [knife github plugin](https://github.com/websterclay/knife-github-cookbooks) installed):
@@ -93,3 +94,4 @@ License and Authors
 -------------------
 Authors:
 	Ben Newton (ben@sumologic.com)
+	Duc Ha (duc@sumologic.com)
