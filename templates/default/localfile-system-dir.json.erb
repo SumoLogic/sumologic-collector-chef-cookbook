@@ -1,0 +1,20 @@
+{
+    "api.version": "v1",
+    "source": 
+        {
+            "name": "System Log File",
+            "sourceType": "LocalFile",
+            "automaticDateParsing": true,
+            "multilineProcessingEnabled": false,
+            "useAutolineMatching": true,
+            "forceTimeZone": false,
+            "timeZone": "UTC",
+            "category": "OS/Linux/System",
+			<% case node["platform_family"] -%>
+			<%	when 'rhel'	 %>
+            "pathExpression":"/var/log/messages"
+			<%	when 'debian' %>
+            "pathExpression":"/var/log/syslog"
+			<% end -%>
+        }
+}

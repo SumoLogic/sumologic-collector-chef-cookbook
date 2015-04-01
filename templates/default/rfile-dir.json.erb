@@ -1,0 +1,28 @@
+{ 
+	"api.version": "v1",
+	"source": 
+		{
+			"sourceType" : "RemoteFileV2",
+			"name" : "SampleRemoteFile",
+			"description" : "SampleRemoteFileSource",
+			"category" : "events",
+			"remoteHosts":["192.168.0.1","10.0.1.16",
+			"192.168.1.234"],
+			"remotePort": 22,
+			"remoteUser": "user",
+			"remotePassword": "password",
+			"keyPath": "",
+			"keyPassword": "",
+			"pathExpression": "/var/log/somelog.log",
+			"authMethod": "password",
+			"timeZone": "America/Los_Angeles",
+			"targetCpu":50,
+			"automaticDateParsing": true,
+			"multilineProcessingEnabled": true,
+			"useAutolineMatching": true,
+			"manualPrefixRegexp": "",
+			"forceTimeZone": false,
+			"defaultDateFormat": "dd/MMM/yyyy HH:mm:ss"
+		}
+}
+ 
