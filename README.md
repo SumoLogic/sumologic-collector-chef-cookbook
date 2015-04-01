@@ -88,6 +88,4 @@ you need for your environment.
 License and Authors
 -------------------
 Authors:
-	Ben Newton (ben@sumologic.com)
-
-	Duc Ha (duc@sumologic.com)
+	Ben Newton (ben@sumologic.com), Duc Ha (duc@sumologic.com)
