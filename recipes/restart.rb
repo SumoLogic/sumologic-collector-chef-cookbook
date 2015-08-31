@@ -20,11 +20,11 @@
 #
 
 Chef::Log.info "Restart Collector."
-if File.exists? node['sumologic']['installDir']
-	Chef::Log.info "Restart Collector at #{node['sumologic']['installDir']}."
+if File.exist? node['sumologic']['installDir']
+  Chef::Log.info "Restart Collector at #{node['sumologic']['installDir']}."
 else
-	Chef::Log.info "Collector Directory is not found at #{node['sumologic']['installDir']}. Will not do anything."
-	return 
+  Chef::Log.info "Collector Directory is not found at #{node['sumologic']['installDir']}. Will not do anything."
+  return
 end
 
 execute "Restart Sumo Collector" do

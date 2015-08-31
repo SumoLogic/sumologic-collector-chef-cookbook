@@ -33,12 +33,12 @@ include_recipe 'java'
 include_recipe 'sumologic-collector::sumoconf'
 include_recipe 'sumologic-collector::sumojson'
 
-# TODO :: Support windows
+# TODO: : Support windows
 return unless node['platform'] != 'windows'
 
 Chef::Log.info "  Creating Sumo Logic director at #{node['sumologic']['installDir']}"
 
-directory node['sumologic']['installDir']  do
+directory node['sumologic']['installDir'] do
   owner 'root'
   group 'root'
   mode '0755'
@@ -93,6 +93,6 @@ Chef::Log.info "  Starting collector..."
 
 service 'collector' do
   init_command '/etc/init.d/collector'
-  supports :start => true, :status => true, :restart => true
+  supports start: true, status: true, restart: true
   action :start
 end

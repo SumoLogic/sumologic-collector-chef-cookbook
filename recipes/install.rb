@@ -35,7 +35,7 @@ Chef::Log.info "Starting Installation."
 
 Chef::Log.info "  Creating Sumo Logic director at #{node['sumologic']['installDir']}"
 
-directory node['sumologic']['installDir']  do
+directory node['sumologic']['installDir'] do
   unless platform?('windows')
     owner 'root'
     group 'root'
@@ -51,9 +51,7 @@ Chef::Log.info "  Downloading Sumo Logic installer from #{node['sumologic']['dow
 remote_file "#{node['sumologic']['installDir']}/#{node['sumologic']['installerName']}" do
   source node['sumologic']['downloadURL']
 
-  unless platform?('windows')
-    mode '0644'
-  end
+  mode '0644' unless platform?('windows')
 end
 
 Chef::Log.info "  Installing Sumo Logic director at #{node['sumologic']['installDir']}"

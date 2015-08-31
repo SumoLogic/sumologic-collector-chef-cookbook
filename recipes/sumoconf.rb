@@ -26,32 +26,30 @@
 # https://service.sumologic.com/ui/help/Default.htm#Using_sumo.conf.htm
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 
-
-#Use the credentials variable to keep the proper credentials - regardless of source
+# Use the credentials variable to keep the proper credentials - regardless of source
 credentials = {}
-
 
 if node[:sumologic][:credentials]
   creds = node[:sumologic][:credentials]
 
   if creds[:secret_file]
-    secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file]) 
+    secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file])
     bag = Chef::EncryptedDataBagItem.load(creds[:bag_name], creds[:item_name], secret)
   else
     bag = data_bag_item(creds[:bag_name], creds[:item_name])
   end
-   
-  [:accessID,:accessKey,:email,:password].each do |sym|
+
+  [:accessID, :accessKey, :email, :password].each do |sym|
     credentials[sym] = bag[sym.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
   end
-    
+
 else
-  [:accessID,:accessKey,:email,:password].each do |sym|
-    credentials[sym]  = node[:sumologic][sym] 
-  end 
+  [:accessID, :accessKey, :email, :password].each do |sym|
+    credentials[sym] = node[:sumologic][sym]
+  end
 end
 
-#Check to see if the default sumo.conf was overridden
+# Check to see if the default sumo.conf was overridden
 conf_source = node['sumologic']['conf_template'] || 'sumo.conf.erb'
 
 # Create the conf file's parent directory (generally for Windows support)
@@ -68,12 +66,10 @@ template node['sumologic']['sumo_conf_path'] do
     group 'root'
     mode 0600
   end
-  
+
   # this may look strange, but one pair will be nil, so it all works out
-  variables({
-    :accessID  => credentials[:accessID],
-    :accessKey => credentials[:accessKey],
-    :email     => credentials[:email],
-    :password  => credentials[:password],
-  })
+  variables(accessID: credentials[:accessID],
+            accessKey: credentials[:accessKey],
+            email: credentials[:email],
+            password: credentials[:password])
 end
