@@ -32,14 +32,14 @@ if node['sumologic']['json_template']
   json_source = node['sumologic']['json_template']
 else
   case node['platform_family']
-      when 'rhel'
-        json_source = 'sumo-rhel.json.erb'
-      when 'debian'
-        json_source = 'sumo-debian.json.erb'
-      when 'windows'
-        json_source = 'sumo-windows.json.erb'
-      else
-        json_source = 'sumo.json.erb'
+  when 'rhel'
+    json_source = 'sumo-rhel.json.erb'
+  when 'debian'
+    json_source = 'sumo-debian.json.erb'
+  when 'windows'
+    json_source = 'sumo-windows.json.erb'
+  else
+    json_source = 'sumo.json.erb'
   end
 end
 
@@ -70,7 +70,5 @@ template node['sumologic']['sumo_json_path'] do
     mode 0644
   end
 
-  variables({
-    :sources => sources,
-  })
+  variables(sources: sources)
 end
