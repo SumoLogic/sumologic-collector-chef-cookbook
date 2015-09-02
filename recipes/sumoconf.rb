@@ -29,8 +29,8 @@
 # Use the credentials variable to keep the proper credentials - regardless of source
 credentials = {}
 
-if node[:sumologic][:credentials]
-  creds = node[:sumologic][:credentials]
+if node['sumologic']['credentials']
+  creds = node['sumologic']['credentials']
 
   if creds[:secret_file]
     secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file])
@@ -45,7 +45,7 @@ if node[:sumologic][:credentials]
 
 else
   [:accessID, :accessKey, :email, :password].each do |sym|
-    credentials[sym] = node[:sumologic][sym]
+    credentials[sym] = node['sumologic'][sym]
   end
 end
 

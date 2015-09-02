@@ -1,19 +1,16 @@
-driver_plugin: vagrant
-driver_config:
-  require_chef_omnibus: true
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
 
 platforms:
-- name: ubuntu-12.04
-  driver_config:
-    box: canonical-ubuntu-12.04
-    box_url: http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box
-- name: centos-6.4
-  driver_config:
-    box: opscode-centos-6.4
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
+  - name: ubuntu-14.04
+  - name: centos-7.1
 
 suites:
-- name: default
-  run_list:
-    - recipe[sumologic-collector]
-    - recipe[minitest-handler]
+  - name: default
+    run_list:
+      - recipe[sumologic-collector::default]
+    attributes:
