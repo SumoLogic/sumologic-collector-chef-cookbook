@@ -1,0 +1,7 @@
+{
+  "id": "api-creds",
+  "accessID": "fakeID",
+  "accessKey": "fakeKey",
+  "email": "test@test.com",
+  "password": "fakePassword"
+}
