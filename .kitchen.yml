@@ -14,5 +14,8 @@ suites:
   - name: default
     data_bags_path: test/integration/data_bags
     run_list:
+      - recipe[data-bag-faker]
       - recipe[sumologic-collector::default]
     attributes:
+      SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+      SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>

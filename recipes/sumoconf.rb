@@ -60,7 +60,7 @@ end
 template node['sumologic']['sumo_conf_path'] do
   cookbook node['sumologic']['conf_config_cookbook']
   source conf_source
-
+  sensitive true
   unless platform?('windows')
     owner 'root'
     group 'root'
