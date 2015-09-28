@@ -1,8 +1,6 @@
 require 'spec_helper'
 require 'sumo_helper'
 
-access_id = "suapsWeGL8iczv"
-access_key = "8Y2WyLOuwbkKtrQgUQTO3hSodMMBfyLPfw4gxYuhzvcU7yPFUIEXG34MI5FIAbJH"
 
 describe file('/etc/sumo.conf') do
    it { should exist }
