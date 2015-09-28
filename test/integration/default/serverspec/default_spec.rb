@@ -23,10 +23,15 @@ describe host('service.sumologic.com') do
   it { should be_reachable.with( :port => 443, :proto => 'tcp' ) }
 end
 
-describe "sumologic" do
+describe file ('/etc/sumo.conf') do
+
   it "should receive data" do
-    collector = Sumologic::Collector.new({ name: 'pd', api_username: access_id, api_password: access_key })
+    node = load_properties('/etc/sumo.conf')
+    puts node
+    collector = Sumologic::Collector.new({ name: 'pd', api_username: node['accessid'], api_password: node['accesskey'] })
     response = collector.search('vagrant')
     expect(!response[0]['_raw'].nil?)
   end
+end
+
 end
