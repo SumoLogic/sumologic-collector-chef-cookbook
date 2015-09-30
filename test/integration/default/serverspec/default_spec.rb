@@ -31,7 +31,7 @@ describe file ('/etc/sumo.conf') do
     key = string = (0...50).map { random[rand(random.length)] }.join
     log = Syslog::Logger.new 'Sumologic'
     log.info "this line will be sent to SumoLogic: #{key}"
-    sleep(3.minutes)
+    sleep(180)
     collector = Sumologic::Collector.new({ name: 'pd', api_username: node['accessid'], api_password: node['accesskey'] })
     response = collector.search(key)
     expect(!response[0]['_raw'].nil?)
