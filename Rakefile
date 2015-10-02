@@ -27,7 +27,7 @@ desc 'Run ChefSpec examples'
 RSpec::Core::RakeTask.new(:spec)
 
 desc 'Run all tests on Travis'
-task travis: ['style', 'spec']
+task travis: %w(style spec)
 
 # Integration tests. Kitchen.ci
 namespace :integration do
@@ -49,6 +49,6 @@ namespace :integration do
 end
 
 # Default
-task default: ['style', 'spec', 'integration:vagrant']
-task ec2: ['style', 'spec', 'integration:ec2']
-task test: ['style', 'spec']
+task default: %w(style spec integration:vagrant)
+task ec2: %w(style spec integration:ec2)
+task test: %w(style spec)

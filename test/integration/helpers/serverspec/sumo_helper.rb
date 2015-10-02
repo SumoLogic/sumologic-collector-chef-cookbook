@@ -149,7 +149,7 @@ class Sumologic
       http.use_ssl = true
       request.basic_auth(api_username, api_password)
       response = http.request(request)
-      raise ApiError, "Unable to get source list #{response.inspect}" unless response.is_a?(Net::HTTPSuccess)
+      fail ApiError, "Unable to get source list #{response.inspect}" unless response.is_a?(Net::HTTPSuccess)
       response
     end
 

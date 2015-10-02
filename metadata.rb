@@ -15,17 +15,17 @@ attribute 'sumologic/credentials/item_name',
   required: "required"
 
 depends 'java'
-%w{
-    debian
-    ubuntu
-    centos
-    redhat
-    scientific
-    fedora
-    amazon
-    oracle
-    windows
-    suse
-}.each do |os|
+%w(
+  debian
+  ubuntu
+  centos
+  redhat
+  scientific
+  fedora
+  amazon
+  oracle
+  windows
+  suse
+).each do |os|
   supports os
 end

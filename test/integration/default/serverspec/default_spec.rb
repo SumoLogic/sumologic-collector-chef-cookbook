@@ -3,7 +3,7 @@ require 'sumo_helper'
 require 'syslog/logger'
 
 describe file('/etc/sumo.conf') do
-   it { should exist }
+  it { should exist }
 end
 
 describe file('/etc/sumo.json') do
@@ -14,21 +14,20 @@ describe file('/opt/SumoCollector') do
   it { should be_directory }
 end
 
-describe service('collector'), :if => os[:family] == 'ubuntu' do
+describe service('collector'), if: os[:family] == 'ubuntu' do
   it { should be_running }
   it { should be_enabled }
 end
 
-describe host('service.sumologic.com'), :if => os[:family] == 'ubuntu' do
-  it { should be_reachable.with( :port => 443, :proto => 'tcp' ) }
+describe host('service.sumologic.com'), if: os[:family] == 'ubuntu' do
+  it { should be_reachable.with(port: 443, proto: 'tcp') }
 end
 
-describe file ('/etc/sumo.conf') do
-
+describe file('/etc/sumo.conf') do
   it "should receive data" do
     node = load_properties('/etc/sumo.conf')
     random = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
-    key = string = (0...50).map { random[rand(random.length)] }.join
+    key = (0...50).map { random[rand(random.length)] }.join
     log = Syslog::Logger.new 'Sumologic'
     log.info "this line will be sent to SumoLogic: #{key}"
     sleep(180)
@@ -36,5 +35,4 @@ describe file ('/etc/sumo.conf') do
     response = collector.search(key)
     expect(!response[0]['_raw'].nil?)
   end
-
 end
