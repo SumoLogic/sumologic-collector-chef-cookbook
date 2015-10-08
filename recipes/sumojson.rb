@@ -49,9 +49,9 @@ if node['sumologic']['sources']
 
   sources = node['sumologic']['sources'].dup # get data as mutable objects
 
-  hostName = node['fqdn'] || Chef::Config[:node_name]
+  host_name = node['fqdn'] || Chef::Config[:node_name]
   sources.each do |src|
-    src['hostName'] ||= hostName
+    src['hostName'] ||= host_name
   end
 end
 
