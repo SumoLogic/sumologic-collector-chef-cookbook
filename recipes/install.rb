@@ -38,7 +38,7 @@ Chef::Log.info "  Creating Sumo Logic director at #{node['sumologic']['installDi
 case node[:platform]
 when 'redhat', 'centos'
   remote_file "/tmp/sumocollector_19.127-3_amd64.rpm" do
-    source "https://collectors.sumologic.com/rest/download/rpm/64"
+    source node['sumologic']['collectorRPMUrl']
     mode 0644
   end
 
@@ -48,7 +48,7 @@ when 'redhat', 'centos'
   end
 when 'ubuntu', 'debian'
   remote_file "/tmp/sumocollector_19.127-3_amd64.deb" do
-    source "https://collectors.sumologic.com/rest/download/deb/64"
+    source node['sumologic']['collectorDEBUrl']
     mode 0644
   end
 

@@ -63,6 +63,12 @@ default['sumologic']['proxy'] = {
 default['sumologic']['collectorTarUrl'] = 'https://collectors.sumologic.com/rest/download/tar'
 default['sumologic']['collectorTarName'] = 'sumocollector.tar.gz'
 
+#RPMs
+default['sumologic']['collectorRPMUrl'] = 'https://collectors.sumologic.com/rest/download/rpm/64'
+#DEB
+default['sumologic']['collectorDEBUrl'] = 'https://collectors.sumologic.com/rest/download/deb/64'
+
+
 # Platform Specific Attributes
 case platform
 # Currently have all linux variants using the scripted installer
