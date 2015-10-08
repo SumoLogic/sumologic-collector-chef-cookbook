@@ -54,7 +54,19 @@ else
     # use the recipe sumojson if your source configurations are in a single json file
     include_recipe 'sumologic-collector::sumojson'
   end
-  include_recipe 'sumologic-collector::install'
+  
+  remote_file "#{node['sumologic']['installDir']}/#{node['sumologic']['installerName']}" do
+    source node['sumologic']['downloadURL']
+
+  end
+
+  Chef::Log.info "  Installing Sumo Logic director at #{node['sumologic']['installDir']}"
+
+  execute "Deploy Sumo Collector" do
+    command node['sumologic']['installerCmd']
+    cwd node['sumologic']['installDir']
+    timeout 3600
+  end
 
   # The following recipe will clean up sumo.conf and the json configuration file(s). Use it if you only need to setup the collector once.
   # include_recipe 'sumologic-collector::cleanup'
