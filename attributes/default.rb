@@ -134,5 +134,9 @@ else
   # default['sumologic']['sumo_json_path'] = '/tmp/JSONDIR'
 end
 
+# Auto start service when installing via rpm. 
+default['sumologic']['rpmAutoStart'] = 'true'
+
+
 # Collector Restart Command
 default['sumologic']['collectorRestartCmd'] = "#{default['sumologic']['installDir']}/collector restart"
