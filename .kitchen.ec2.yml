@@ -1,0 +1,34 @@
+driver:
+  name: ec2
+  aws_ssh_key_id: <%= ENV['AWS_SSH_KEY'] %>
+  security_group_ids:  <%= ENV['AWS_SECURITY_GROUPS'] %>
+  region: <%= ENV['AWS_REGION'] %>
+  availability_zone: <%= ENV['AWS_AVAILABILITY_ZONE'] %>
+  require_chef_omnibus: true
+  subnet_id: <%= ENV['AWS_SUBNET'] %>
+  instance_type: <%= ENV['INSTANCE_SIZE'] %>
+  associate_public_ip: false
+  interface: private
+  user_data: <%= ENV['USER_DATA_PATH'] %>
+
+provisioner:
+  name: chef_zero
+
+transport:
+  username: <%= ENV['AWS_USERNAME'] %>
+  ssh_key: ~/.ssh/<%= ENV['AWS_SSH_KEY'] %>.pem
+
+platforms:
+  - name: <%= ENV['AWS_PLATFORM_NAME'] %>
+    driver:
+      image_id: <%= ENV['AWS_AMI_ID'] %>
+
+suites:
+  - name: default
+    data_bags_path: test/integration/data_bags
+    run_list:
+      - recipe[data-bag-faker]
+      - recipe[sumologic-collector::default]
+    attributes:
+      SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+      SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
