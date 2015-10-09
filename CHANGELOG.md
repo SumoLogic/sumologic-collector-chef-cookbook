@@ -15,6 +15,9 @@ This file is used to list changes made in each version of sumologic-collector.
 
 * Add basic serverspec
 
+## 1.2.6
+
+* Add support for restarting the collector on `Windows`
 
 
 - - -
