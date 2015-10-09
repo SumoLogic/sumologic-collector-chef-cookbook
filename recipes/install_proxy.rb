@@ -48,7 +48,7 @@ end
 
 Chef::Log.info "  Downloading Sumo Logic Collector from #{node['sumologic']['collectorTarUrl']}"
 
-remote_file "/tmp/#{node['sumologic']['collectorTarName']}" do
+remote_file "#{Chef::Config[:file_cache_path]}#{node['sumologic']['collectorTarName']}" do
   source node['sumologic']['collectorTarUrl']
   mode '0644'
 end

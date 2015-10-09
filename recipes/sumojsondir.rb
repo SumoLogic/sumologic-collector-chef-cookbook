@@ -28,7 +28,7 @@
 # https://service.sumologic.com/help/Default.htm#Using_Local_Configuration_File_Management.htm
 
 # Create the json file's directory (generally for Windows support)
-directory "#{node['sumologic']['sumo_json_path']}" do
+directory node['sumologic']['sumo_json_path'] do
   unless platform?('windows')
     owner 'root'
     group 'root'

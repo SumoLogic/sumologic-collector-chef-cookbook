@@ -14,4 +14,18 @@ attribute 'sumologic/credentials/item_name',
   type: "string",
   required: "required"
 
-# depends 'java'
+depends 'java'
+%w(
+  debian
+  ubuntu
+  centos
+  redhat
+  scientific
+  fedora
+  amazon
+  oracle
+  windows
+  suse
+).each do |os|
+  supports os
+end
