@@ -91,6 +91,9 @@ when 'redhat', 'centos', 'scientific', 'fedora', 'suse', 'amazon', 'oracle', 'de
   # Path to 'sumo.json' or the json directory
   default['sumologic']['sumo_json_path'] = '/etc/sumo.json'
 # default['sumologic']['sumo_json_path'] = '/tmp/JSONDIR'
+
+  # Collector Restart Command
+  default['sumologic']['collectorRestartCmd'] = "#{default['sumologic']['installDir']}/collector restart"
 when 'windows'
   # Install Path
   default['sumologic']['installDir'] = 'C:/sumo' # We'd like to set this to C:/Program Files/Sumo Logic Collector', but there are issues with the Program Files directory.
@@ -111,6 +114,9 @@ when 'windows'
   # Path to 'sumo.json' or the json directory
   default['sumologic']['sumo_json_path'] = 'C:/sumo/sumo.json'
 # default['sumologic']['sumo_json_path'] = 'C:/sumo/JSONDIR'
+
+  # Collector Restart Command
+  default['sumologic']['collectorRestartCmd'] = 'net stop "sumo-collector" && net start "sumo-collector"'
 else
   # Just have empty install commands for now as a placeholder
 
@@ -132,7 +138,8 @@ else
   # Path to 'sumo.json' or the json directory
   default['sumologic']['sumo_json_path'] = '/etc/sumo.json'
   # default['sumologic']['sumo_json_path'] = '/tmp/JSONDIR'
+
+  # Collector Restart Command
+  default['sumologic']['collectorRestartCmd'] = "#{default['sumologic']['installDir']}/collector restart"
 end
 
-# Collector Restart Command
-default['sumologic']['collectorRestartCmd'] = "#{default['sumologic']['installDir']}/collector restart"
