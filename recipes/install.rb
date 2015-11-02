@@ -60,7 +60,7 @@ when 'ubuntu', 'debian'
   if node[:platform] == 'debian' && node[:platform_verion >= 8.0
     execute 'sumo-systemd-reload' do
       command '/bin/systemctl --system daemon-reload && systemctl restart collector.service'
-      action :nothing
+      action :run
       not_if { ::File.exist?('/run/systemd/generator.late/collector.service') }
     end 
 end
