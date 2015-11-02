@@ -56,4 +56,11 @@ when 'ubuntu', 'debian'
     source "/tmp/sumocollector_19.127-3_amd64.deb"
     action :install
   end
+
+  if node[:platform] == 'debian' && node[:platform_verion >= 8.0
+    execute 'sumo-systemd-reload' do
+      command '/bin/systemctl --system daemon-reload && systemctl restart collector.service'
+      action :nothing
+      not_if { ::File.exist?('/run/systemd/generator.late/collector.service') }
+    end 
 end
