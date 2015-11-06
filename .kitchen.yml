@@ -40,4 +40,14 @@ suites:
       - ubuntu-14.04
       - centos-7.1
       - centos-6.7
-      
+  - name: test_sumologic_source_create
+    run_list:
+      - recipe[sumologic_source_test::create_default]
+    excludes:
+      - windows-2012r2
+  - name: test_sumologic_source_delete
+    run_list:
+      - recipe[sumologic_source_test::create_default]
+      - recipe[sumologic_source_test::delete_default]
+    excludes:
+      - windows-2012r2
