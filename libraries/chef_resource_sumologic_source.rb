@@ -2,6 +2,7 @@ require 'chef/resource/lwrp_base'
 
 class Chef
   class Resource
+    # Resource to create or delete a Sumologic "source" configuration file
     class SumologicConfig < Chef::Resource::LWRPBase
       provides :sumologic_source if defined? provides
 
