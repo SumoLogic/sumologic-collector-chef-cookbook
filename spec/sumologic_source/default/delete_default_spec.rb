@@ -8,8 +8,6 @@ describe 'sumologic_source_test::delete_default' do
   subject { chef_run }
 
   it { is_expected.to include_recipe 'sumologic_source_test::delete_default' }
-  it { is_expected.to create_directory ::File.dirname '/etc/sumo.d/sumo.json' }
-  it { is_expected.to create_template '/etc/sumo.d/sumo.json' }
 
   it do
     is_expected.to_not delete_directory ::File.dirname '/etc/sumo.d/sumo.json'
