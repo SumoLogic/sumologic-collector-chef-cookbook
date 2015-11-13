@@ -38,6 +38,9 @@ if File.exist? node['sumologic']['installDir']
 #	include_recipe 'sumologic-collector::sumojson'
 # end
 # include_recipe 'sumologic-collector::restart'
+  service "sumo-collector" do
+    action :start
+  end
 else
   Chef::Log.info "Installing Sumo Logic Collector..."
   include_recipe 'sumologic-collector::sumoconf'
