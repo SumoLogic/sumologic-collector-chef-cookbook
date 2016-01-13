@@ -60,12 +60,8 @@ else
 
   end
 
-  Chef::Log.info "  Installing Sumo Logic director at #{node['sumologic']['installDir']}"
-
-  execute "Deploy Sumo Collector" do
-    command node['sumologic']['installerCmd']
-    cwd node['sumologic']['installDir']
-    timeout 3600
+  sumologic_collector_installer node['sumologic']['installDir'] do
+    source node['sumologic']['downloadURL']
   end
 
   # The following recipe will clean up sumo.conf and the json configuration file(s). Use it if you only need to setup the collector once.

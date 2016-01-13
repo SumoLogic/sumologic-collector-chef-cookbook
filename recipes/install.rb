@@ -31,29 +31,4 @@
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 #
 
-Chef::Log.info "Starting Installation."
-
-Chef::Log.info "  Creating Sumo Logic director at #{node['sumologic']['installDir']}"
-
-case node[:platform]
-when 'redhat', 'centos'
-  remote_file "/tmp/sumocollector_19.127-3_amd64.rpm" do
-    source node['sumologic']['collectorRPMUrl']
-    mode 0644
-  end
-
-  rpm_package "sumocollector" do
-    source "/tmp/sumocollector_19.127-3_amd64.rpm"
-    action :install
-  end
-when 'ubuntu', 'debian'
-  remote_file "/tmp/sumocollector_19.127-3_amd64.deb" do
-    source node['sumologic']['collectorDEBUrl']
-    mode 0644
-  end
-
-  dpkg_package "sumocollector" do
-    source "/tmp/sumocollector_19.127-3_amd64.deb"
-    action :install
-  end
-end
+include_recipe "sumologic-collector::#{node['platform_family']}"
