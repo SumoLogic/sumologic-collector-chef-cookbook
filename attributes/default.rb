@@ -72,7 +72,7 @@ default['sumologic']['collectorDEBUrl'] = 'https://collectors.sumologic.com/rest
 # Platform Specific Attributes
 case platform
 # Currently have all linux variants using the scripted installer
-when 'redhat', 'centos', 'scientific', 'fedora', 'suse', 'amazon', 'oracle', 'debian', 'ubuntu'
+when 'redhat', 'centos', 'scientific', 'fedora', 'suse', 'amazon', 'oracle', 'debian', 'ubuntu', 'linux'
   # Install Path
   default['sumologic']['installDir'] = '/opt/SumoCollector'
 
