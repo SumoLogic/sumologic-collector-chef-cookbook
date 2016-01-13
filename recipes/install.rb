@@ -36,7 +36,7 @@ Chef::Log.info "Starting Installation."
 Chef::Log.info "  Creating Sumo Logic director at #{node['sumologic']['installDir']}"
 
 case node[:platform]
-when 'redhat', 'centos', 'linux'
+when 'redhat', 'centos', 'linux', 'amazon'
   remote_file "/tmp/sumocollector_19.127-3_amd64.rpm" do
     source node['sumologic']['collectorRPMUrl']
     mode 0644
