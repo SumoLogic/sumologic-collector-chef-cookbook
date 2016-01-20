@@ -16,6 +16,7 @@ action :install do
 
     remote_file "#{Chef::Config[:file_cache_path]}/#{installer_bin}" do
       source new_resource.source
+      mode '0755' unless node['platform_family'] == 'windows'
     end
 
     installer_cmd = [installer_bin, installer_opts].join(' ').strip
