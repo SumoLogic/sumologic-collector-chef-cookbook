@@ -31,4 +31,11 @@
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 #
 
-include_recipe "sumologic-collector::#{node['platform_family']}"
+case node['platform_family']
+when 'rhel', 'amazon', 'linux'
+  include_recipe 'sumologic-collector::rhel'
+when 'debian'
+  include_recipe 'sumologic-collector::debian'
+when 'windows'
+  include_recipe 'sumologic-collector::windows'
+end
