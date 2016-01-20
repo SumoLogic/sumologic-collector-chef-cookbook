@@ -32,7 +32,7 @@ if node['sumologic']['json_template']
   json_source = node['sumologic']['json_template']
 else
   case node['platform_family']
-  when 'rhel'
+  when 'rhel', 'amazon', 'linux'
     json_source = 'sumo-rhel.json.erb'
   when 'debian'
     json_source = 'sumo-debian.json.erb'
