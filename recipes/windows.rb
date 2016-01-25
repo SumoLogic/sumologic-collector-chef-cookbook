@@ -32,7 +32,7 @@
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 #
 
-if ::Win32::Service.exist? "Sumologic-Collector"
+if ::Win32::Service.exists? "Sumologic-Collector"
   Chef::Log.info "Sumo Logic Collector found."
   Chef::Log.info "Checking for Sumo Logic Collector Updates and will "\
     "reinstall director at #{node['sumologic']['installDir']}"
@@ -74,11 +74,9 @@ else
     notifies :run, 'execute[Deploy Sumo Collector]', :immediately
   end
 
-
   # The following recipe will clean up sumo.conf and the json configuration file(s). Use it if you only need to setup the collector once.
   # include_recipe 'sumologic-collector::cleanup'
 end
-
 
 execute "Deploy Sumo Collector" do
   command node['sumologic']['installerCmd']
