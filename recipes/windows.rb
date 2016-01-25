@@ -32,7 +32,7 @@
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 #
 
-if ::Win32::Service.exists? "Sumologic-Collector"
+if ::Win32::Service.exists? "sumo-collector"
   Chef::Log.info "Sumo Logic Collector found."
   Chef::Log.info "Checking for Sumo Logic Collector Updates and will "\
     "reinstall director at #{node['sumologic']['installDir']}"
