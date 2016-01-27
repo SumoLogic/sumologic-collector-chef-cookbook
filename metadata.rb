@@ -14,7 +14,6 @@ attribute 'sumologic/credentials/item_name',
   type: "string",
   required: "required"
 
-depends 'java'
 %w(
   debian
   ubuntu
