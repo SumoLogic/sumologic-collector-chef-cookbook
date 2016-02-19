@@ -29,18 +29,28 @@
 # Use the credentials variable to keep the proper credentials - regardless of source
 credentials = {}
 
+chef_gem 'chef-vault' do
+  compile_time true if respond_to?(:compile_time)
+end
+
+require 'chef-vault'
+
 if node['sumologic']['credentials']
   creds = node['sumologic']['credentials']
 
   if creds[:secret_file]
     secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file])
-    bag = Chef::EncryptedDataBagItem.load(creds[:bag_name], creds[:item_name], secret)
+    item = Chef::EncryptedDataBagItem.load(creds[:bag_name], creds[:item_name], secret)
   else
-    bag = data_bag_item(creds[:bag_name], creds[:item_name])
+    if ChefVault::Item.vault?(creds[:bag_name], creds[:item_name])
+      item = ChefVault::Item.load(creds[:bag_name], creds[:item_name])
+    else
+      item = data_bag_item(creds[:bag_name], creds[:item_name])
+    end
   end
 
   [:accessID, :accessKey, :email, :password].each do |sym|
-    credentials[sym] = bag[sym.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
+    credentials[sym] = item[sym.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
   end
 
 else

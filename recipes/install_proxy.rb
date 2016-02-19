@@ -28,8 +28,6 @@
 # 6. Start collector
 #
 # Requires /etc/sumo.conf file for automated activation
-j
-include_recipe 'java'
 include_recipe 'sumologic-collector::sumoconf'
 include_recipe 'sumologic-collector::sumojson'
 
@@ -81,7 +79,7 @@ bash "Expand Sumo Collector" do
   cwd '/tmp'
 end
 
-Chef::Log.info "  Updating wrapper.conf to use system java install and proxy settings"
+Chef::Log.info "  Updating wrapper.conf to use proxy settings"
 
 template "#{node['sumologic']['installDir']}/config/wrapper.conf" do
   owner 'root'

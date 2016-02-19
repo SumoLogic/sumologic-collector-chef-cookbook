@@ -32,8 +32,18 @@
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 #
 
-if File.exist? node['sumologic']['installDir']
+if ::Win32::Service.exists? "sumo-collector"
   Chef::Log.info "Sumo Logic Collector found."
+  Chef::Log.info "Checking for Sumo Logic Collector Updates and will "\
+    "reinstall director at #{node['sumologic']['installDir']}"
+
+  # We only want to deploy sumo when there's a new version available
+  # to preserve idempotency .
+  remote_file "#{node['sumologic']['installDir']}/#{node['sumologic']['installerName']}" do
+    source node['sumologic']['downloadURL']
+    notifies :run, 'execute[Deploy Sumo Collector]', :immediately
+  end
+
 # If collector is already in sync source mode, just uncomment these following lines to update the sources
 # include_recipe 'sumologic-collector::sumoconf'
 # if node['sumologic']['use_json_path_dir'] == true
@@ -55,19 +65,22 @@ else
     include_recipe 'sumologic-collector::sumojson'
   end
   
+  Chef::Log.info "Installing Sumo Logic director at #{node['sumologic']['installDir']}"
+
+  # We only want to deploy sumo when there's a new version available
+  # to preserve idempotency .
   remote_file "#{node['sumologic']['installDir']}/#{node['sumologic']['installerName']}" do
     source node['sumologic']['downloadURL']
-
-  end
-
-  Chef::Log.info "  Installing Sumo Logic director at #{node['sumologic']['installDir']}"
-
-  execute "Deploy Sumo Collector" do
-    command node['sumologic']['installerCmd']
-    cwd node['sumologic']['installDir']
-    timeout 3600
+    notifies :run, 'execute[Deploy Sumo Collector]', :immediately
   end
 
   # The following recipe will clean up sumo.conf and the json configuration file(s). Use it if you only need to setup the collector once.
   # include_recipe 'sumologic-collector::cleanup'
+end
+
+execute "Deploy Sumo Collector" do
+  command node['sumologic']['installerCmd']
+  cwd node['sumologic']['installDir']
+  timeout 3600
+  action :nothing
 end
