@@ -1,0 +1,21 @@
+{
+    "api.version": "v1",
+    "sources": [
+        {
+            "sourceType": "LocalFile",
+            "name": "Example1",
+            "pathExpression": "/var/logs/maillog",
+            "blacklist": [
+                "/var/log/*log1.log"
+            ],
+            "category": "mail",
+            "hostName": "sampleSource",
+            "useAutolineMatching": false,
+            "multilineProcessingEnabled": false,
+            "timeZone": "America/Los_Angeles",
+            "automaticDateParsing": true,
+            "forceTimeZone": false,
+            "defaultDateFormat": "dd/MMM/yyyy HH:mm:ss"
+        }
+    ]
+}

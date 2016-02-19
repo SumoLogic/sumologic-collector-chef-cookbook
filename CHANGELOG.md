@@ -1,26 +1,27 @@
 # CHANGELOG for sumologic-collector
 
-This file is used to list changes made in each version of sumologic-collector.
+All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 0.1.0:
+## 1.3.0
+11/6/2015
+* Add `sumologic_source` provider to create or delete a [SumoLogic "sources" JSON file.][sources] See `libraries` directory to examine the new providers, and see the accompanying tests in the `test` and `spec` directories. Look at the changes to .kitchen.yml for new test integration suites.
+* Add chronologically ascending CHANGELOG.md.
 
-* Initial release of sumologic-collector
+## 1.2.6
+
+* Add support for restarting the collector on `Windows`
+
+## 1.2.5
+
+* Add basic serverspec
 
 ## 1.2.00:
 
 * Updated cookbook to support Access IDs and Keys
 * Updated cookbook to support Local Collector Management and JSON directory option.
 
-## 1.2.5
+## 0.1.0:
 
-* Add basic serverspec
+* Initial release of sumologic-collector
 
-## 1.2.6
-
-* Add support for restarting the collector on `Windows`
-
-
-- - -
-Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
-
-The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.
+[sources]: https://service.sumologic.com/help/Using_JSON_to_configure_Sources.htm
