@@ -37,23 +37,31 @@ Chef::Log.info "  Creating Sumo Logic director at #{node['sumologic']['installDi
 
 case node[:platform]
 when 'redhat', 'centos', 'linux', 'amazon'
-  remote_file "/tmp/sumocollector_19.127-3_amd64.rpm" do
+  remote_file "/tmp/sumologic_amd64.rpm" do
     source node['sumologic']['collectorRPMUrl']
     mode 0644
   end
 
-  rpm_package "sumocollector" do
-    source "/tmp/sumocollector_19.127-3_amd64.rpm"
+  rpm_package "sumologic" do
+    source "/tmp/sumologic_amd64.rpm"
     action :install
   end
 when 'ubuntu', 'debian'
-  remote_file "/tmp/sumocollector_19.127-3_amd64.deb" do
+  remote_file "/tmp/sumologic_amd64.deb" do
     source node['sumologic']['collectorDEBUrl']
     mode 0644
   end
 
-  dpkg_package "sumocollector" do
-    source "/tmp/sumocollector_19.127-3_amd64.deb"
+  dpkg_package "sumologic" do
+    source "/tmp/sumologic_amd64.deb"
     action :install
+  end
+
+  if node[:platform] == 'debian' && Gem::Version.new(node[:platform_version]) >= Gem::Version.new('8.0')
+    execute 'sumo-systemd-reload' do
+      command 'sudo /bin/systemctl --system daemon-reload && sudo systemctl restart collector.service'
+      action :run
+      not_if { ::File.exist?('/run/systemd/generator.late/collector.service') }
+    end 
   end
 end
