@@ -2,22 +2,28 @@
 
 This file is used to list changes made in each version of sumologic-collector.
 
-## 0.1.0:
+## 1.2.7
+02/19/2016
+* Add action for debian 8.X 
+* Add support for ChefVault 
+* Ensure sumo-collector is running 
 
-* Initial release of sumologic-collector
+## 1.2.6
+
+* Add support for restarting the collector on `Windows`
+
+## 1.2.5
+
+* Add basic serverspec
 
 ## 1.2.00:
 
 * Updated cookbook to support Access IDs and Keys
 * Updated cookbook to support Local Collector Management and JSON directory option.
 
-## 1.2.5
+## 0.1.0:
 
-* Add basic serverspec
-
-## 1.2.6
-
-* Add support for restarting the collector on `Windows`
+* Initial release of sumologic-collector
 
 
 - - -
