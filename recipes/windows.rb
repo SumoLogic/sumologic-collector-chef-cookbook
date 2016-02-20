@@ -71,7 +71,10 @@ else
   # to preserve idempotency .
   remote_file "#{node['sumologic']['installDir']}/#{node['sumologic']['installerName']}" do
     source node['sumologic']['downloadURL']
-    notifies :run, 'execute[Deploy Sumo Collector]', :immediately
+  end
+
+  sumologic_collector_installer node['sumologic']['installDir'] do
+    source node['sumologic']['downloadURL']
   end
 
   # The following recipe will clean up sumo.conf and the json configuration file(s). Use it if you only need to setup the collector once.

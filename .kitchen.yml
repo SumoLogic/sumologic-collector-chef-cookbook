@@ -11,7 +11,7 @@ platforms:
   - name: centos-6.7
   - name: windows-2012r2
     driver:
-      box: windows-2012r2
+      box: opentable/win-2012r2-standard-amd64-nocm
     transport:
       name: winrm
       password: vagrant
@@ -40,4 +40,21 @@ suites:
       - ubuntu-14.04
       - centos-7.1
       - centos-6.7
-      
+  - name: installer-resource
+    run_list:
+      - recipe[installer-resource]
+    attributes:
+      SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+      SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+    excludes:
+      - windows-2012r2
+  - name: installer-resource-windows
+    run_list:
+      - recipe[installer-resource]
+    attributes:
+      SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+      SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+    excludes:
+      - ubuntu-14.04
+      - centos-7.1
+      - centos-6.7
