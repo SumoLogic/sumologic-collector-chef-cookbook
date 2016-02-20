@@ -31,6 +31,9 @@
 # https://service.sumologic.com/ui/help/Default.htm#JSON_Source_Configuration.htm
 #
 
+Chef::Log.info "Starting Installation."
+Chef::Log.info "  Creating Sumo Logic director at #{node['sumologic']['installDir']}"
+
 case node['platform_family']
 when 'rhel', 'amazon', 'linux'
   include_recipe 'sumologic-collector::rhel'
@@ -38,4 +41,4 @@ when 'debian'
   include_recipe 'sumologic-collector::debian'
 when 'windows'
   include_recipe 'sumologic-collector::windows'
-end
+
