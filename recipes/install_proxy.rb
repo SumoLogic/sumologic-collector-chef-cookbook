@@ -34,7 +34,7 @@ include_recipe 'sumologic-collector::sumojson'
 # TODO: : Support windows
 return unless node['platform'] != 'windows'
 
-Chef::Log.info "  Creating Sumo Logic director at #{node['sumologic']['installDir']}"
+Chef::Log.info "  Creating Sumo Logic directory at #{node['sumologic']['installDir']}"
 
 directory node['sumologic']['installDir'] do
   owner 'root'

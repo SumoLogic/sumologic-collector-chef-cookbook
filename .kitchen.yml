@@ -6,10 +6,17 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: centos-7.1
   - name: centos-6.7
+  - name: centos-7.1
   - name: debian-8.1
   - name: ubuntu-14.04
+  - name: windows-2008r2
+    driver:
+      box: opentable/win-2008r2-standard-amd64-nocm
+    transport:
+      name: winrm
+      password: vagrant
+      username: vagrant
   - name: windows-2012r2
     driver:
       box: opentable/win-2012r2-standard-amd64-nocm
@@ -28,6 +35,7 @@ suites:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
     excludes:
+      - windows-2008r2
       - windows-2012r2
   - name: windows
     data_bags_path: test/integration/data_bags
@@ -38,8 +46,10 @@ suites:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
     excludes:
-      - centos-7.1
       - centos-6.7
+      - centos-7.1
+      - debian-8.1
+      - ubuntu-14.04
   - name: installer-resource
     run_list:
       - recipe[installer-resource]
@@ -55,8 +65,7 @@ suites:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
     excludes:
-      - ubuntu-14.04
-      - centos-7.1
       - centos-6.7
+      - centos-7.1
       - debian-8.1
       - ubuntu-14.04

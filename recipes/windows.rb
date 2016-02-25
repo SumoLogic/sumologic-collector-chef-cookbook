@@ -35,7 +35,7 @@
 if ::Win32::Service.exists? "sumo-collector"
   Chef::Log.info "Sumo Logic Collector found."
   Chef::Log.info "Checking for Sumo Logic Collector Updates and will "\
-    "reinstall director at #{node['sumologic']['installDir']}"
+    "reinstall directory at #{node['sumologic']['installDir']}"
 
   # We only want to deploy sumo when there's a new version available
   # to preserve idempotency .
@@ -65,7 +65,7 @@ else
     include_recipe 'sumologic-collector::sumojson'
   end
   
-  Chef::Log.info "Installing Sumo Logic director at #{node['sumologic']['installDir']}"
+  Chef::Log.info "Installing Sumo Logic directory at #{node['sumologic']['installDir']}"
 
   # We only want to deploy sumo when there's a new version available
   # to preserve idempotency .

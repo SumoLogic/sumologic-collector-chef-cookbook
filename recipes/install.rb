@@ -32,7 +32,7 @@
 #
 
 Chef::Log.info "Starting Installation."
-Chef::Log.info "  Creating Sumo Logic director at #{node['sumologic']['installDir']}"
+Chef::Log.info "  Creating Sumo Logic directory at #{node['sumologic']['installDir']}"
 
 case node['platform_family']
 when 'rhel', 'amazon', 'linux'
@@ -41,4 +41,4 @@ when 'debian'
   include_recipe 'sumologic-collector::debian'
 when 'windows'
   include_recipe 'sumologic-collector::windows'
-
+end
