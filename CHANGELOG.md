@@ -2,6 +2,13 @@
 
 This file is used to list changes made in each version of sumologic-collector.
 
+## 1.2.9
+* Platform-family-specific install recipes
+* Windows 2008r2 and 2012r2 support and testing
+
+## 1.2.8
+* Debian 8.1 support and testing
+
 ## 1.2.7
 02/19/2016
 * Add action for debian 8.X 
