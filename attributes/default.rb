@@ -63,11 +63,8 @@ default['sumologic']['proxy'] = {
 default['sumologic']['collectorTarUrl'] = 'https://collectors.sumologic.com/rest/download/tar'
 default['sumologic']['collectorTarName'] = 'sumocollector.tar.gz'
 
-#RPMs
 default['sumologic']['collectorRPMUrl'] = 'https://collectors.sumologic.com/rest/download/rpm/64'
-#DEB
 default['sumologic']['collectorDEBUrl'] = 'https://collectors.sumologic.com/rest/download/deb/64'
-
 
 # Platform Specific Attributes
 case platform
@@ -90,7 +87,6 @@ when 'redhat', 'centos', 'scientific', 'fedora', 'suse', 'amazon', 'oracle', 'de
 
   # Path to 'sumo.json' or the json directory
   default['sumologic']['sumo_json_path'] = '/etc/sumo.json'
-# default['sumologic']['sumo_json_path'] = '/tmp/JSONDIR'
 
   # Collector Restart Command
   default['sumologic']['collectorRestartCmd'] = "#{default['sumologic']['installDir']}/collector restart"
@@ -113,7 +109,6 @@ when 'windows'
 
   # Path to 'sumo.json' or the json directory
   default['sumologic']['sumo_json_path'] = 'C:/sumo/sumo.json'
-# default['sumologic']['sumo_json_path'] = 'C:/sumo/JSONDIR'
 
   # Collector Restart Command
   default['sumologic']['collectorRestartCmd'] = 'net stop "sumo-collector" && net start "sumo-collector"'
@@ -142,4 +137,3 @@ else
   # Collector Restart Command
   default['sumologic']['collectorRestartCmd'] = "#{default['sumologic']['installDir']}/collector restart"
 end
-
