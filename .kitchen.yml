@@ -69,3 +69,12 @@ suites:
       - centos-7.1
       - debian-8.1
       - ubuntu-14.04
+  - name: source-resource
+    run_list:
+      - recipe[source-resource]
+    attributes:
+      SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+      SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+    excludes:
+      - windows-2008r2
+      - windows-2012r2
