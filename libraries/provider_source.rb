@@ -19,9 +19,9 @@ class Chef
         converge_by("Create #{source_json_path}") do
           file source_json_path do
             content config_json
-            mode '0644'
-            owner 'root'
-            group 'root'
+            mode new_resource.mode
+            owner new_resource.owner
+            group new_resource.group
             sensitive !!(config_json.match(/password/i))
           end
         end

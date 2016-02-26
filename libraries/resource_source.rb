@@ -7,6 +7,10 @@ class Chef
 
       actions :create
 
+      attribute :owner, kind_of: String, default: 'root'
+      attribute :group, kind_of: String, default: 'root'
+      attribute :mode, kind_of: String, default: '0644'
+
       attribute :source_name, kind_of: String, name_attribute: true
       attribute :source_type, kind_of: Symbol, required: true, equal_to: [:local_file,
                                                                           :remote_file,
