@@ -8,11 +8,11 @@ class Chef
 
       def config_hash
         hash = super
-        hash['sources'][0]['domain'] = new_resource.domain
-        hash['sources'][0]['username'] = new_resource.username
-        hash['sources'][0]['password'] = new_resource.password
-        hash['sources'][0]['hosts'] = new_resource.hosts
-        hash['sources'][0]['logNames'] = new_resource.log_names
+        hash['source']['domain'] = new_resource.domain
+        hash['source']['username'] = new_resource.username
+        hash['source']['password'] = new_resource.password
+        hash['source']['hosts'] = new_resource.hosts
+        hash['source']['logNames'] = new_resource.log_names
         hash
       end
     end

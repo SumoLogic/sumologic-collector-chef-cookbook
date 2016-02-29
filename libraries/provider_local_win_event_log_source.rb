@@ -8,7 +8,7 @@ class Chef
 
       def config_hash
         hash = super
-        hash['sources'][0]['logNames'] = new_resource.log_names
+        hash['source']['logNames'] = new_resource.log_names
         hash
       end
     end

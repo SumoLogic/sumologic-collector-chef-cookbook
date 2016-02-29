@@ -34,21 +34,21 @@ class Chef
       def config_hash
         hash = {}
         hash['api.version'] = api_version
-        hash['sources'] = [{}]
-        hash['sources'][0]['sourceType'] = source_type_map[new_resource.source_type]
-        hash['sources'][0]['name'] = new_resource.name
-        hash['sources'][0]['description'] = new_resource.description unless new_resource.description.nil?
-        hash['sources'][0]['category'] = new_resource.category unless new_resource.category.nil?
-        hash['sources'][0]['hostName'] = new_resource.host_name unless new_resource.host_name.nil?
-        hash['sources'][0]['timeZone'] = new_resource.time_zone unless new_resource.time_zone.nil?
-        hash['sources'][0]['automaticDateParsing'] = new_resource.automatic_date_parsing unless new_resource.automatic_date_parsing.nil?
-        hash['sources'][0]['multilineProcessingEnabled'] = new_resource.multiline_processing_enabled unless new_resource.multiline_processing_enabled.nil?
-        hash['sources'][0]['useAutolineMatching'] = new_resource.use_autoline_matching unless new_resource.use_autoline_matching.nil?
-        hash['sources'][0]['manualPrefixRegexp'] = new_resource.manual_prefix_regexp unless new_resource.manual_prefix_regexp.nil?
-        hash['sources'][0]['forceTimeSoze'] = new_resource.force_time_zone unless new_resource.force_time_zone.nil?
-        hash['sources'][0]['defaultDateFormat'] = new_resource.default_date_format unless new_resource.default_date_format.nil?
-        hash['sources'][0]['filters'] = new_resource.filters unless new_resource.filters.nil?
-        hash['sources'][0]['alive'] = new_resource.alive unless new_resource.alive.nil?
+        hash['source'] = {}
+        hash['source']['sourceType'] = source_type_map[new_resource.source_type]
+        hash['source']['name'] = new_resource.name
+        hash['source']['description'] = new_resource.description unless new_resource.description.nil?
+        hash['source']['category'] = new_resource.category unless new_resource.category.nil?
+        hash['source']['hostName'] = new_resource.host_name unless new_resource.host_name.nil?
+        hash['source']['timeZone'] = new_resource.time_zone unless new_resource.time_zone.nil?
+        hash['source']['automaticDateParsing'] = new_resource.automatic_date_parsing unless new_resource.automatic_date_parsing.nil?
+        hash['source']['multilineProcessingEnabled'] = new_resource.multiline_processing_enabled unless new_resource.multiline_processing_enabled.nil?
+        hash['source']['useAutolineMatching'] = new_resource.use_autoline_matching unless new_resource.use_autoline_matching.nil?
+        hash['source']['manualPrefixRegexp'] = new_resource.manual_prefix_regexp unless new_resource.manual_prefix_regexp.nil?
+        hash['source']['forceTimeSoze'] = new_resource.force_time_zone unless new_resource.force_time_zone.nil?
+        hash['source']['defaultDateFormat'] = new_resource.default_date_format unless new_resource.default_date_format.nil?
+        hash['source']['filters'] = new_resource.filters unless new_resource.filters.nil?
+        hash['source']['alive'] = new_resource.alive unless new_resource.alive.nil?
         hash
       end
 

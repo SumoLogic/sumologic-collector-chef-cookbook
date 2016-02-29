@@ -8,12 +8,12 @@ class Chef
 
       def config_hash
         hash = super
-        hash['sources'][0]['commands'] = new_resource.commands
-        hash['sources'][0]['file'] = new_resource.file unless new_resource.file.nil?
-        hash['sources'][0]['workingDir'] = new_resource.working_dir unless new_resource.working_dir.nil?
-        hash['sources'][0]['timeout'] = new_resource.timeout unless new_resource.timeout.nil?
-        hash['sources'][0]['script'] = new_resource.script unless new_resource.script.nil?
-        hash['sources'][0]['cronExpression'] = new_resource.cron_expression
+        hash['source']['commands'] = new_resource.commands
+        hash['source']['file'] = new_resource.file unless new_resource.file.nil?
+        hash['source']['workingDir'] = new_resource.working_dir unless new_resource.working_dir.nil?
+        hash['source']['timeout'] = new_resource.timeout unless new_resource.timeout.nil?
+        hash['source']['script'] = new_resource.script unless new_resource.script.nil?
+        hash['source']['cronExpression'] = new_resource.cron_expression
         hash
       end
     end

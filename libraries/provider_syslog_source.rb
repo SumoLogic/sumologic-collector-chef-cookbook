@@ -8,8 +8,8 @@ class Chef
 
       def config_hash
         hash = super
-        hash['sources'][0]['protocol'] = new_resource.protocol unless new_resource.protocol.nil?
-        hash['sources'][0]['port'] = new_resource.port
+        hash['source']['protocol'] = new_resource.protocol unless new_resource.protocol.nil?
+        hash['source']['port'] = new_resource.port
         hash
       end
     end
