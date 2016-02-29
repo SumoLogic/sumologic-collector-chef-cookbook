@@ -38,7 +38,7 @@ if File.exist? node['sumologic']['installDir']
 #	include_recipe 'sumologic-collector::sumojson'
 # end
 # include_recipe 'sumologic-collector::restart'
-  service "sumo-collector" do
+  service "collector" do
     action :start
   end
 else
