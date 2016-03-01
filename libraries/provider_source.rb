@@ -71,8 +71,8 @@ class Chef
         {
           :local_file => 'LocalFile',
           :remote_file => 'RemoteFile',
-          :local_win_event_log => 'LocalWinEventLog',
-          :remote_win_event_log => 'RemoteWinEventLog',
+          :local_win_event_log => 'LocalWindowsEventLog',
+          :remote_win_event_log => 'RemoteWindowsEventLog',
           :syslog => 'Syslog',
           :script => 'Script',
           :docker_stats => 'DockerStats',
