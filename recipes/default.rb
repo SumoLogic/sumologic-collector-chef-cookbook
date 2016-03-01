@@ -28,7 +28,7 @@
 
 if File.exist? node['sumologic']['installDir']
   Chef::Log.info "Sumo Logic Collector found."
-  service "sumo-collector" do
+  service "collector" do
     action :start
   end
 else
