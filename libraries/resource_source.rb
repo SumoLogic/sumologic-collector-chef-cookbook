@@ -1,4 +1,5 @@
 require 'chef/resource/lwrp_base'
+require 'chef/platform/query_helpers'
 
 class Chef
   class Resource
@@ -7,9 +8,15 @@ class Chef
 
       actions :create
 
-      attribute :owner, kind_of: String, default: 'root'
-      attribute :group, kind_of: String, default: 'root'
-      attribute :mode, kind_of: String, default: '0644'
+      attribute :owner, regex: Chef::Config[:user_valid_regex]
+      attribute :group, regex: Chef::Config[:group_valid_regex]
+      attribute :mode, kind_of: [String, NilClass], default: nil
+      attribute :checksum, kind_of: [String, NilClass], default: nil
+      attribute :backup, kind_of: [Integer, FalseClass], default: 5
+      if Platform.windows?
+        attribute :inherits, kind_of: [TrueClass, FalseClass], default: true
+        attribute :rights, kind_of: Hash, default: nil
+      end
 
       attribute :source_name, kind_of: String, name_attribute: true
       attribute :source_type, kind_of: Symbol, required: true, equal_to: [:local_file,
