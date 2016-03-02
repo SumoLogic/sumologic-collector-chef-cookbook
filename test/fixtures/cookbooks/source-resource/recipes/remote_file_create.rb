@@ -1,4 +1,4 @@
-sumologic_collector_remote_file_source 'remote_file' do
+sumo_source_remote_file 'remote_file' do
   source_json_directory node['sumologic']['sumo_json_path']
   remote_hosts ['127.0.0.1']
   remote_port 22

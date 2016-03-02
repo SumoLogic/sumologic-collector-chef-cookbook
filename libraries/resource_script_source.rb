@@ -3,7 +3,7 @@ require_relative 'resource_source'
 
 class Chef
   class Resource
-    class SumologicCollectorScriptSource < Chef::Resource::SumologicCollectorSource
+    class SumoSourceScript < Chef::Resource::SumoSource
       attribute :source_type, kind_of: Symbol, default: :script, equal_to: [:script]
       attribute :commands, kind_of: Array, required: true
       attribute :file, kind_of: String

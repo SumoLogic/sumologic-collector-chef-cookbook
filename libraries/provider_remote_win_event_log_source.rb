@@ -3,8 +3,8 @@ require_relative 'provider_source'
 
 class Chef
   class Provider
-    class SumologicCollectorRemoteWinEventLogSource < Chef::Provider::SumologicCollectorSource
-      provides :sumologic_collector_remote_win_event_log_source
+    class SumoSourceRemoteWindowsEventLog < Chef::Provider::SumoSource
+      provides :sumo_source_remote_windows_event_log
 
       def config_hash
         hash = super

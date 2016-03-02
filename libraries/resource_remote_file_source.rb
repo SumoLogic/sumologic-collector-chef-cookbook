@@ -3,7 +3,7 @@ require_relative 'resource_source'
 
 class Chef
   class Resource
-    class SumologicCollectorRemoteFileSource < Chef::Resource::SumologicCollectorSource
+    class SumoSourceRemoteFile < Chef::Resource::SumoSource
       attribute :source_type, kind_of: Symbol, default: :remote_file, equal_to: [:remote_file]
       attribute :remote_hosts, kind_of: Array, required: true
       attribute :remote_port, kind_of: Fixnum, required: true

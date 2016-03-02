@@ -134,19 +134,12 @@ sumologic_collector_installer 'c:\sumo' do
 end
 ```
 
-sumologic_collector_source
+Collector Sources
 ---------
 
-Creates a JSON Source configuration. This resource defines the generic
-parameters for the source resource/providers listed below. Please use the
-resource/providers below instead of this one.
-
-### Actions
-`default` = `:create`
-
-- `:create` - creates a JSON Source configuration
-
 ### Attribute Parameters
+
+The following attributes are common to all of the sources listed below.
 
 See the [Sumo Logic documentation](https://service.sumologic.com/help/#Using_JSON_to_configure_Sources.htm)
 for more information about these attributes.
@@ -169,7 +162,7 @@ for more information about these attributes.
 - `filters`
 - `alive`
 
-sumologic_collector_docker_source
+sumo_source_docker
 ---------
 
 ### Actions
@@ -195,14 +188,14 @@ listed above.
 ### Examples
 
 ```ruby
-sumologic_collector_docker_source 'docker_stats' do
+sumo_source_docker 'docker_stats' do
   source_json_directory node['sumologic']['sumo_json_path']
   source_type :docker_stats
   uri 'https://127.0.0.1:2376'
   all_containers true
 end
 
-sumologic_collector_docker_source 'docker_log' do
+sumo_source_docker 'docker_log' do
   source_json_directory node['sumologic']['sumo_json_path']
   source_type :docker_log
   uri 'https://127.0.0.1:2376'
@@ -210,7 +203,7 @@ sumologic_collector_docker_source 'docker_log' do
 end
 ```
 
-sumologic_collector_local_file_source
+sumo_source_local_file
 ---------
 
 ### Actions
@@ -233,13 +226,13 @@ listed above.
 ### Examples
 
 ```ruby
-sumologic_collector_local_file_source 'local_file' do
+sumo_source_local_file 'local_file' do
   source_json_directory node['sumologic']['sumo_json_path']
   path_expression '/tmp/example'
 end
 ```
 
-sumologic_collector_local_win_event_log_source
+sumo_source_local_windows_event_log
 ---------
 
 ### Actions
@@ -260,13 +253,13 @@ listed above.
 ### Examples
 
 ```ruby
-sumologic_collector_local_win_event_log_source 'local_win_event_log' do
+sumo_source_local_windows_event_log 'local_win_event_log' do
   source_json_directory node['sumologic']['sumo_json_path']
   log_names ['security', 'application']
 end
 ```
 
-sumologic_collector_remote_file_source
+sumo_source_remote_file
 ---------
 
 ### Actions
@@ -295,7 +288,7 @@ listed above.
 ### Examples
 
 ```ruby
-sumologic_collector_remote_file_source 'remote_file' do
+sumo_source_remote_file 'remote_file' do
   source_json_directory node['sumologic']['sumo_json_path']
   remote_hosts ['127.0.0.1']
   remote_port 22
@@ -307,7 +300,7 @@ sumologic_collector_remote_file_source 'remote_file' do
 end
 ```
 
-sumologic_collector_remote_win_event_log_source
+sumo_source_remote_windows_event_log
 ---------
 
 ### Actions
@@ -332,7 +325,7 @@ listed above.
 ### Examples
 
 ```ruby
-sumologic_collector_remote_win_event_log_source 'remote_win_event_log' do
+sumo_source_remote_windows_event_log 'remote_win_event_log' do
   source_json_directory node['sumologic']['sumo_json_path']
   domain 'mydomain'
   username 'user'
@@ -342,7 +335,7 @@ sumologic_collector_remote_win_event_log_source 'remote_win_event_log' do
 end
 ```
 
-sumologic_collector_script_source
+sumo_source_script
 ---------
 
 ### Actions
@@ -368,14 +361,14 @@ listed above.
 ### Examples
 
 ```ruby
-sumologic_collector_script_source 'script' do
+sumo_source_script 'script' do
   source_json_directory node['sumologic']['sumo_json_path']
   commands ['/bin/bash']
   cron_expression '0 * * * *'
 end
 ```
 
-sumologic_collector_syslog_source
+sumo_source_syslog
 ---------
 
 ### Actions
@@ -397,7 +390,7 @@ listed above.
 ### Examples
 
 ```ruby
-sumologic_collector_syslog_source 'syslog' do
+sumo_source_syslog 'syslog' do
   source_json_directory node['sumologic']['sumo_json_path']
 end
 ```

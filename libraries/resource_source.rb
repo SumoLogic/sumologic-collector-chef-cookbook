@@ -3,7 +3,7 @@ require 'chef/platform/query_helpers'
 
 class Chef
   class Resource
-    class SumologicCollectorSource < Chef::Resource::LWRPBase
+    class SumoSource < Chef::Resource::LWRPBase
       default_action :create
 
       actions :create

@@ -1,4 +1,4 @@
-sumologic_collector_remote_win_event_log_source 'remote_win_event_log' do
+sumo_source_remote_windows_event_log 'remote_win_event_log' do
   source_json_directory node['sumologic']['sumo_json_path']
   domain 'mydomain'
   username 'user'

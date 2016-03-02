@@ -3,8 +3,8 @@ require_relative 'provider_source'
 
 class Chef
   class Provider
-    class SumologicCollectorDockerSource < Chef::Provider::SumologicCollectorSource
-      provides :sumologic_collector_docker_source
+    class SumoSourceDocker < Chef::Provider::SumoSource
+      provides :sumo_source_docker
 
       def config_hash
         hash = super

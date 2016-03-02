@@ -3,8 +3,8 @@ require_relative 'provider_source'
 
 class Chef
   class Provider
-    class SumologicCollectorSyslogSource < Chef::Provider::SumologicCollectorSource
-      provides :sumologic_collector_syslog_source
+    class SumoSourceSyslog < Chef::Provider::SumoSource
+      provides :sumo_source_syslog
 
       def config_hash
         hash = super

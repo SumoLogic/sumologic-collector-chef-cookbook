@@ -3,8 +3,8 @@ require 'chef/provider/lwrp_base'
 
 class Chef
   class Provider
-    class SumologicCollectorSource < Chef::Provider::LWRPBase
-      provides :sumologic_collector_source
+    class SumoSource < Chef::Provider::LWRPBase
+      provides :sumo_source
 
       use_inline_resources if defined?(use_inline_resources)
 
@@ -13,7 +13,7 @@ class Chef
       end
 
       def load_current_resource
-        @current_resource = Chef::Resource::SumologicCollectorSource.new(new_resource.name)
+        @current_resource = Chef::Resource::SumoSource.new(new_resource.name)
       end
 
       action :create do
@@ -71,8 +71,8 @@ class Chef
         {
           :local_file => 'LocalFile',
           :remote_file => 'RemoteFile',
-          :local_win_event_log => 'LocalWindowsEventLog',
-          :remote_win_event_log => 'RemoteWindowsEventLog',
+          :local_windows_event_log => 'LocalWindowsEventLog',
+          :remote_windows_event_log => 'RemoteWindowsEventLog',
           :syslog => 'Syslog',
           :script => 'Script',
           :docker_stats => 'DockerStats',
