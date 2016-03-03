@@ -71,4 +71,5 @@ template node['sumologic']['sumo_json_path'] do
   end
 
   variables(sources: sources)
+  notifies :restart, 'service[collector]'
 end

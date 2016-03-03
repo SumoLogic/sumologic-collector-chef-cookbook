@@ -65,6 +65,7 @@ conf_source = node['sumologic']['conf_template'] || 'sumo.conf.erb'
 # Create the conf file's parent directory (generally for Windows support)
 directory ::File.dirname(node['sumologic']['sumo_conf_path']) do
   recursive true
+  notifies :restart, 'service[collector]'
 end
 
 template node['sumologic']['sumo_conf_path'] do
@@ -82,4 +83,5 @@ template node['sumologic']['sumo_conf_path'] do
             accessKey: credentials[:accessKey],
             email: credentials[:email],
             password: credentials[:password])
+  notifies :restart, 'service[collector]'
 end
