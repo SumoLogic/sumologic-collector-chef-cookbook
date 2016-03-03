@@ -42,11 +42,13 @@ if !platform?('windows')
   template "#{node['sumologic']['sumo_json_path']}/localfile-system.json" do
     cookbook node['sumologic']['json_config_cookbook']
     source "localfile-system-dir.json.erb"
+    notifies :restart, 'service[collector]'
   end
 
   template "#{node['sumologic']['sumo_json_path']}/localfile-security.json" do
     cookbook node['sumologic']['json_config_cookbook']
     source "localfile-security-dir.json.erb"
+    notifies :restart, 'service[collector]'
   end
 
 # This is an example of another local file source, note the use of variables in this template
@@ -70,5 +72,6 @@ elsif platform?('windows')
   template "#{node['sumologic']['sumo_json_path']}/sumo-windows.json" do
     cookbook node['sumologic']['json_config_cookbook']
     source "sumo-windows-dir.json.erb"
+    notifies :restart, 'service[collector]'
   end
 end
