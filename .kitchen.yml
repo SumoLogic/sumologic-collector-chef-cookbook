@@ -69,3 +69,19 @@ suites:
       - centos-7.1
       - debian-8.1
       - ubuntu-14.04
+  - name: source-resource
+    run_list:
+      - recipe[source-resource]
+      - recipe[source-resource::docker_create]
+      - recipe[source-resource::local_file_create]
+      - recipe[source-resource::local_win_event_log_create]
+      - recipe[source-resource::remote_file_create]
+      - recipe[source-resource::remote_win_event_log_create]
+      - recipe[source-resource::script_create]
+      - recipe[source-resource::syslog_create]
+    attributes:
+      SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+      SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+    excludes:
+      - windows-2008r2
+      - windows-2012r2
