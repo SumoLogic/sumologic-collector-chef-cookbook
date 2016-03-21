@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of sumologic-collector.
 
+## 1.2.11
+* Fixed issue 68 with PR#67
+
+## 1.2.10
+* Added LWRP resources per PR#64
+
 ## 1.2.9
 * Platform-family-specific install recipes
 * Windows 2008r2 and 2012r2 support and testing
