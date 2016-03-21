@@ -52,7 +52,7 @@ class Chef
         hash['source']['multilineProcessingEnabled'] = new_resource.multiline_processing_enabled unless new_resource.multiline_processing_enabled.nil?
         hash['source']['useAutolineMatching'] = new_resource.use_autoline_matching unless new_resource.use_autoline_matching.nil?
         hash['source']['manualPrefixRegexp'] = new_resource.manual_prefix_regexp unless new_resource.manual_prefix_regexp.nil?
-        hash['source']['forceTimeSoze'] = new_resource.force_time_zone unless new_resource.force_time_zone.nil?
+        hash['source']['forceTimeZone'] = new_resource.force_time_zone unless new_resource.force_time_zone.nil?
         hash['source']['defaultDateFormat'] = new_resource.default_date_format unless new_resource.default_date_format.nil?
         hash['source']['filters'] = new_resource.filters unless new_resource.filters.nil?
         hash['source']['alive'] = new_resource.alive unless new_resource.alive.nil?
