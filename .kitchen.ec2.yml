@@ -10,6 +10,10 @@ driver:
   associate_public_ip: false
   interface: private
   user_data: <%= ENV['USER_DATA_PATH'] %>
+  tags: {
+    "Name"      : "TravisCI",
+    "created-by": "test-kitchen"
+   }
 
 provisioner:
   name: chef_zero
