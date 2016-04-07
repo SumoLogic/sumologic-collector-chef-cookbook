@@ -1,12 +1,18 @@
 # Reference:
 # https://service.sumologic.com/help/Default.htm#Using_Quiet_Mode_to_Install_a_Collector.htm
 
-default_action :install
+default_action :install_and_configure
 
-actions :install
+actions :install_and_configure
 
+# Installation attributes
 attribute :dir, kind_of: String, name_attribute: true
 attribute :source, kind_of: String
+attribute :runas_username, kind_of: String, default: nil
+attribute :winrunas_password, kind_of: String, default: nil
+attribute :skip_registration, kind_of: [TrueClass, FalseClass], default: false
+
+# Configuration attributes
 attribute :collector_name, kind_of: String, default: nil
 attribute :collector_url, kind_of: String, default: nil
 attribute :sumo_email, kind_of: String, default: nil
@@ -23,6 +29,6 @@ attribute :sources, kind_of: String, default: nil
 attribute :sync_sources, kind_of: String, default: nil
 attribute :ephemeral, kind_of: [TrueClass, FalseClass], default: false
 attribute :clobber, kind_of: [TrueClass, FalseClass], default: false
-attribute :runas_username, kind_of: String, default: nil
-attribute :winrunas_password, kind_of: String, default: nil
-attribute :skip_registration, kind_of: [TrueClass, FalseClass], default: false
+
+# Misc
+attribute :installed, kind_of: [TrueClass, FalseClass], default: false
