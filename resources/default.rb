@@ -3,7 +3,7 @@
 
 default_action :install_and_configure
 
-actions :install, :install_and_configure
+actions :install, :install_and_configure, :configure
 
 # Installation attributes
 attribute :dir, kind_of: String, name_attribute: true
@@ -29,6 +29,8 @@ attribute :sources, kind_of: String, default: nil
 attribute :sync_sources, kind_of: String, default: nil
 attribute :ephemeral, kind_of: [TrueClass, FalseClass], default: false
 attribute :clobber, kind_of: [TrueClass, FalseClass], default: false
+attribute :disable_script_source, kind_of: [TrueClass, FalseClass], default: false
 
 # Misc
 attribute :installed, kind_of: [TrueClass, FalseClass], default: false
+attribute :skip_restart, kind_of: [TrueClass, FalseClass], default: false

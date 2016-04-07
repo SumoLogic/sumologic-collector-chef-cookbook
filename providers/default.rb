@@ -33,6 +33,29 @@ action :install_and_configure do
   end
 end
 
+action :configure do
+  if !@current_resource.installed
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
+  else
+    template "#{new_resource.dir}/config/user.properties" do
+      source 'user.properties.erb'
+      cookbook 'sumologic-collector'
+      variables resource: new_resource
+      sensitive true
+    end
+    execute 'Restart SumoLogic Collector' do
+      command "#{collector} restart"
+      cwd new_resource.dir
+      action :nothing
+      subscribes :run, "template[#{new_resource.dir}/config/user.properties]" unless new_resource.skip_restart
+    end
+  end
+end
+
+def collector
+  node['platform_family'] == 'windows' ? 'collector.exe' : './collector'
+end
+
 private
 
 def installed?
