@@ -1,4 +1,4 @@
-require 'win_helper'
+require 'spec_helper'
 require 'sumo_helper'
 require 'win32/eventlog'
 require "win32/mc"
