@@ -3,7 +3,7 @@
 
 default_action :install_and_configure
 
-actions :install_and_configure
+actions :install, :install_and_configure
 
 # Installation attributes
 attribute :dir, kind_of: String, name_attribute: true

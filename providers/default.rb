@@ -9,6 +9,20 @@ def load_current_resource
   @current_resource.installed(installed?)
 end
 
+action :install do
+  if @current_resource.installed
+    Chef::Log.debug "Sumo Logic Collector already installed to #{new_resource.dir}"
+  else
+    download_installer
+    # set up some arguments to allow for unconfigured installation
+    new_resource.skip_registration(true)
+    new_resource.sumo_access_id('00000000000')
+    new_resource.sumo_access_key('0000000000000000000000000')
+    installer_cmd = [installer_bin, installer_opts].join(' ').strip
+    run_installer installer_cmd
+  end
+end
+
 action :install_and_configure do
   if @current_resource.installed
     Chef::Log.debug "Sumo Logic Collector already installed to #{new_resource.dir}"
