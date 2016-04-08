@@ -52,6 +52,18 @@ action :configure do
   end
 end
 
+action :remove do
+  if !@current_resource.installed
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
+  else
+    uninstall_cmd = node['platform_family'] == 'windows' ? 'uninstall.exe -console' : './uninstall'
+    execute 'Remove Sumologic Collector' do
+      command "#{uninstall_cmd} -q"
+      cwd new_resource.dir
+    end
+  end
+end
+
 def collector
   node['platform_family'] == 'windows' ? 'collector.exe' : './collector'
 end
