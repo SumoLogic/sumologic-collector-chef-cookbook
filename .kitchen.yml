@@ -59,6 +59,12 @@ suites:
   - name: default-resource-install
     run_list:
       - recipe[default-resource::install]
+  - name: default-resource-configure
+    run_list:
+      - recipe[default-resource::configure]
+    attributes:
+      SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+      SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
   - name: installer-resource
     run_list:
       - recipe[installer-resource]
