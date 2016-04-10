@@ -64,6 +64,39 @@ action :remove do
   end
 end
 
+action :start do
+  if !@current_resource.installed
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
+  else
+    execute 'Stop SumoCollector' do
+      command "#{collector} start"
+      cwd new_resource.dir
+    end
+  end
+end
+
+action :stop do
+  if !@current_resource.installed
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
+  else
+    execute 'Stop SumoCollector' do
+      command "#{collector} stop"
+      cwd new_resource.dir
+    end
+  end
+end
+
+action :restart do
+  if !@current_resource.installed
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
+  else
+    execute 'Stop SumoCollector' do
+      command "#{collector} restart"
+      cwd new_resource.dir
+    end
+  end
+end
+
 def collector
   node['platform_family'] == 'windows' ? 'collector.exe' : './collector'
 end
