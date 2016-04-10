@@ -65,6 +65,9 @@ suites:
     attributes:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+  - name: default-resource-remove
+    run_list:
+      - recipe[default-resource::remove]
   - name: installer-resource
     run_list:
       - recipe[installer-resource]
