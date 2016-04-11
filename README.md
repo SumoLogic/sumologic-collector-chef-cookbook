@@ -85,8 +85,118 @@ Attributes
 Resource/Provider
 -----------------
 
+sumologic_collector
+---------
+
+Provides actions for installing and managing a SumoLogic Collector
+
+### Actions
+`default` = `:install_and_configure`
+
+#### :install
+Installs an unconfigured and unregistered SumoLogic Collector. Use `:configure` to configure it later
+```ruby
+sumologic_collector 'C:\sumo' do
+  action :install
+end
+```
+
+#### :install_and_configure
+Installs and configures a SumoLogic Collector. This is the default action
+```ruby
+sumologic_collector 'C:\sumo' do
+  collector_name 'fileserver'
+  sumo_access_id 'MYACCESSID'
+  sumo_access_key 'MYACCESSKEY'
+  proxy_host 'proxy.mydomain.com'
+  proxy_port '8080'
+end
+```
+
+#### :configure
+Configures a pre-installed but unconfigured (and unregistered) SumoLogic Collector
+
+*Note: The recommended flow to use this is to have the collector installed without
+configuration or registration by using the `:install` action*
+```ruby
+sumologic_collector 'C:\sumo' do
+  collector_name 'fileserver'
+  sumo_access_id 'MYACCESSID'
+  sumo_access_key 'MYACCESSKEY'
+  proxy_host 'proxy.mydomain.com'
+  proxy_port '8080'
+  action :configure
+end
+```
+
+#### :remove
+Uninstalls a SumoLogic collector using the provided uninstaller
+
+```ruby
+sumologic_collector 'C:\sumo' do
+  action :remove
+end
+```
+
+#### :start
+Starts the SumoLogic Collector
+
+```ruby
+sumologic_collector 'C:\sumo' do
+  action :start
+end
+```
+#### :stop
+Stops the SumoLogic Collector
+
+```ruby
+sumologic_collector 'C:\sumo' do
+  action :stop
+end
+```
+
+#### :restart
+Restarts the SumoLogic Collector
+
+```ruby
+sumologic_collector 'C:\sumo' do
+  action :restart
+end
+```
+
+### Attribute Parameters
+See the [Sumo Logic documentation](https://help.sumologic.com/Send_Data/Installed_Collectors/stu_user.properties)
+for more information about these attributes.
+
+| Attribute | Type | Description | Default | Required | Used Actions |
+| --------- | ---- | ----------- | ------- | -------- | ------------ |
+| `dir` | `String` | Directory where collector will be installed (`name` attribute) | none | `true` | all |
+| `source` | `String` | URL to download collector installer from | none (uses the latest installer from SumoLogic) | `false` | `:install`, `:install_and_configure` |
+| `collector_name` | `String` | Name of this Collector | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `collector_url` | `String` | URL used to register Collector for data collection API | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `sumo_email` | `String` | eMail address used when logging in with Email and Password | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `sumo_password` | `String` | Password used when logging in with Email and Password | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `sumo_token_and_url` | `String` | Encoded Setup Wizard token | `nil` | `false` | `:install_and_configure` |
+| `sumo_access_id` | `String` | Access ID used when logging in with Access ID and Key | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `sumo_access_key` | `String` | Access Key used when logging in with Access ID and Key | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `proxy_host` | `String` | Sets proxy host when a proxy server is used | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `proxy_port` | `String`, `Fixnum` | Sets proxy port when a proxy server is used | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `proxy_user` | `String` | Sets proxy user when a proxy server is used with authentication | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `proxy_password` | `String` | Sets proxy password when a proxy server is used with authentication | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `proxy_ntlmdomain` | `String` | Sets proxy NTLM domain when a proxy server is used with NTLM authentication | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `sources` | `String` | Sets the JSON file describing sources to configure on registration | `nil` | `false` |  `:install_and_configure`, `:configure` |
+| `sync_sources` | `String` | Sets the JSON file describing sources to configure on registration, which will be continuously monitored and synchronized with the Collector's configuration | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `ephemeral` | `Boolean` | When `true`, the Collector will be deleted after goes offline for a certain period of time | `false` | `false` | `:install_and_configure`, `:configure` |
+| `clobber` | `Boolean` | When `true`, if there is any existing Collector with the same name, that Collector will be deleted | `false` | `false` | `:install_and_configure`, `:configure` |
+| `disable_script_source` | `Boolean` | If your organization's internal policies restrict the use of scripts, you can disable the creation of script-based Script Sources. When this parameter is passed, this option is removed from the Sumo Logic Web Application, and Script Source cannot be configured | `false` | `false` | `:install_and_configure`, `:configure` |
+| `runas_username` | `String` | Which user the daemon will run as | `nil` | `false` | `:install_and_configure`, `:install` |
+| `winrunas_password` | `String` | On Windows, the password for the user the service will run as | `nil` | `false` | `:install_and_configure`, `:install` |
+| `skip_registration` | `Boolean` | When `true` the collector will not register upon installation | `false` | `nil` | `:install_and_configure` |
+
 sumologic_collector_installer
 ---------
+
+*Note: `sumologic_collector_installer` has been deprecated, please use `sumologic_collector` with the `:install_and_configure` action (the default)*
 
 Allows for additional customisation of the Sumo Logic Collector installer
 
