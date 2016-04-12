@@ -104,10 +104,12 @@ end
 private
 
 def installed?
-  # The install dir may be created even during a failed installation, so test
-  # for a subdirectory that will be present on all platforms and is less
-  # likely to exist unless installation was successful.
-  ::File.exist?("#{new_resource.dir}/config")
+  case node['platform_family']
+  when 'windows'
+    ::Win32::Service.exists? 'sumo-collector'
+  else
+    ::File.exist? '/etc/init.d/collector'
+  end
 end
 
 def installer_bin
