@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of sumologic-collector.
 
+
+## 1.2.12
+* Merged PR#71: Add a new sumologic_collector resource.
+
 ## 1.2.11
 * Fixed issue 68 with PR#67
 
