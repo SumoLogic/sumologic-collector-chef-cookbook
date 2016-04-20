@@ -6,7 +6,7 @@ source_url 'https://github.com/SumoLogic/sumologic-collector-chef-cookbook'
 license 'Apache v2.0'
 description 'Installs/Configures sumologic-collector'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '1.2.11'
+version '1.2.12'
 attribute 'sumologic/credentials/bag_name',
   display_name: "Credentials bag name",
   type: "string",

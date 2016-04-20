@@ -6,64 +6,30 @@ end
 
 def load_current_resource
   @current_resource = Chef::Resource::SumologicCollectorInstaller.new(new_resource.dir)
-  @current_resource.installed(installed?)
 end
 
 action :install do
-  if @current_resource.installed
-    Chef::Log.debug "Sumo Logic Collector already installed to #{new_resource.dir}"
-  else
-
-    remote_file "#{Chef::Config[:file_cache_path]}/#{installer_bin}" do
-      source new_resource.source
-      mode '0755' unless node['platform_family'] == 'windows'
-    end
-
-    installer_cmd = [installer_bin, installer_opts].join(' ').strip
-    execute 'Install Sumo Collector' do
-      command "#{Chef::Config[:file_cache_path]}/#{installer_cmd}"
-      timeout 3600
-    end
-
+  # just pass on to the new sumo_collector resource
+  sumologic_collector new_resource.dir do
+    source new_resource.source unless new_resource.source.nil?
+    collector_name new_resource.collector_name unless new_resource.collector_name.nil?
+    collector_url new_resource.collector_url unless new_resource.collector_url.nil?
+    sumo_email new_resource.sumo_email unless new_resource.sumo_email.nil?
+    sumo_password new_resource.sumo_password unless new_resource.sumo_password.nil?
+    sumo_token_and_url new_resource.sumo_token_and_url unless new_resource.sumo_token_and_url.nil?
+    sumo_access_id new_resource.sumo_access_id unless new_resource.sumo_access_id.nil?
+    sumo_access_key new_resource.sumo_access_key unless new_resource.sumo_access_key.nil?
+    proxy_host new_resource.proxy_host unless new_resource.proxy_host.nil?
+    proxy_port new_resource.proxy_port unless new_resource.proxy_port.nil?
+    proxy_user new_resource.proxy_user unless new_resource.proxy_user.nil?
+    proxy_password new_resource.proxy_password unless new_resource.proxy_password.nil?
+    proxy_ntlmdomain new_resource.proxy_ntlmdomain unless new_resource.proxy_ntlmdomain.nil?
+    sources new_resource.sources unless new_resource.sources.nil?
+    sync_sources new_resource.sync_sources unless new_resource.sync_sources.nil?
+    ephemeral new_resource.ephemeral unless new_resource.ephemeral.nil?
+    clobber new_resource.clobber unless new_resource.clobber.nil?
+    runas_username new_resource.runas_username unless new_resource.runas_username.nil?
+    winrunas_password new_resource.winrunas_password unless new_resource.winrunas_password.nil?
+    skip_registration new_resource.skip_registration unless new_resource.skip_registration.nil?
   end
-end
-
-private
-
-def installed?
-  # The install dir may be created even during a failed installation, so test
-  # for a subdirectory that will be present on all platforms and is less
-  # likely to exist unless installation was successful.
-  ::File.exist?("#{new_resource.dir}/config")
-end
-
-def installer_bin
-  node['platform_family'] == 'windows' ? 'sumocollector.exe' : 'sumocollector'
-end
-
-def installer_opts
-  args = []
-  args << '-console'
-  args << '-q'
-  args << "-dir #{new_resource.dir}"
-  args << "-Vcollector.name=#{new_resource.collector_name}" unless new_resource.collector_name.nil?
-  args << "-Vcollector.url=#{new_resource.collector_url}" unless new_resource.collector_url.nil?
-  args << "-Vsumo.email=#{new_resource.sumo_email}" unless new_resource.sumo_email.nil?
-  args << "-Vsumo.password=#{new_resource.sumo_password}" unless new_resource.sumo_password.nil?
-  args << "-Vsumo.token_and_url=#{new_resource.sumo_token_and_url}" unless new_resource.sumo_token_and_url.nil?
-  args << "-Vsumo.accessid=#{new_resource.sumo_access_id}" unless new_resource.sumo_access_id.nil?
-  args << "-Vsumo.accesskey=#{new_resource.sumo_access_key}" unless new_resource.sumo_access_key.nil?
-  args << "-Vproxy.host=#{new_resource.proxy_host}" unless new_resource.proxy_host.nil?
-  args << "-Vproxy.port=#{new_resource.proxy_port}" unless new_resource.proxy_port.nil?
-  args << "-Vproxy.user=#{new_resource.proxy_user}" unless new_resource.proxy_user.nil?
-  args << "-Vproxy.password=#{new_resource.proxy_password}" unless new_resource.proxy_password.nil?
-  args << "-Vproxy.ntlmdomain=#{new_resource.proxy_ntlmdomain}" unless new_resource.proxy_ntlmdomain.nil?
-  args << "-Vsources=#{new_resource.sources}" unless new_resource.sources.nil?
-  args << "-VsyncSources=#{new_resource.sync_sources}" unless new_resource.sync_sources.nil?
-  args << "-Vephemeral=true" if new_resource.ephemeral
-  args << "-Vclobber=true" if new_resource.clobber
-  args << "-VrunAs.username=#{new_resource.runas_username}" unless new_resource.runas_username.nil?
-  args << "-VwinRunAs.password=#{new_resource.winrunas_password}" unless new_resource.winrunas_password.nil?
-  args << "-VskipRegistration=true" if new_resource.skip_registration
-  args
 end

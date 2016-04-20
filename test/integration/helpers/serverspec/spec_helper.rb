@@ -1,7 +1,16 @@
 require 'serverspec'
 
-set :backend, :exec
-set :path, '/sbin:/usr/local/sbin:/usr/sbin:$PATH'
+# manually determine if the platform is Windows or not
+# Serverspec as of v2.24 cannot detect the OS family of Windows target hosts
+# For reference see https://github.com/serverspec/serverspec/blob/master/WINDOWS_SUPPORT.md
+if ENV['OS'] == 'Windows_NT'
+  set :backend, :cmd
+  # On Windows, set the target host's OS explicitly
+  set :os, :family => 'windows'
+else
+  set :backend, :exec
+  set :path, '/sbin:/usr/local/sbin:/usr/sbin:$PATH'
+end
 
 def load_properties(properties_filename)
   properties = {}
