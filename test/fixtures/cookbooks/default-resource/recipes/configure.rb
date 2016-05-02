@@ -12,6 +12,6 @@ sumologic_collector sumo_dir do
   proxy_host 'proxy.test.com'
   proxy_port 8080
   ephemeral true
-  skip_restart true
+  skip_restart true unless node['SUMO_ACCESS_ID']
   action :configure
 end

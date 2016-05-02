@@ -44,7 +44,7 @@ action :configure do
       sensitive true
     end
     execute 'Restart SumoLogic Collector' do
-      command "#{collector} restart"
+      command restart_cmd
       cwd new_resource.dir
       action :nothing
       subscribes :run, "template[#{new_resource.dir}/config/user.properties]" unless new_resource.skip_restart
@@ -68,8 +68,8 @@ action :start do
   if !@current_resource.installed
     Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   else
-    execute 'Stop SumoCollector' do
-      command "#{collector} start"
+    execute 'Start SumoCollector' do
+      command start_cmd
       cwd new_resource.dir
     end
   end
@@ -80,7 +80,7 @@ action :stop do
     Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   else
     execute 'Stop SumoCollector' do
-      command "#{collector} stop"
+      command stop_cmd
       cwd new_resource.dir
     end
   end
@@ -90,15 +90,38 @@ action :restart do
   if !@current_resource.installed
     Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   else
-    execute 'Stop SumoCollector' do
-      command "#{collector} restart"
+    execute 'Restart SumoCollector' do
+      command restart_cmd
       cwd new_resource.dir
     end
   end
 end
 
-def collector
-  node['platform_family'] == 'windows' ? 'collector.exe' : './collector'
+def restart_cmd
+  case node['platform_family']
+  when 'windows'
+    "#{stop_cmd} && #{start_cmd}"
+  else
+    './collector restart'
+  end
+end
+
+def start_cmd
+  case node['platform_family']
+  when 'windows'
+    'net start "sumo-collector"'
+  else
+    './collector start'
+  end
+end
+
+def stop_cmd
+  case node['platform_family']
+  when 'windows'
+    'net stop "sumo-collector"'
+  else
+    './collector stop'
+  end
 end
 
 private
