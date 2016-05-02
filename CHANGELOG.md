@@ -3,6 +3,10 @@
 This file is used to list changes made in each version of sumologic-collector.
 
 
+## 1.2.13
+* Merged PR#72: Use the net command to restart, start, and stop the
+  collector on windows
+
 ## 1.2.12
 * Merged PR#71: Add a new sumologic_collector resource.
 
