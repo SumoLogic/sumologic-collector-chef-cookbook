@@ -84,6 +84,22 @@ action :restart do
   end
 end
 
+action :enable do
+  if !@current_resource.installed
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
+  else
+    sumo_service :enable
+  end
+end
+
+action :disable do
+  if !@current_resource.installed
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
+  else
+    sumo_service :disable
+  end
+end
+
 private
 
 def installed?
