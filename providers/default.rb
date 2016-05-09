@@ -37,17 +37,13 @@ action :configure do
   if !@current_resource.installed
     Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   else
+    sumo_service
     template "#{new_resource.dir}/config/user.properties" do
       source 'user.properties.erb'
       cookbook 'sumologic-collector'
       variables resource: new_resource
       sensitive true
-    end
-    execute 'Restart SumoLogic Collector' do
-      command restart_cmd
-      cwd new_resource.dir
-      action :nothing
-      subscribes :run, "template[#{new_resource.dir}/config/user.properties]" unless new_resource.skip_restart
+      notifies :restart, 'service[sumo-collector]', :immediately unless new_resource.skip_restart
     end
   end
 end
@@ -68,10 +64,7 @@ action :start do
   if !@current_resource.installed
     Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   else
-    execute 'Start SumoCollector' do
-      command start_cmd
-      cwd new_resource.dir
-    end
+    sumo_service :start
   end
 end
 
@@ -79,10 +72,7 @@ action :stop do
   if !@current_resource.installed
     Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   else
-    execute 'Stop SumoCollector' do
-      command stop_cmd
-      cwd new_resource.dir
-    end
+    sumo_service :stop
   end
 end
 
@@ -90,37 +80,23 @@ action :restart do
   if !@current_resource.installed
     Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   else
-    execute 'Restart SumoCollector' do
-      command restart_cmd
-      cwd new_resource.dir
-    end
+    sumo_service :restart
   end
 end
 
-def restart_cmd
-  case node['platform_family']
-  when 'windows'
-    "#{stop_cmd} && #{start_cmd}"
+action :enable do
+  if !@current_resource.installed
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   else
-    './collector restart'
+    sumo_service :enable
   end
 end
 
-def start_cmd
-  case node['platform_family']
-  when 'windows'
-    'net start "sumo-collector"'
+action :disable do
+  if !@current_resource.installed
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   else
-    './collector start'
-  end
-end
-
-def stop_cmd
-  case node['platform_family']
-  when 'windows'
-    'net stop "sumo-collector"'
-  else
-    './collector stop'
+    sumo_service :disable
   end
 end
 
@@ -164,6 +140,13 @@ def run_installer(installer_cmd)
   execute 'Install Sumo Collector' do
     command "#{Chef::Config[:file_cache_path]}/#{installer_cmd}"
     timeout 3600
+  end
+end
+
+def sumo_service(action = :nothing)
+  service 'sumo-collector' do
+    service_name 'collector' unless node['platform_family'] == 'windows'
+    action action
   end
 end
 
