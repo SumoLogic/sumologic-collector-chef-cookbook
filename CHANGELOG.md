@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of sumologic-collector.
 
+## 1.2.15
+* Merged PR#76,77: Fix [issue 61](https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issues/61) and Chef 11 incompatibility in metadata.rb
+
 ## 1.2.14
 * Merged PR#74: Add :disable  and :enable action to sumologic-collector, among other things. 
 
