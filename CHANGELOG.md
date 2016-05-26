@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of sumologic-collector.
 
+## 1.2.14
+* Merged PR#74: Add :disable  and :enable action to sumologic-collector, among other things. 
 
 ## 1.2.13
 * Merged PR#72: Use the net command to restart, start, and stop the
