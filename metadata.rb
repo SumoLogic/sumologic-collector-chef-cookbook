@@ -1,8 +1,8 @@
 name 'sumologic-collector'
 maintainer 'Yoway Buorn'
 maintainer_email 'yoway@sumologic.com'
-issues_url 'https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issues'
-source_url 'https://github.com/SumoLogic/sumologic-collector-chef-cookbook'
+issues_url 'https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issues' if respond_to?(:issues_url)
+source_url 'https://github.com/SumoLogic/sumologic-collector-chef-cookbook' if respond_to?(:source_url)
 license 'Apache v2.0'
 description 'Installs/Configures sumologic-collector'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
