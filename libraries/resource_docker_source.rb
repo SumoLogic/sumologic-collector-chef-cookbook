@@ -9,7 +9,7 @@ class Chef
       attribute :specified_containers, kind_of: Array
       attribute :all_containers, kind_of: [TrueClass, FalseClass], required: true
       attribute :cert_path, kind_of: String
-      attribute :collect_events, kind_of: String
+      attribute :collect_events, kind_of: [TrueClass, FalseClass]
     end
   end
 end
