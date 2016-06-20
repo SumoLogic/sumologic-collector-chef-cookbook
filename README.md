@@ -293,7 +293,7 @@ listed above.
 - `all_containers`
 - `cert_path`
 - `source_type` - one of `:docker_stats`, `:docker_log`. **required**
-- `collected_events`
+- `collect_events`
 
 ### Examples
 
