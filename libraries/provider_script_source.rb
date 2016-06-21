@@ -4,7 +4,7 @@ require_relative 'provider_source'
 class Chef
   class Provider
     class SumoSourceScript < Chef::Provider::SumoSource
-      provides :sumo_source_script
+      Chef::Resource.provides :sumo_source_script
 
       def config_hash
         hash = super

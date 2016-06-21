@@ -4,7 +4,7 @@ require 'chef/provider/lwrp_base'
 class Chef
   class Provider
     class SumoSource < Chef::Provider::LWRPBase
-      provides :sumo_source
+      Chef::Resource.provides :sumo_source
 
       use_inline_resources if defined?(use_inline_resources)
 
