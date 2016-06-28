@@ -4,7 +4,7 @@ require_relative 'provider_source'
 class Chef
   class Provider
     class SumoSourceRemoteWindowsEventLog < Chef::Provider::SumoSource
-      provides :sumo_source_remote_windows_event_log
+      Chef::Resource.provides :sumo_source_remote_windows_event_log
 
       def config_hash
         hash = super
