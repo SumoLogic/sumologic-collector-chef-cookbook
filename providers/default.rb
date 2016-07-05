@@ -146,6 +146,8 @@ end
 def sumo_service(action = :nothing)
   service 'sumo-collector' do
     service_name 'collector' unless node['platform_family'] == 'windows'
+    retries service_retries
+    retry_delay service_retry_delay
     action action
   end
 end
