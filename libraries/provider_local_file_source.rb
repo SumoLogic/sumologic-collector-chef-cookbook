@@ -4,7 +4,7 @@ require_relative 'provider_source'
 class Chef
   class Provider
     class SumoSourceLocalFile < Chef::Provider::SumoSource
-      Chef::Resource.provides :sumo_source_local_file
+      provides :sumo_source_local_file if respond_to?(:provides)
 
       def config_hash
         hash = super
