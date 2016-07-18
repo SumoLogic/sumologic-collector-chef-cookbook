@@ -16,7 +16,7 @@ For collector update, the existing collector must have been switched to use Loca
 
 The collector Requires outbound access to https://collectors.sumologic.com.
 Edit `sumo.json` (or the json files under the json folder) to add/edit/remove sources.  After installation you can
-[test connectivity](https://service.sumologic.com/ui/help/Default.htm#Testing_Connectivity.htm).
+[test connectivity](http://help.sumologic.com/Send_Data/Installed_Collectors/Step_1._Prepare_to_Install_Collectors/03Test_Connectivity).
 
 
 Note
