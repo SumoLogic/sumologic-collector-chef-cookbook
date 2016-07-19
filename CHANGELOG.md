@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of sumologic-collector.
 
+## 1.2.17
+* Merged PR#85,86 : Add service retries attempts and delays, fixed online help doc link.
+
 ## 1.2.15
 * Merged PR#76,77: Fix [issue 61](https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issues/61) and Chef 11 incompatibility in metadata.rb
 
