@@ -15,6 +15,8 @@ attribute :skip_registration, kind_of: [TrueClass, FalseClass], default: false
 # Configuration attributes
 attribute :collector_name, kind_of: String, default: nil
 attribute :collector_url, kind_of: String, default: nil
+attribute :service_retries, kind_of: Integer, default: 0
+attribute :service_retry_delay, kind_of: Integer, default: 2
 attribute :sumo_email, kind_of: String, default: nil
 attribute :sumo_password, kind_of: String, default: nil
 attribute :sumo_token_and_url, kind_of: String, default: nil

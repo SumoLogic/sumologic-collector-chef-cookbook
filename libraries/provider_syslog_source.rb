@@ -4,7 +4,7 @@ require_relative 'provider_source'
 class Chef
   class Provider
     class SumoSourceSyslog < Chef::Provider::SumoSource
-      Chef::Resource.provides :sumo_source_syslog
+      provides :sumo_source_syslog if respond_to?(:provides)
 
       def config_hash
         hash = super

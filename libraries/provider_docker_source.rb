@@ -4,7 +4,7 @@ require_relative 'provider_source'
 class Chef
   class Provider
     class SumoSourceDocker < Chef::Provider::SumoSource
-      Chef::Resource.provides :sumo_source_docker
+      provides :sumo_source_docker if respond_to?(:provides)
 
       def config_hash
         hash = super
