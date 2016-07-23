@@ -20,7 +20,7 @@
 #
 
 # Install Steps:
-# 1. Write config from attributes 
+# 1. Write config from attributes
 # 2. Download collector installer
 # 3. Do a quiet install
 #
@@ -64,7 +64,7 @@ else
     # use the recipe sumojson if your source configurations are in a single json file
     include_recipe 'sumologic-collector::sumojson'
   end
-  
+
   Chef::Log.info "Installing Sumo Logic directory at #{node['sumologic']['installDir']}"
 
   # We only want to deploy sumo when there's a new version available

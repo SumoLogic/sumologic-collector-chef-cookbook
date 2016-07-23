@@ -43,11 +43,11 @@ class Sumologic
     def api_request(options = {})
       response = nil
       parse_json = options.key?(:parse_json) ? options[:parse_json] : true
-      if !api_timeout.nil?
-        response = api_request_timeout(options)
-      else
-        response = api_request_http_call(options)
-      end
+      response = if !api_timeout.nil?
+                   api_request_timeout(options)
+                 else
+                   api_request_http_call(options)
+                 end
 
       if parse_json
         begin
@@ -101,7 +101,7 @@ class Sumologic
     def add_source!(source_data)
       u = URI.parse(api_endpoint + "/collectors/#{id}/sources")
       request = Net::HTTP::Post.new(u.request_uri)
-      request.body = JSON.dump({ source: source_data })
+      request.body = JSON.dump(source: source_data)
       request.content_type = 'application/json'
       response = api_request(uri: u, request: request, parse_json: false)
       response
@@ -117,7 +117,7 @@ class Sumologic
     def update_source!(source_id, source_data)
       u = URI.parse(api_endpoint + "/collectors/#{id}/sources/#{source_id}")
       request = Net::HTTP::Put.new(u.request_uri)
-      request.body = JSON.dump({ source: source_data.merge(id: source_id) })
+      request.body = JSON.dump(source: source_data.merge(id: source_id))
       request.content_type = 'application/json'
       request['If-Match'] = get_etag(source_id)
       response = api_request(uri: u, request: request, parse_json: false)
@@ -149,7 +149,7 @@ class Sumologic
       http.use_ssl = true
       request.basic_auth(api_username, api_password)
       response = http.request(request)
-      fail ApiError, "Unable to get source list #{response.inspect}" unless response.is_a?(Net::HTTPSuccess)
+      raise ApiError, "Unable to get source list #{response.inspect}" unless response.is_a?(Net::HTTPSuccess)
       response
     end
 

@@ -4,5 +4,5 @@ sumo_source_remote_windows_event_log 'remote_win_event_log' do
   username 'user'
   password 'password'
   hosts ['myremotehost1']
-  log_names ['security', 'application']
+  log_names %w(security application)
 end

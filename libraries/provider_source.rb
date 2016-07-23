@@ -29,7 +29,7 @@ class Chef
               inherits new_resource.inherits
               rights new_resource.rights
             end
-            sensitive !!(config_json.match(/password/i))
+            sensitive !!config_json.match(/password/i)
           end
         end
       end
@@ -69,14 +69,14 @@ class Chef
 
       def source_type_map
         {
-          :local_file => 'LocalFile',
-          :remote_file => 'RemoteFile',
-          :local_windows_event_log => 'LocalWindowsEventLog',
-          :remote_windows_event_log => 'RemoteWindowsEventLog',
-          :syslog => 'Syslog',
-          :script => 'Script',
-          :docker_stats => 'DockerStats',
-          :docker_log => 'DockerLog'
+          local_file: 'LocalFile',
+          remote_file: 'RemoteFile',
+          local_windows_event_log: 'LocalWindowsEventLog',
+          remote_windows_event_log: 'RemoteWindowsEventLog',
+          syslog: 'Syslog',
+          script: 'Script',
+          docker_stats: 'DockerStats',
+          docker_log: 'DockerLog'
         }
       end
     end
