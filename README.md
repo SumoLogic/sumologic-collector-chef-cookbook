@@ -27,7 +27,7 @@ Starting from 19.107, there are 2 major extensions to SumoLogic collectors:
 
 Installation
 ------------
-1. Create an [Access Key](http://help.sumologic.com/i19.69v2/Default.htm#Generating_Collector_Installation_API_Keys.htm)
+1. Create an [Access Key](http://help.sumologic.com/Manage/Security/Access_Keys/Create_Access_Keys)
 2. Install the cookbook in your Chef repo (your knife version should be at least 11.10.4 and you should have the [knife github plugin](https://github.com/websterclay/knife-github-cookbooks) installed):
 ```
 knife cookbook github install SumoLogic/sumologic-collector-chef-cookbook
