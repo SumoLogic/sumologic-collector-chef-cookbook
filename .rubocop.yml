@@ -9,9 +9,3 @@ LineLength:
 
 StringLiterals:
   Enabled: false
-
-MethodLength:
-  Max: 20
-
-AbcSize:
-  Max: 20
