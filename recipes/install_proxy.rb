@@ -84,7 +84,7 @@ Chef::Log.info "  Updating wrapper.conf to use proxy settings"
 template "#{node['sumologic']['installDir']}/config/wrapper.conf" do
   owner 'root'
   group 'root'
-  mode 0644
+  mode '0644'
 end
 
 Chef::Log.info "  Starting collector..."

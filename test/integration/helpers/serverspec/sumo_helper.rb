@@ -41,7 +41,6 @@ class Sumologic
     end
 
     def api_request(options = {})
-      response = nil
       parse_json = options.key?(:parse_json) ? options[:parse_json] : true
       response = if !api_timeout.nil?
                    api_request_timeout(options)

@@ -29,7 +29,7 @@ class Chef
               inherits new_resource.inherits
               rights new_resource.rights
             end
-            sensitive !!config_json.match(/password/i)
+            sensitive(/password/i === config_json)
           end
         end
       end
