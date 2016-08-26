@@ -3,7 +3,7 @@ sumologic-collector Cookbook
 [![Cookbook Version](https://img.shields.io/cookbook/v/sumologic-collector.svg?style=flat)](https://supermarket.chef.io/cookbooks/sumologic-collector)
 [![Build Status](https://travis-ci.org/SumoLogic/sumologic-collector-chef-cookbook.svg?branch=master)](https://travis-ci.org/SumoLogic/sumologic-collector-chef-cookbook)
 
-This cookbook installs the Sumo Logic collector or updates an existing one if it was set to use [Local Configuration Mangement](https://service.sumologic.com/help/Default.htm#Using_Local_Configuration_File_Management.htm). Installation on Linux uses the shell script
+This cookbook installs the Sumo Logic collector or updates an existing one if it was set to use [Local Configuration Mangement](https://help.sumologic.com/Send_Data/Local_Configuration_File_Management). Installation on Linux uses the shell script
 installer and on Windows uses the exe installer. Here are the steps it follows:
 
 1. Sets up `sumo.conf` and `sumo.json` (or the json folder). By default the standard Linux logs (system and security) are captured. On Windows the application and system event logs are captured.
@@ -11,7 +11,10 @@ installer and on Windows uses the exe installer. Here are the steps it follows:
 3. Runs installer
 4. Starts collector and registers with the Sumo Logic service
 
-For collector update, the existing collector must have been switched to use Local Configuration Mangement - see section [Make the switch](https://service.sumologic.com/help/Default.htm#Using_Local_Configuration_File_Management.htm) for more details. The steps the cookbook follows:
+For collector update, the existing collector must have been switched to use Local Configuration Mangement - see the instructions to 
+configure [New Collectors](https://help.sumologic.com/Send_Data/Local_Configuration_File_Management/Local_File_Configuration_Management_for_New_Collectors_and_Sources)
+or [Existing Collectors](https://help.sumologic.com/Send_Data/Local_Configuration_File_Management/Local_Configuration_File_Management_for_Existing_Collectors_and_Sources)
+for more details. The steps the cookbook follows:
 
 1. Verify that the collector folder exists.
 2. (Optional) Recreate `sumo.conf` and `sumo.json` (or the json files under the json folder).
@@ -25,8 +28,10 @@ Edit `sumo.json` (or the json files under the json folder) to add/edit/remove so
 Note
 ------
 Starting from 19.107, there are 2 major extensions to SumoLogic collectors:
-* You can configure a collector's parameters from a set of json files under a common folder. Each of the json file will represent a source on that collector. Updates made to a json file will then be reflected on its corresponding source. Note that the format of this kind of file is **slightly different** from that of the traditional single json file (sumo.json) and they are **not** compatible. You also need to use the parameter `syncSources` instead of `sources` inside `sumo.conf`. See more details [here](https://service.sumologic.com/help/Default.htm#Using_sumo.conf.htm).
-* You can change a collector's existing parameters through local configuration json file(s) continuously. Before this, using collector API was the only option. More information about this is [here](https://service.sumologic.com/help/Default.htm#Using_Local_Configuration_File_Management.htm)
+* You can configure a collector's parameters from a set of json files under a common folder. Each of the json file will represent a source on that collector. Updates made to a json file will then be reflected on its corresponding source. Note that the format of this kind of file is **slightly different** from that of the traditional single json file (sumo.json) and they are **not** compatible. You also need to use the parameter `syncSources` instead of `sources` inside `sumo.conf`. 
+See more details [here](https://help.sumologic.com/Send_Data/Installed_Collectors/sumo.conf).
+* You can change a collector's existing parameters through local configuration json file(s) continuously. Before this, using collector API was the only option. 
+More information about this is [here](https://help.sumologic.com/Send_Data/Local_Configuration_File_Management)
 
 Installation
 ------------
@@ -210,7 +215,7 @@ Allows for additional customisation of the Sumo Logic Collector installer
 
 ### Attribute Parameters
 
-See the [Sumo Logic documentation](https://service.sumologic.com/help/Default.htm#Using_Quiet_Mode_to_Install_a_Collector.htm)
+See the [Sumo Logic documentation](https://help.sumologic.com/Send_Data/Installed_Collectors/Step_4._Install_the_Collector/02_Quiet_Mode_Installation_Method)
 for more information about these attributes.
 
 - `dir` - Directory where the Collector will be installed
@@ -254,7 +259,7 @@ Collector Sources
 
 The following attributes are common to all of the sources listed below.
 
-See the [Sumo Logic documentation](https://service.sumologic.com/help/#Using_JSON_to_configure_Sources.htm)
+See the [Sumo Logic documentation](https://help.sumologic.com/Send_Data/Sources/Use_JSON_to_Configure_Sources)
 for more information about these attributes.
 
 - `owner` - owner of the JSON Source configuration file
@@ -285,7 +290,7 @@ sumo_source_docker
 
 ### Attribute Parameters
 
-See the [Sumo Logic documentation](https://service.sumologic.com/help/#Using_JSON_to_configure_Sources.htm)
+See the [Sumo Logic documentation](https://help.sumologic.com/Send_Data/Sources/Use_JSON_to_Configure_Sources)
 for more information about these attributes.
 
 The following attribute parameters are in addition to the generic parameters
@@ -326,7 +331,7 @@ sumo_source_local_file
 
 ### Attribute Parameters
 
-See the [Sumo Logic documentation](https://service.sumologic.com/help/#Using_JSON_to_configure_Sources.htm)
+See the [Sumo Logic documentation](https://help.sumologic.com/Send_Data/Sources/Use_JSON_to_Configure_Sources)
 for more information about these attributes.
 
 The following attribute parameters are in addition to the generic parameters
@@ -355,7 +360,7 @@ sumo_source_local_windows_event_log
 
 ### Attribute Parameters
 
-See the [Sumo Logic documentation](https://service.sumologic.com/help/#Using_JSON_to_configure_Sources.htm)
+See the [Sumo Logic documentation](https://help.sumologic.com/Send_Data/Sources/Use_JSON_to_Configure_Sources)
 for more information about these attributes.
 
 The following attribute parameters are in addition to the generic parameters
@@ -382,7 +387,7 @@ sumo_source_remote_file
 
 ### Attribute Parameters
 
-See the [Sumo Logic documentation](https://service.sumologic.com/help/#Using_JSON_to_configure_Sources.htm)
+See the [Sumo Logic documentation](https://help.sumologic.com/Send_Data/Sources/Use_JSON_to_Configure_Sources)
 for more information about these attributes.
 
 The following attribute parameters are in addition to the generic parameters
@@ -423,7 +428,7 @@ sumo_source_remote_windows_event_log
 
 ### Attribute Parameters
 
-See the [Sumo Logic documentation](https://service.sumologic.com/help/#Using_JSON_to_configure_Sources.htm)
+See the [Sumo Logic documentation](https://help.sumologic.com/Send_Data/Sources/Use_JSON_to_Configure_Sources)
 for more information about these attributes.
 
 The following attribute parameters are in addition to the generic parameters
@@ -458,7 +463,7 @@ sumo_source_script
 
 ### Attribute Parameters
 
-See the [Sumo Logic documentation](https://service.sumologic.com/help/#Using_JSON_to_configure_Sources.htm)
+See the [Sumo Logic documentation](https://help.sumologic.com/Send_Data/Sources/Use_JSON_to_Configure_Sources)
 for more information about these attributes.
 
 The following attribute parameters are in addition to the generic parameters
@@ -491,7 +496,7 @@ sumo_source_syslog
 
 ### Attribute Parameters
 
-See the [Sumo Logic documentation](https://service.sumologic.com/help/#Using_JSON_to_configure_Sources.htm)
+See the [Sumo Logic documentation](https://help.sumologic.com/Send_Data/Sources/Use_JSON_to_Configure_Sources)
 for more information about these attributes.
 
 The following attribute parameters are in addition to the generic parameters
