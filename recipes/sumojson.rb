@@ -67,7 +67,7 @@ template node['sumologic']['sumo_json_path'] do
   unless platform?('windows')
     owner 'root'
     group 'root'
-    mode 0644
+    mode  '0644'
   end
 
   variables(sources: sources)

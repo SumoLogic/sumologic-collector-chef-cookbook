@@ -32,7 +32,7 @@ directory node['sumologic']['sumo_json_path'] do
   unless platform?('windows')
     owner 'root'
     group 'root'
-    mode 0755
+    mode '0755'
   end
   action :create
 end
