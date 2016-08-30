@@ -69,7 +69,7 @@ default['sumologic']['collectorRPMUrl'] = 'https://collectors.sumologic.com/rest
 default['sumologic']['collectorDEBUrl'] = 'https://collectors.sumologic.com/rest/download/deb/64'
 
 # Platform Specific Attributes
-case platform
+case node['platform']
 # Currently have all linux variants using the scripted installer
 when 'redhat', 'centos', 'scientific', 'fedora', 'suse', 'amazon', 'oracle', 'debian', 'ubuntu', 'linux'
   # Install Path
