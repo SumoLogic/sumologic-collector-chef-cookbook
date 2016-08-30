@@ -5,6 +5,7 @@ gem "chefspec"
 gem "test-kitchen"
 gem "kitchen-vagrant"
 gem "kitchen-inspec"
+gem "buff-extensions", "1.0.0"
 
 group :lint do
   gem "foodcritic"
