@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of sumologic-collector.
 
+## 1.2.18
+* Fixed deprecated features used warning for node on attributes/default.rb
+
 ## 1.2.17
 * Merged PR#85,86 : Add service retries attempts and delays, fixed online help doc link.
 
@@ -9,7 +12,7 @@ This file is used to list changes made in each version of sumologic-collector.
 * Merged PR#76,77: Fix [issue 61](https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issues/61) and Chef 11 incompatibility in metadata.rb
 
 ## 1.2.14
-* Merged PR#74: Add :disable  and :enable action to sumologic-collector, among other things. 
+* Merged PR#74: Add :disable  and :enable action to sumologic-collector, among other things.
 
 ## 1.2.13
 * Merged PR#72: Use the net command to restart, start, and stop the
@@ -33,9 +36,9 @@ This file is used to list changes made in each version of sumologic-collector.
 
 ## 1.2.7
 02/19/2016
-* Add action for debian 8.X 
-* Add support for ChefVault 
-* Ensure sumo-collector is running 
+* Add action for debian 8.X
+* Add support for ChefVault
+* Ensure sumo-collector is running
 
 ## 1.2.6
 
