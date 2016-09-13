@@ -513,6 +513,33 @@ sumo_source_syslog 'syslog' do
 end
 ```
 
+sumo_source_graphite_metrics
+---------
+
+### Actions
+`default` = `:create`
+
+- `:create` - creates a JSON Source configuration
+
+### Attribute Parameters
+
+See the [Sumo Logic documentation](https://help.sumologic.com/Send_Data/Sources/Use_JSON_to_Configure_Sources)
+for more information about these attributes.
+
+The following attribute parameters are in addition to the generic parameters
+listed above.
+
+- `protocol`
+- `port`
+
+### Examples
+
+```ruby
+sumo_source_graphite_metrics 'graphite' do
+  source_json_directory node['sumologic']['sumo_json_path']
+end
+```
+
 Contributing
 ------------
 This cookbook is meant to help customers use Chef to install Sumo Logic

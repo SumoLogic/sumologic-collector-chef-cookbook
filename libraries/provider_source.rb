@@ -76,7 +76,8 @@ class Chef
           syslog: 'Syslog',
           script: 'Script',
           docker_stats: 'DockerStats',
-          docker_log: 'DockerLog'
+          docker_log: 'DockerLog',
+          graphite: 'Graphite'
         }
       end
     end
