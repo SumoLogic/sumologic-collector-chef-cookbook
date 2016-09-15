@@ -1,11 +1,21 @@
-# Use Travis's cointainer based infrastructure
+language: ruby
 sudo: false
 
-language: ruby
-# Travis: Bundler that comes with Ruby 2.1.0 is too old (1.6.9)
-before_install: gem update bundler
-bundler_args: --without kitchen_vagrant
-rvm:
-- 2.1.0
+addons:
+  apt:
+    sources:
+      - chef-current-precise
+    packages:
+      - chefdk
+
+# Ensure we make ChefDK's Ruby the default
+before_script:
+  - eval "$(/opt/chefdk/bin/chef shell-init bash)"
 script:
-- bundle exec rake travis
+  - /opt/chefdk/embedded/bin/chef --version
+  - /opt/chefdk/embedded/bin/rubocop --version
+  - /opt/chefdk/embedded/bin/rubocop
+  - /opt/chefdk/embedded/bin/foodcritic --version
+  - /opt/chefdk/embedded/bin/foodcritic . --exclude spec
+  - /opt/chefdk/embedded/bin/rspec --version
+  - /opt/chefdk/embedded/bin/rspec
