@@ -84,6 +84,7 @@ suites:
       - recipe[source-resource::remote_win_event_log_create]
       - recipe[source-resource::script_create]
       - recipe[source-resource::syslog_create]
+      - recipe[source-resource::graphite_create]
     attributes:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>

@@ -25,7 +25,8 @@ class Chef
                                                                           :remote_win_event_log,
                                                                           :syslog,
                                                                           :script,
-                                                                          :docker_stats]
+                                                                          :docker_stats,
+                                                                          :graphite]
       attribute :source_json_directory, kind_of: String, required: true
       attribute :description, kind_of: String
       attribute :category, kind_of: String
