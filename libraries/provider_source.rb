@@ -77,7 +77,8 @@ class Chef
           script: 'Script',
           docker_stats: 'DockerStats',
           docker_log: 'DockerLog',
-          graphite: 'Graphite'
+          graphite: 'Graphite',
+          system: 'System'
         }
       end
     end
