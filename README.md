@@ -2,6 +2,7 @@ sumologic-collector Cookbook
 ============================
 [![Cookbook Version](https://img.shields.io/cookbook/v/sumologic-collector.svg?style=flat)](https://supermarket.chef.io/cookbooks/sumologic-collector)
 [![Build Status](https://travis-ci.org/SumoLogic/sumologic-collector-chef-cookbook.svg?branch=master)](https://travis-ci.org/SumoLogic/sumologic-collector-chef-cookbook)
+[![Build Status](https://jenkins-01.eastus.cloudapp.azure.com/job/sumologic-collector-cookbook/badge/icon)](https://jenkins-01.eastus.cloudapp.azure.com/job/sumologic-collector-cookbook/)
 
 This cookbook installs the Sumo Logic collector or updates an existing one if it was set to use [Local Configuration Mangement](https://help.sumologic.com/Send_Data/Local_Configuration_File_Management). Installation on Linux uses the shell script
 installer and on Windows uses the exe installer. Here are the steps it follows:
