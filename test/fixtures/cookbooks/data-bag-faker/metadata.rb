@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 name 'data-bag-faker'
 maintainer 'Gannett Digital'
 maintainer_email 'devops@gannett.com'

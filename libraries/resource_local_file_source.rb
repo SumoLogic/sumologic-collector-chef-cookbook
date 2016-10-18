@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'chef/resource/lwrp_base'
 require_relative 'resource_source'
 

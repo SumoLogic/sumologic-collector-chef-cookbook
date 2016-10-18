@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 name 'sumologic-collector'
 maintainer 'Yoway Buorn'
 maintainer_email 'yoway@sumologic.com'

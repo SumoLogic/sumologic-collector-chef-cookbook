@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Reference:
 # https://service.sumologic.com/help/Default.htm#Using_Quiet_Mode_to_Install_a_Collector.htm
 

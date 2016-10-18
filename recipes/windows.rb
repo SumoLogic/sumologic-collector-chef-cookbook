@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 #
 # Author:: Michael Cizmar (<michael.cizmar@mcplusa.com>)
 # Cookbook Name:: windows-collector

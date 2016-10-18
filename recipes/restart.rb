@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 #
 # Author::  Duc Ha (<duc@sumologic.com>)
 # Cookbook Name:: sumologic-collector

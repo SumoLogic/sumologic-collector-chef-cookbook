@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'chef/platform/query_helpers'
 require 'chef/provider/lwrp_base'
 

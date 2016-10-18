@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 sumo_source_remote_file 'remote_file' do
   source_json_directory node['sumologic']['sumo_json_path']
   remote_hosts ['127.0.0.1']
