@@ -159,8 +159,6 @@ def installer_opts
   args << "-dir #{new_resource.dir}"
   args << "-Vcollector.name=#{new_resource.collector_name}" unless new_resource.collector_name.nil?
   args << "-Vcollector.url=#{new_resource.collector_url}" unless new_resource.collector_url.nil?
-  args << "-Vsumo.email=#{new_resource.sumo_email}" unless new_resource.sumo_email.nil?
-  args << "-Vsumo.password=#{new_resource.sumo_password}" unless new_resource.sumo_password.nil?
   args << "-Vsumo.token_and_url=#{new_resource.sumo_token_and_url}" unless new_resource.sumo_token_and_url.nil?
   args << "-Vsumo.accessid=#{new_resource.sumo_access_id}" unless new_resource.sumo_access_id.nil?
   args << "-Vsumo.accesskey=#{new_resource.sumo_access_key}" unless new_resource.sumo_access_key.nil?

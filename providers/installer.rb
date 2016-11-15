@@ -14,8 +14,6 @@ action :install do
     source new_resource.source unless new_resource.source.nil?
     collector_name new_resource.collector_name unless new_resource.collector_name.nil?
     collector_url new_resource.collector_url unless new_resource.collector_url.nil?
-    sumo_email new_resource.sumo_email unless new_resource.sumo_email.nil?
-    sumo_password new_resource.sumo_password unless new_resource.sumo_password.nil?
     sumo_token_and_url new_resource.sumo_token_and_url unless new_resource.sumo_token_and_url.nil?
     sumo_access_id new_resource.sumo_access_id unless new_resource.sumo_access_id.nil?
     sumo_access_key new_resource.sumo_access_key unless new_resource.sumo_access_key.nil?

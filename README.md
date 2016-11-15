@@ -183,8 +183,6 @@ for more information about these attributes.
 | `source` | `String` | URL to download collector installer from | none (uses the latest installer from SumoLogic) | `false` | `:install`, `:install_and_configure` |
 | `collector_name` | `String` | Name of this Collector | `nil` | `false` | `:install_and_configure`, `:configure` |
 | `collector_url` | `String` | URL used to register Collector for data collection API | `nil` | `false` | `:install_and_configure`, `:configure` |
-| `sumo_email` | `String` | eMail address used when logging in with Email and Password | `nil` | `false` | `:install_and_configure`, `:configure` |
-| `sumo_password` | `String` | Password used when logging in with Email and Password | `nil` | `false` | `:install_and_configure`, `:configure` |
 | `sumo_token_and_url` | `String` | Encoded Setup Wizard token | `nil` | `false` | `:install_and_configure` |
 | `sumo_access_id` | `String` | Access ID used when logging in with Access ID and Key | `nil` | `false` | `:install_and_configure`, `:configure` |
 | `sumo_access_key` | `String` | Access Key used when logging in with Access ID and Key | `nil` | `false` | `:install_and_configure`, `:configure` |
@@ -223,8 +221,6 @@ for more information about these attributes.
 - `source` - URL where installer will be downloaded from
 - `collector_name`
 - `collector_url`
-- `sumo_email`
-- `sumo_password`
 - `sumo_token_and_url`
 - `sumo_access_id`
 - `sumo_access_key`

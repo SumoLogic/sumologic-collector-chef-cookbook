@@ -49,12 +49,12 @@ if node['sumologic']['credentials']
            end
   end
 
-  [:accessID, :accessKey, :email, :password].each do |sym|
+  [:accessID, :accessKey].each do |sym|
     credentials[sym] = item[sym.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
   end
 
 else
-  [:accessID, :accessKey, :email, :password].each do |sym|
+  [:accessID, :accessKey].each do |sym|
     credentials[sym] = node['sumologic'][sym]
   end
 end
@@ -79,7 +79,5 @@ template node['sumologic']['sumo_conf_path'] do
 
   # this may look strange, but one pair will be nil, so it all works out
   variables(accessID: credentials[:accessID],
-            accessKey: credentials[:accessKey],
-            email: credentials[:email],
-            password: credentials[:password])
+            accessKey: credentials[:accessKey])
 end

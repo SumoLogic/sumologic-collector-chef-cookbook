@@ -2,6 +2,4 @@
   "id": "api-creds",
   "accessID": "<@SUMO_ACCESS_ID@>",
   "accessKey": "<@SUMO_ACCESS_KEY@>",
-  "email": "test@test.com",
-  "password": "fakePassword"
 }
