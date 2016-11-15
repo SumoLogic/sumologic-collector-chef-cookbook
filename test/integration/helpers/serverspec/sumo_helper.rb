@@ -5,23 +5,23 @@ require 'json'
 class Sumologic
   class ApiError < RuntimeError; end
 
-  def self.collector_exists?(node_name, email, pass, api_timeout = nil)
+  def self.collector_exists?(node_name, api_accessid, api_accesskey, api_timeout = nil)
     collector = Sumologic::Collector.new(
       name: node_name,
-      api_username: email,
-      api_password: pass,
+      api_accessid: api_accessid,
+      api_accesskey: api_accesskey,
       api_timeout: api_timeout
     )
     collector.exist?
   end
 
   class Collector
-    attr_reader :name, :api_username, :api_password, :api_timeout
+    attr_reader :name, :api_accessid, :api_accesskey, :api_timeout
 
     def initialize(opts = {})
       @name = opts[:name]
-      @api_username = opts[:api_username]
-      @api_password = opts[:api_password]
+      @api_accessid = opts[:api_accessid]
+      @api_accesskey = opts[:api_accesskey]
       @api_timeout = opts[:api_timeout] || 60
     end
 

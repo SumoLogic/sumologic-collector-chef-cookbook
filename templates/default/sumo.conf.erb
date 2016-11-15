@@ -8,9 +8,6 @@ ephemeral=<%= node['sumologic']['ephemeral'] %>
   if @accessID && @accessKey
     attribs.push("accessid=#{@accessID}")
     attribs.push("accesskey=#{@accessKey}")
-  elsif @email && @password
-    attribs.push("email=#{@email}")
-    attribs.push("password=#{@password}")
   else
     attribs.push("No credentials passed to template!!!")
   end

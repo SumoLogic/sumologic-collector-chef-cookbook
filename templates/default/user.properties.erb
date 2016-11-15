@@ -9,9 +9,6 @@ installerMode=true
 <% if not @resource.sumo_access_id.nil? %>
   accessid=<%= @resource.sumo_access_id %>
   accesskey=<%= @resource.sumo_access_key %>
-<% elsif not @resource.sumo_email.nil? %>
-  email=<%= @resource.sumo_email %>
-  password=<%= @resource.sumo_password %>
 <% end %>
 <%= "url=#{@resource.collector_url}" unless @resource.collector_url.nil? %>
 <% unless @resource.proxy_host.nil? %>
