@@ -36,11 +36,12 @@ More information about this is [here](https://help.sumologic.com/Send_Data/Local
 
 Installation
 ------------
-1. Create an [Access Key](http://help.sumologic.com/Manage/Security/Access_Keys/Create_Access_Keys)
+1. Create an [Access Key](http://help.sumologic.com/Manage/Security/Access_Keys)
 2. Install the cookbook in your Chef repo (your knife version should be at least 11.10.4 and you should have the [knife github plugin](https://github.com/websterclay/knife-github-cookbooks) installed):
-```
-knife cookbook github install SumoLogic/sumologic-collector-chef-cookbook
-```
+
+  ```
+  knife cookbook github install SumoLogic/sumologic-collector-chef-cookbook
+  ```
 3. Specify data bag and item with your access credentials.  The data item should
 contain attributes `accessID` and `accessKey`.  Note that attribute names are case sensitive.  If the cases mismatch, the values will not appear when chef-client runs.  The default data bag/item is
 `['sumo-creds']['api-creds']`
@@ -48,9 +49,10 @@ contain attributes `accessID` and `accessKey`.  Note that attribute names are ca
 5. (Optional) Select the json configuration option (i.e. through a single file or a folder) by setting the attribute `default['sumologic']['use_json_path_dir']` appropriately. By default a single json file is used.
 6. (Optional) Check if the path to the json file or the json folder is set correctly in the attribute `default['sumologic']['sumo_json_path']`. By default this is the path to the json file at `/etc/sumo.json` on Linux or `c:\sumo\sumo.json` on Windows.
 7. Upload the cookbook to your Chef Server:
-```
-knife cookbook upload sumologic-collector
-```
+
+  ```
+  knife cookbook upload sumologic-collector
+  ```
 8. Add the `sumologic-collector` receipe to your node run lists.  This step depends
 on your node configuration, so specifics will not be described in this README.md.
 
