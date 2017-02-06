@@ -43,11 +43,17 @@ if !platform?('windows')
   template "#{node['sumologic']['sumo_json_path']}/localfile-system.json" do
     cookbook node['sumologic']['json_config_cookbook']
     source "localfile-system-dir.json.erb"
+    variables({
+      :category => node['sumologic']['syslog_cat']
+    })
   end
 
   template "#{node['sumologic']['sumo_json_path']}/localfile-security.json" do
     cookbook node['sumologic']['json_config_cookbook']
     source "localfile-security-dir.json.erb"
+    variables({
+      :category => node['sumologic']['security_cat']
+    })
   end
 
 # This is an example of another local file source, note the use of variables in this template
