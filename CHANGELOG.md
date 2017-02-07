@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of sumologic-collector.
 
+## 1.2.18
+* Adds the ability to define the source categories for the default files created in the json source
+  folder.
+
 ## 1.2.17
 * Merged PR#85,86 : Add service retries attempts and delays, fixed online help doc link.
 

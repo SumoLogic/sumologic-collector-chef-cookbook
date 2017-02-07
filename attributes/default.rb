@@ -94,6 +94,13 @@ when 'redhat', 'centos', 'scientific', 'fedora', 'suse', 'amazon', 'oracle', 'de
 
   # Collector Restart Command
   default['sumologic']['collectorRestartCmd'] = "#{default['sumologic']['installDir']}/collector restart"
+
+  # Syslog source category
+  default['sumologic']['syslog_cat'] = 'OS/Linux/System'
+
+  # Security source category
+  default['sumologic']['security_cat'] = 'OS/Linux/Security'
+
 when 'windows'
   # Install Path
   default['sumologic']['installDir'] = 'C:/sumo' # We'd like to set this to C:/Program Files/Sumo Logic Collector', but there are issues with the Program Files directory.

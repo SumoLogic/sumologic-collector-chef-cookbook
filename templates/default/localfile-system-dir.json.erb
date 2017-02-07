@@ -9,7 +9,7 @@
             "useAutolineMatching": true,
             "forceTimeZone": false,
             "timeZone": "UTC",
-            "category": "OS/Linux/System",
+            "category": "<%= @category %>",
 			<% case node["platform_family"] -%>
 			<%	when 'rhel'	 %>
             "pathExpression":"/var/log/messages"
