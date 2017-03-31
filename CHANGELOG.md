@@ -2,9 +2,6 @@
 
 This file is used to list changes made in each version of sumologic-collector.
 
-## 1.2.19
-* Merge PR#113 
-
 ## 1.2.18
 * Adds the ability to define the source categories for the default files created in the json source
   folder.
