@@ -18,7 +18,7 @@ class Chef
       end
 
       action :create do
-        converge_if_changed("Create #{source_json_path}") do
+        converge_by("Create #{source_json_path}") do
           file source_json_path do
             content config_json
             owner new_resource.owner
