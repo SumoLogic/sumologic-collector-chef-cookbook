@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of sumologic-collector.
 
+## 1.2.20
+* Undo PR#113 
+
 ## 1.2.19
 * Merge PR#113 
 
