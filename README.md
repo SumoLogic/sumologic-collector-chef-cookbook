@@ -198,6 +198,8 @@ for more information about these attributes.
 | `ephemeral` | `Boolean` | When `true`, the Collector will be deleted after goes offline for a certain period of time | `false` | `false` | `:install_and_configure`, `:configure` |
 | `clobber` | `Boolean` | When `true`, if there is any existing Collector with the same name, that Collector will be deleted | `false` | `false` | `:install_and_configure`, `:configure` |
 | `disable_script_source` | `Boolean` | If your organization's internal policies restrict the use of scripts, you can disable the creation of script-based Script Sources. When this parameter is passed, this option is removed from the Sumo Logic Web Application, and Script Source cannot be configured | `false` | `false` | `:install_and_configure`, `:configure` |
+| `wrapper_java_initmemory | `Integer` | Override the initial Java heap size | `nil` | `false` | `:configure |
+| `wrapper_java_maxmemory | `Integer` | Override the maximum Java heap size | `nil` | `false` | `:configure |
 | `runas_username` | `String` | Which user the daemon will run as | `nil` | `false` | `:install_and_configure`, `:install` |
 | `winrunas_password` | `String` | On Windows, the password for the user the service will run as | `nil` | `false` | `:install_and_configure`, `:install` |
 | `skip_registration` | `Boolean` | When `true` the collector will not register upon installation | `false` | `nil` | `:install_and_configure` |

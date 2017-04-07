@@ -27,3 +27,5 @@ name=<%= @resource.collector_name %>
 <%= "ephemeral=#{@resource.ephemeral}" unless @resource.ephemeral.nil? %>
 <%= "clobber=#{@resource.clobber}" unless @resource.clobber.nil? %>
 <%= "disableScriptSource=#{@resource.disable_script_source}" unless @resource.disable_script_source.nil? %>
+<%= "wrapper.java.initmemory=#{@resource.wrapper_java_initmemory}" unless @resource.wrapper_java_initmemory.nil? %>
+<%= "wrapper.java.maxmemory=#{@resource.wrapper_java_maxmemory}" unless @resource.wrapper_java_maxmemory.nil? %>
