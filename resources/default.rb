@@ -32,6 +32,8 @@ attribute :sync_sources, kind_of: String, default: nil
 attribute :ephemeral, kind_of: [TrueClass, FalseClass], default: false
 attribute :clobber, kind_of: [TrueClass, FalseClass], default: false
 attribute :disable_script_source, kind_of: [TrueClass, FalseClass], default: false
+attribute :wrapper_java_initmemory, kind_of: Integer
+attribute :wrapper_java_maxmemory, kind_of: Integer
 
 # Misc
 attribute :installed, kind_of: [TrueClass, FalseClass], default: false
