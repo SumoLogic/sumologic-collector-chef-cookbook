@@ -150,6 +150,10 @@ def sumo_service(action = :nothing)
     service_name 'collector' unless node['platform_family'] == 'windows'
     retries new_resource.service_retries
     retry_delay new_resource.service_retry_delay
+    supports status: true, restart: true
+    if Chef::Platform::ServiceHelpers.service_resource_providers.include?(:systemd)
+      provider Chef::Provider::Service::Systemd
+    end
     action action
   end
 end
