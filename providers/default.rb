@@ -45,7 +45,7 @@ action :configure do
       cookbook 'sumologic-collector'
       variables resource: new_resource
       sensitive true
-      notifies :restart, 'service[sumo-collector]', :immediately unless new_resource.skip_restart
+      notifies :restart, new_resource unless new_resource.skip_restart
     end
   end
 end
