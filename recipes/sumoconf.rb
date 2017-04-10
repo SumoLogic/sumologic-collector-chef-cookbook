@@ -33,6 +33,7 @@ credentials = {}
 
 chef_gem 'chef-vault' do
   compile_time true if respond_to?(:compile_time)
+  version node['sumologic']['chef_vault_version']
 end
 
 require 'chef-vault'
