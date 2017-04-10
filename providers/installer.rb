@@ -7,7 +7,7 @@ def whyrun_supported?
 end
 
 def load_current_resource
-  @current_resource = Chef::Resource::SumologicCollectorInstaller.new(new_resource.dir)
+  @current_resource = Chef::Resource.resource_for_node(:sumologic_collector_installer, node).new(new_resource.dir)
 end
 
 action :install do
