@@ -16,6 +16,7 @@ attribute 'sumologic/credentials/item_name',
   display_name: "Credentials item name",
   type: "string",
   required: "required"
+chef_version '>= 11' if respond_to?(:chef_version)
 
 %w(
   debian
