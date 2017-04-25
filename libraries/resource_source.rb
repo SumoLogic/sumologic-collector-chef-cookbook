@@ -27,7 +27,8 @@ class Chef
                                                                           :syslog,
                                                                           :script,
                                                                           :docker_stats,
-                                                                          :graphite]
+                                                                          :graphite,
+                                                                          :system]
       attribute :source_json_directory, kind_of: String, required: true
       attribute :description, kind_of: String
       attribute :category, kind_of: String
