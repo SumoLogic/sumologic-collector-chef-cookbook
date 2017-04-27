@@ -56,6 +56,8 @@ default['sumologic']['json_template'] = nil
 # template name from a custom sumo.conf configuration cookbook.
 default['sumologic']['conf_template'] = nil
 
+default['sumologic']['max_memory'] = 128
+
 default['sumologic']['use_proxy'] = false
 default['sumologic']['proxy'] = {
   'host' => nil,

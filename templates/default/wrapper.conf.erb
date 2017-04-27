@@ -71,7 +71,7 @@ wrapper.java.additional.2=-server
 wrapper.java.initmemory=64
 
 # Maximum Java Heap Size (in MB)
-wrapper.java.maxmemory=128
+wrapper.java.maxmemory=<%= node['sumologic']['max_memory'] %>
 
 # Proxy server configuration
 wrapper.java.additional.1=-XX:+UseParallelGC 
