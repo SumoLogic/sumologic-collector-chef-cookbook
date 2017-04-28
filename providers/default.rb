@@ -45,7 +45,10 @@ action :configure do
       cookbook 'sumologic-collector'
       variables resource: new_resource
       sensitive true
-      notifies :restart, new_resource unless new_resource.skip_restart
+      unless new_resource.skip_restart
+        notifies :configure, new_resource unless ::File.exist?(::File.join(new_resource.dir, 'data'))
+        notifies :restart, new_resource
+      end
     end
   end
 end
@@ -67,6 +70,7 @@ action :start do
     Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   else
     sumo_service :start
+    wait_if_initial_startup
   end
 end
 
@@ -83,6 +87,7 @@ action :restart do
     Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   else
     sumo_service :restart
+    wait_if_initial_startup
   end
 end
 
@@ -142,6 +147,16 @@ def run_installer(installer_cmd)
   execute 'Install Sumo Collector' do
     command "#{Chef::Config[:file_cache_path]}/#{installer_cmd}"
     timeout 3600
+  end
+end
+
+def wait_if_initial_startup
+  return if ::File.exist?(::File.join(new_resource.dir, 'data'))
+
+  ruby_block 'Wait for Sumo Collector to register' do
+    block do
+      SumologicCollector::Helpers.wait_for_registration(new_resource.dir)
+    end
   end
 end
 
