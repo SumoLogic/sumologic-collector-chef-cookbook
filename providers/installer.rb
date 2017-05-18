@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 use_inline_resources
 
 def whyrun_supported?

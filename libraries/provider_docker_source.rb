@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'chef/provider/lwrp_base'
 require_relative 'provider_source'
 
@@ -7,7 +8,7 @@ class Chef
     class SumoSourceDocker < Chef::Provider::SumoSource
       provides :sumo_source_docker if respond_to?(:provides)
 
-      def config_hash
+      def config_hash # rubocop:disable Metrics/AbcSize
         hash = super
         hash['source']['uri'] = new_resource.uri
         hash['source']['specifiedContainers'] = new_resource.specified_containers unless new_resource.specified_containers.nil?

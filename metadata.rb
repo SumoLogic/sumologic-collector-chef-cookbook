@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 name 'sumologic-collector'
 maintainer 'Sumo Logic'
 maintainer_email 'opensource@sumologic.com'
@@ -10,7 +11,7 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '1.2.20'
 chef_version '>= 11' if respond_to?(:chef_version)
 
-%w(
+%w[
   debian
   ubuntu
   centos
@@ -21,6 +22,6 @@ chef_version '>= 11' if respond_to?(:chef_version)
   oracle
   windows
   suse
-).each do |os|
+].each do |os|
   supports os
 end

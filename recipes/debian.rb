@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 remote_file "#{Chef::Config[:file_cache_path]}/sumocollector.deb" do
   source node['sumologic']['collectorDEBUrl']
 end

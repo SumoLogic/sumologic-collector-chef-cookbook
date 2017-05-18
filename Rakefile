@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 require 'foodcritic'
@@ -28,7 +29,7 @@ desc 'Run ChefSpec examples'
 RSpec::Core::RakeTask.new(:spec)
 
 desc 'Run all tests on Travis'
-task travis: %w(style spec)
+task travis: %w[style spec]
 
 # Integration tests. Kitchen.ci
 namespace :integration do
@@ -50,6 +51,6 @@ namespace :integration do
 end
 
 # Default
-task default: %w(style spec integration:vagrant)
-task ec2: %w(style spec integration:ec2)
-task test: %w(style spec)
+task default: %w[style spec integration:vagrant]
+task ec2: %w[style spec integration:ec2]
+task test: %w[style spec]
