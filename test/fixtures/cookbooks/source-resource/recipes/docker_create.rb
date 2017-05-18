@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 sumo_source_docker 'docker_stats' do
   source_json_directory node['sumologic']['sumo_json_path']
   source_type :docker_stats

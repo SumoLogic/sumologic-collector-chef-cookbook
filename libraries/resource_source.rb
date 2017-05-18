@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'chef/resource/lwrp_base'
 require 'chef/platform/query_helpers'
 
@@ -20,14 +21,14 @@ class Chef
       end
 
       attribute :source_name, kind_of: String, name_attribute: true
-      attribute :source_type, kind_of: Symbol, required: true, equal_to: [:local_file,
-                                                                          :remote_file,
-                                                                          :local_win_event_log,
-                                                                          :remote_win_event_log,
-                                                                          :syslog,
-                                                                          :script,
-                                                                          :docker_stats,
-                                                                          :graphite]
+      attribute :source_type, kind_of: Symbol, required: true, equal_to: %i[local_file
+                                                                            remote_file
+                                                                            local_win_event_log
+                                                                            remote_win_event_log
+                                                                            syslog
+                                                                            script
+                                                                            docker_stats
+                                                                            graphite]
       attribute :source_json_directory, kind_of: String, required: true
       attribute :description, kind_of: String
       attribute :category, kind_of: String

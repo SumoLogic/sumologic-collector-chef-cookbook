@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 name 'sumologic-collector'
 maintainer 'Sumo Logic'
 maintainer_email 'opensource@sumologic.com'
@@ -17,7 +18,7 @@ attribute 'sumologic/credentials/item_name',
   type: "string",
   required: "required"
 
-%w(
+%w[
   debian
   ubuntu
   centos
@@ -28,6 +29,6 @@ attribute 'sumologic/credentials/item_name',
   oracle
   windows
   suse
-).each do |os|
+].each do |os|
   supports os
 end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #
 # Author:: Ben Newton (<ben@sumologic.com>)
 # Cookbook Name:: sumologic-collector
@@ -50,12 +51,12 @@ if node['sumologic']['credentials']
            end
   end
 
-  [:accessID, :accessKey].each do |sym|
+  %i[accessID accessKey].each do |sym|
     credentials[sym] = item[sym.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
   end
 
 else
-  [:accessID, :accessKey].each do |sym|
+  %i[accessID accessKey].each do |sym|
     credentials[sym] = node['sumologic'][sym]
   end
 end

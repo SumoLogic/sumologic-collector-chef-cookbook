@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'chef/provider/lwrp_base'
 require_relative 'provider_source'
 
@@ -7,7 +8,7 @@ class Chef
     class SumoSourceScript < Chef::Provider::SumoSource
       provides :sumo_source_script if respond_to?(:provides)
 
-      def config_hash
+      def config_hash # rubocop:disable Metrics/AbcSize
         hash = super
         hash['source']['commands'] = new_resource.commands
         hash['source']['file'] = new_resource.file unless new_resource.file.nil?

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #
 # Author:: Ben Newton (<ben@sumologic.com>)
 # Cookbook Name:: sumologic-collector
