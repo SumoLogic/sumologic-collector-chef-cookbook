@@ -153,4 +153,4 @@ else
   default['sumologic']['collectorRestartCmd'] = "#{default['sumologic']['installDir']}/collector restart"
 end
 
-default['sumologic']['chef_vault_version'] = '2.9.0'
+default['sumologic']['chef_vault_version'] = nil
