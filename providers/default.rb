@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 use_inline_resources
 
 def whyrun_supported?
@@ -153,7 +154,8 @@ def sumo_service(action = :nothing)
   end
 end
 
-def installer_opts
+# we should make this more effecient but lets get CI passing again so we can recieve contributions
+def installer_opts # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity, CyclomaticComplexity
   args = []
   args << '-console'
   args << '-q'

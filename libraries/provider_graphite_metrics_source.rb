@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'chef/provider/lwrp_base'
 require_relative 'provider_source'
 

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'serverspec'
 
 # manually determine if the platform is Windows or not

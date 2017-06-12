@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #
 # Author:: Brian Oldfield (<brian.oldfield@socrata.com>)
 # Cookbook Name:: sumologic-collector
