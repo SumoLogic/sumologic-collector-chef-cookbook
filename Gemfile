@@ -12,7 +12,7 @@ gem 'test-kitchen'
 group :lint do
   gem 'foodcritic'
   gem 'rainbow'
-  gem 'rubocop'
+  gem 'rubocop', '~> 0.48.0'
 end
 
 group :unit do
