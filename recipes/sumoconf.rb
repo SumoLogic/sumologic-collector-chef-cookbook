@@ -41,8 +41,8 @@ if node['sumologic']['credentials']
   creds = node['sumologic']['credentials']
 
   if creds[:secret_file]
-    secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file])
-    item = Chef::EncryptedDataBagItem.load(creds[:bag_name], creds[:item_name], secret)
+    secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file]) # ~FC086
+    item = Chef::EncryptedDataBagItem.load(creds[:bag_name], creds[:item_name], secret) # ~FC086
   else
     item = if ChefVault::Item.vault?(creds[:bag_name], creds[:item_name])
              ChefVault::Item.load(creds[:bag_name], creds[:item_name])
