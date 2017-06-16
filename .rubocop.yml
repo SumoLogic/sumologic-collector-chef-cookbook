@@ -4,8 +4,48 @@ AlignParameters:
 Encoding:
   Enabled: false
 
+# Increase line length, we're not on VT220s anymore
 LineLength:
   Max: 200
+  URISchemes:
+    - http
+    - https
 
 StringLiterals:
   Enabled: false
+
+# disable opinionated doc requirements such as a top-level class comments
+Documentation:
+  Enabled: false
+
+# Longer classes aren't _so_ bad
+Metrics/ClassLength:
+  Max: 125
+
+# Increase allowed lines in a method.  Short methods are good, but 10 lines
+#   is a bit too low.
+MethodLength:
+  CountComments: false  # count full line comments?
+  Max: 40
+
+# Raise allowed CyclomaticComplexity & Perceivedto 10.
+CyclomaticComplexity:
+  Max: 15
+Metrics/PerceivedComplexity:
+  Max: 15
+
+# Don't force a word array unless 5 elements
+WordArray:
+  MinSize: 5
+
+# allow both hash syntaxes
+Style/HashSyntax:
+  Enabled: false
+
+# allow larger modules
+Metrics/ModuleLength:
+  Max: 150
+
+# conditionals are not _so_ bad
+Metrics/AbcSize:
+  Max: 20

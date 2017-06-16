@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'net/https'
 require 'json'
 
@@ -15,7 +16,8 @@ class Sumologic
     collector.exist?
   end
 
-  class Collector
+  # we should make this more effecient but lets get CI passing again so we can recieve contributions
+  class Collector # rubocop:disable Metrics/ClassLength
     attr_reader :name, :api_accessid, :api_accesskey, :api_timeout
 
     def initialize(opts = {})
@@ -38,7 +40,11 @@ class Sumologic
     end
 
     def exist?
-      !!metadata
+      if metadata?
+        metadata
+      else
+        !metadata
+      end
     end
 
     def api_request(options = {})

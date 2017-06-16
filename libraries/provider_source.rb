@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'chef/platform/query_helpers'
 require 'chef/provider/lwrp_base'
 
@@ -18,7 +19,7 @@ class Chef
       end
 
       action :create do
-        converge_if_changed("Create #{source_json_path}") do
+        converge_by("Create #{source_json_path}") do
           file source_json_path do
             content config_json
             owner new_resource.owner
@@ -30,7 +31,8 @@ class Chef
               inherits new_resource.inherits
               rights new_resource.rights
             end
-            sensitive(/password/i === config_json)
+            # please fix me!
+            sensitive(/password/i === config_json) # rubocop:disable Style/CaseEquality
           end
         end
       end
@@ -39,7 +41,7 @@ class Chef
         'v1'
       end
 
-      def config_hash
+      def config_hash # rubocop:disable Metrics/AbcSize
         hash = {}
         hash['api.version'] = api_version
         hash['source'] = {}

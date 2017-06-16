@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'spec_helper'
 
 sumo_dir = os[:family] == 'windows' ? 'c:\sumo' : '/opt/SumoCollector'

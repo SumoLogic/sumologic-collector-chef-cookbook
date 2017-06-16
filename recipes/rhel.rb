@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 remote_file "#{Chef::Config[:file_cache_path]}/sumocollector.rpm" do
   source node['sumologic']['collectorRPMUrl']
 end

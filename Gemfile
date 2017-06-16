@@ -1,20 +1,21 @@
 # frozen_string_literal: true
-source "https://rubygems.org"
 
-gem "chef"
-gem "chefspec"
-gem "test-kitchen"
-gem "kitchen-vagrant"
-gem "kitchen-inspec"
-gem "buff-extensions", "1.0.0"
+source 'https://rubygems.org'
+
+gem 'buff-extensions', '~> 2.0'
+gem 'chef'
+gem 'chefspec'
+gem 'kitchen-inspec'
+gem 'kitchen-vagrant'
+gem 'test-kitchen'
 
 group :lint do
-  gem "foodcritic"
-  gem "rubocop"
-  gem "rainbow"
+  gem 'foodcritic', '~> 11.2.0'
+  gem 'rainbow'
+  gem 'rubocop', '~> 0.48.0'
 end
 
 group :unit do
-  gem "berkshelf"
-  gem "fauxhai"
+  gem 'berkshelf', '~> 5.6'
+  gem 'fauxhai'
 end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #
 # Author:: Ben Newton (<ben@sumologic.com>)
 # Cookbook Name:: sumologic-collector
@@ -41,8 +42,8 @@ if node['sumologic']['credentials']
   creds = node['sumologic']['credentials']
 
   if creds[:secret_file]
-    secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file])
-    item = Chef::EncryptedDataBagItem.load(creds[:bag_name], creds[:item_name], secret)
+    secret = Chef::EncryptedDataBagItem.load_secret(creds[:secret_file]) # ~FC086
+    item = Chef::EncryptedDataBagItem.load(creds[:bag_name], creds[:item_name], secret) # ~FC086
   else
     item = if ChefVault::Item.vault?(creds[:bag_name], creds[:item_name])
              ChefVault::Item.load(creds[:bag_name], creds[:item_name])
@@ -51,12 +52,12 @@ if node['sumologic']['credentials']
            end
   end
 
-  [:accessID, :accessKey].each do |sym|
+  %i[accessID accessKey].each do |sym|
     credentials[sym] = item[sym.to_s] # Chef::DataBagItem 10.28 doesn't work with symbols
   end
 
 else
-  [:accessID, :accessKey].each do |sym|
+  %i[accessID accessKey].each do |sym|
     credentials[sym] = node['sumologic'][sym]
   end
 end

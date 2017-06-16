@@ -13,6 +13,9 @@ Gemfile.lock
 bin/*
 .bundle/*
 
+# rbenv
+.ruby-version
+
 .kitchen/
 .kitchen.local.yml
 

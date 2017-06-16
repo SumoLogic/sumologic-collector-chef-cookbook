@@ -2,8 +2,14 @@
 
 This file is used to list changes made in each version of sumologic-collector.
 
+## 1.2.21
+* Merged PR#125, 130
+
+## 1.2.20
+* Undo PR#113
+
 ## 1.2.19
-* Merge PR#113 
+* Merge PR#113
 
 ## 1.2.18
 * Adds the ability to define the source categories for the default files created in the json source
@@ -16,7 +22,7 @@ This file is used to list changes made in each version of sumologic-collector.
 * Merged PR#76,77: Fix [issue 61](https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issues/61) and Chef 11 incompatibility in metadata.rb
 
 ## 1.2.14
-* Merged PR#74: Add :disable  and :enable action to sumologic-collector, among other things. 
+* Merged PR#74: Add :disable  and :enable action to sumologic-collector, among other things.
 
 ## 1.2.13
 * Merged PR#72: Use the net command to restart, start, and stop the
@@ -40,9 +46,9 @@ This file is used to list changes made in each version of sumologic-collector.
 
 ## 1.2.7
 02/19/2016
-* Add action for debian 8.X 
-* Add support for ChefVault 
-* Ensure sumo-collector is running 
+* Add action for debian 8.X
+* Add support for ChefVault
+* Ensure sumo-collector is running
 
 ## 1.2.6
 
