@@ -3,7 +3,8 @@
 source 'https://rubygems.org'
 
 gem 'buff-extensions', '~> 2.0'
-gem 'chef'
+gem 'chef', '~> 12.0'
+gem 'chef-zero', '~> 5.3'
 gem 'chefspec'
 gem 'kitchen-inspec'
 gem 'kitchen-vagrant'
