@@ -12,7 +12,7 @@ installer and on Windows uses the exe installer. Here are the steps it follows:
 3. Runs installer
 4. Starts collector and registers with the Sumo Logic service
 
-For collector update, the existing collector must have been switched to use Local Configuration Mangement - see the instructions to 
+For collector update, the existing collector must have been switched to use Local Configuration Mangement - see the instructions to
 configure [New Collectors](https://help.sumologic.com/Send_Data/Local_Configuration_File_Management/Local_File_Configuration_Management_for_New_Collectors_and_Sources)
 or [Existing Collectors](https://help.sumologic.com/Send_Data/Local_Configuration_File_Management/Local_Configuration_File_Management_for_Existing_Collectors_and_Sources)
 for more details. The steps the cookbook follows:
@@ -29,9 +29,9 @@ Edit `sumo.json` (or the json files under the json folder) to add/edit/remove so
 Note
 ------
 Starting from 19.107, there are 2 major extensions to SumoLogic collectors:
-* You can configure a collector's parameters from a set of json files under a common folder. Each of the json file will represent a source on that collector. Updates made to a json file will then be reflected on its corresponding source. Note that the format of this kind of file is **slightly different** from that of the traditional single json file (sumo.json) and they are **not** compatible. You also need to use the parameter `syncSources` instead of `sources` inside `sumo.conf`. 
+* You can configure a collector's parameters from a set of json files under a common folder. Each of the json file will represent a source on that collector. Updates made to a json file will then be reflected on its corresponding source. Note that the format of this kind of file is **slightly different** from that of the traditional single json file (sumo.json) and they are **not** compatible. You also need to use the parameter `syncSources` instead of `sources` inside `sumo.conf`.
 See more details [here](https://help.sumologic.com/Send_Data/Installed_Collectors/sumo.conf).
-* You can change a collector's existing parameters through local configuration json file(s) continuously. Before this, using collector API was the only option. 
+* You can change a collector's existing parameters through local configuration json file(s) continuously. Before this, using collector API was the only option.
 More information about this is [here](https://help.sumologic.com/Send_Data/Local_Configuration_File_Management)
 
 Installation
@@ -543,9 +543,7 @@ end
 
 Contributing
 ------------
-This cookbook is meant to help customers use Chef to install Sumo Logic
-collectors, so please feel to fork this repository, and make whatever changes
-you need for your environment.
+Please see CONTRIBUTING.md for guidelines
 
 
 License and Authors
