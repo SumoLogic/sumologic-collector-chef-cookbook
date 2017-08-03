@@ -9,6 +9,7 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 - allow pinning version of chef-vault gem : PR#123 (@dhui)
 
 ### Changed
+- Use initd explicitly on rhel systems to avoid using systemd on newer rhel systems
 - make travisci tests do what users expect them to : PR#134 (@majormoses)
 - updates for ubuntu 16.04, chef 13, fewer restart notifications, configure more java properties, misc kitchen platform updates : PR#122 (@RoboticCheese)
 - misc CHANGELOG updates : PR#137 (@majormoses)

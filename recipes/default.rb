@@ -41,9 +41,14 @@ if File.exist? node['sumologic']['installDir']
   # end
   # include_recipe 'sumologic-collector::restart'
   case node['platform_family']
-  when 'rhel', 'amazon', 'linux', 'debian'
+  when 'amazon', 'linux', 'debian'
     service 'collector' do
       action :start
+    end
+  when 'rhel'
+    service 'collector' do
+      action :start
+      provider Chef::Provider::Service::Init::Redhat
     end
   else
     service 'sumo-collector' do
