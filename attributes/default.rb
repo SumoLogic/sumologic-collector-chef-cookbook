@@ -151,6 +151,16 @@ else
 
   # Collector Restart Command
   default['sumologic']['collectorRestartCmd'] = "#{default['sumologic']['installDir']}/collector restart"
+
+  # Service Init Style. Here we avoid use of systemd because the init scripts do not work properly with systemd.
+  default['sumologic']['init_style'] = case node['platform_family']
+  when 'debian'
+    Chef::Provider::Service::Init::Debian
+  when 'rhel'
+    Chef::Provider::Service::Init::Redhat
+  else
+    Chef::Provider::Service::Init
+  end
 end
 
 default['sumologic']['chef_vault_version'] = nil
