@@ -3,7 +3,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
-## [Unreleased]
+## [1.2.22] - 2017-08-15
 ### Added
 - allow setting max_memory to control memory consumption : PR#128 (@dannenberg)
 - allow pinning version of chef-vault gem : PR#123 (@dhui)
