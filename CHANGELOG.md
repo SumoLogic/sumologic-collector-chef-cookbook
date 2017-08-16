@@ -5,8 +5,10 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 
 ## [Unreleased]
 ### Added
+- TBD
 
 ### Changed
+- TBD
 
 ## [1.2.22] - 2017-08-15
 ### Added
