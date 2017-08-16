@@ -3,6 +3,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
+## [Unreleased]
+### Added
+
+### Changed
+
 ## [1.2.22] - 2017-08-15
 ### Added
 - allow setting max_memory to control memory consumption : PR#128 (@dannenberg)
