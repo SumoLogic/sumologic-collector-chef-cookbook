@@ -5,6 +5,13 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 
 ## [Unreleased]
 ### Added
+- TBD
+
+### Changed
+- TBD
+
+## [1.2.22] - 2017-08-15
+### Added
 - allow setting max_memory to control memory consumption : PR#128 (@dannenberg)
 - allow pinning version of chef-vault gem : PR#123 (@dhui)
 
