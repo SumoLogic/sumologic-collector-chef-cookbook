@@ -154,3 +154,14 @@ else
 end
 
 default['sumologic']['chef_vault_version'] = nil
+
+# if left nil it will defer to ohai to determine, you can
+# change the behavior to use a specific init style as long
+# as the collector and chef supports it. Consult the chef
+# documentation here: https://docs.chef.io/resource_service.html
+# for a list of acceptable options. Some examples:
+# `Chef::Provider::Service::Systemd`, `Chef::Provider::Service::Upstart`,
+# `Chef::Provider::Service::Init::Debian`, etc. Here is
+# the source of trusth on supported init subsystemds:
+# https://github.com/chef/chef/tree/v13.4.19/lib/chef/provider/service
+default['sumologic']['init_style'] = nil
