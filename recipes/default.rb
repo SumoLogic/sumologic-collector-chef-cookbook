@@ -44,10 +44,12 @@ if File.exist? node['sumologic']['installDir']
   when 'rhel', 'amazon', 'linux', 'debian'
     service 'collector' do
       action :start
+      provider node['sumologic']['init_style'] unless node['sumologic']['init_style'].nil?
     end
   else
     service 'sumo-collector' do
       action :start
+      provider node['sumologic']['init_style'] unless node['sumologic']['init_style'].nil?
     end
   end
 
