@@ -13,6 +13,7 @@ TBD
 ## [1.2.23] - 2017-10-12
 ### Added
 - the ability to use `node['sumologic']['init_style']` to specify an override for an init subsystem while keeping the same defaults of delegating that to ohai detection.
+- Support setting a resource-configured collector's `hostName`, `description`, `category`, `disableActionSource`, `disableUpgrade`, `timeZone`, and `targetCPU`.
 
 ## [1.2.22] - 2017-08-15
 ### Added

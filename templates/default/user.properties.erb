@@ -22,10 +22,17 @@ proxyPassword=<%= @resource.proxy_password %>
 <% end %>
 # Other Settings
 name=<%= @resource.collector_name %>
+<%= "hostName=#{@resource.host_name}" unless @resource.host_name.nil? %>
+<%= "description=#{@resource.description}" unless @resource.description.nil? %>
+<%= "category=#{@resource.category}" unless @resource.category.nil? %>
 <%= "sources=#{@resource.sources}" unless @resource.sources.nil? %>
 <%= "syncSources=#{@resource.sync_sources}" unless @resource.sync_sources.nil? %>
 <%= "ephemeral=#{@resource.ephemeral}" unless @resource.ephemeral.nil? %>
 <%= "clobber=#{@resource.clobber}" unless @resource.clobber.nil? %>
 <%= "disableScriptSource=#{@resource.disable_script_source}" unless @resource.disable_script_source.nil? %>
+<%= "disableActionSource=#{@resource.disable_action_source}" unless @resource.disable_action_source.nil? %>
+<%= "disableUpgrade=#{@resource.disable_upgrade}" unless @resource.disable_upgrade.nil? %>
+<%= "timeZone=#{@resource.time_zone}" unless @resource.time_zone.nil? %>
+<%= "targetCPU=#{@resource.target_cpu}" unless @resource.target_cpu.nil? %>
 <%= "wrapper.java.initmemory=#{@resource.wrapper_java_initmemory}" unless @resource.wrapper_java_initmemory.nil? %>
 <%= "wrapper.java.maxmemory=#{@resource.wrapper_java_maxmemory}" unless @resource.wrapper_java_maxmemory.nil? %>

@@ -185,6 +185,9 @@ for more information about these attributes.
 | `source` | `String` | URL to download collector installer from | none (uses the latest installer from SumoLogic) | `false` | `:install`, `:install_and_configure` |
 | `collector_name` | `String` | Name of this Collector | `nil` | `false` | `:install_and_configure`, `:configure` |
 | `collector_url` | `String` | URL used to register Collector for data collection API | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `host_name` | `String` | Hostname of this collector + default hostname of sources on it | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `description` | `String` | Description of this collector | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `category` | `String` | Default category for sources on this collector | `nil` | `false` | `:install_and_configure`, `:configure` |
 | `sumo_token_and_url` | `String` | Encoded Setup Wizard token | `nil` | `false` | `:install_and_configure` |
 | `sumo_access_id` | `String` | Access ID used when logging in with Access ID and Key | `nil` | `false` | `:install_and_configure`, `:configure` |
 | `sumo_access_key` | `String` | Access Key used when logging in with Access ID and Key | `nil` | `false` | `:install_and_configure`, `:configure` |
@@ -198,8 +201,12 @@ for more information about these attributes.
 | `ephemeral` | `Boolean` | When `true`, the Collector will be deleted after goes offline for a certain period of time | `false` | `false` | `:install_and_configure`, `:configure` |
 | `clobber` | `Boolean` | When `true`, if there is any existing Collector with the same name, that Collector will be deleted | `false` | `false` | `:install_and_configure`, `:configure` |
 | `disable_script_source` | `Boolean` | If your organization's internal policies restrict the use of scripts, you can disable the creation of script-based Script Sources. When this parameter is passed, this option is removed from the Sumo Logic Web Application, and Script Source cannot be configured | `false` | `false` | `:install_and_configure`, `:configure` |
-| `wrapper_java_initmemory | `Integer` | Override the initial Java heap size | `nil` | `false` | `:configure |
-| `wrapper_java_maxmemory | `Integer` | Override the maximum Java heap size | `nil` | `false` | `:configure |
+| `disable_action_source` | `Boolean` | If your organization's internal policies restrict the use of script actions, you can disable the creation of script-based action sources. When this parameter is passed, action sources will not execute on this collector. | `false` | `false` | `:install_and_configure`, `:configure` |
+| `disable_upgrade` | `Boolean` | If true, the collector rejects upgrade requests from Sumo. | `false` | `false` | `:install_and_configure`, `:configure` |
+| `time_zone` | `String` | The default time zone for sources on this collector | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `target_cpu` | `Integer` | Target to which to limit the CPU usage of this collector | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `wrapper_java_initmemory` | `Integer` | Override the initial Java heap size | `nil` | `false` | `:configure` |
+| `wrapper_java_maxmemory` | `Integer` | Override the maximum Java heap size | `nil` | `false` | `:configure` |
 | `runas_username` | `String` | Which user the daemon will run as | `nil` | `false` | `:install_and_configure`, `:install` |
 | `winrunas_password` | `String` | On Windows, the password for the user the service will run as | `nil` | `false` | `:install_and_configure`, `:install` |
 | `skip_registration` | `Boolean` | When `true` the collector will not register upon installation | `false` | `nil` | `:install_and_configure` |
