@@ -5,6 +5,13 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 
 ## [Unreleased]
 ### Added
+TBD
+
+### Changed
+TBD
+
+## [1.2.23] - 2017-10-12
+### Added
 - the ability to use `node['sumologic']['init_style']` to specify an override for an init subsystem while keeping the same defaults of delegating that to ohai detection.
 
 ## [1.2.22] - 2017-08-15
