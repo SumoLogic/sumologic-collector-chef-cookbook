@@ -38,7 +38,10 @@ end
 
 require 'chef-vault'
 
-if node['sumologic']['credentials']
+if node.run_state[:sumo_key_id] && node.run_state[:sumo_key_secret]
+  credentials['accessID'] = node.run_state[:sumo_key_id]
+  credentials['accessKey'] = node.run_state[:sumo_key_secret]
+elsif node['sumologic']['credentials']
   creds = node['sumologic']['credentials']
 
   if creds[:secret_file]
