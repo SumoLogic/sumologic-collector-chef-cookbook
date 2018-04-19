@@ -38,7 +38,10 @@ end
 
 require 'chef-vault'
 
-if node['sumologic']['credentials']
+if node.run_state['sumo_key_id'] && node.run_state['sumo_key_secret']
+  credentials['accessID'] = node.run_state['sumo_key_id']
+  credentials['accessKey'] = node.run_state['sumo_key_secret']
+elsif node['sumologic']['credentials']
   creds = node['sumologic']['credentials']
 
   if creds[:secret_file]
@@ -57,6 +60,9 @@ if node['sumologic']['credentials']
   end
 
 else
+  Chef::Log.warn("Using node['sumologic']['accessID'] and node['sumologic']['accessKey'] is deprecated!")
+  Chef::Log.warn('Persisting sensitive information in node attributes is not recommended.')
+
   %i[accessID accessKey].each do |sym|
     credentials[sym] = node['sumologic'][sym]
   end

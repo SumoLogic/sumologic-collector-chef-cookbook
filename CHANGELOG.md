@@ -6,6 +6,7 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 ## [Unreleased]
 
 ### Added
+- using node run state added as a viable option to supply credentials
 - when using the lwrps it calls `sumo_service` which attempts to use systemd if present. We should allow overriding this behavior with the same attribute as was added in [PR#145](https://github.com/SumoLogic/sumologic-collector-chef-cookbook/pull/145) to change the behavior. If the attribute is unset it uses the existing logic to determine the appropriate init subsystem making this backwards compatibile. (@majormoses)
 
 ## [1.2.23] - 2017-10-12
