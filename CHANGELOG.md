@@ -5,6 +5,7 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 
 ## [Unreleased]
 
+## [1.3.0] - 2018-04-19
 ### Added
 - using node run state added as a viable option to supply credentials
 - when using the lwrps it calls `sumo_service` which attempts to use systemd if present. We should allow overriding this behavior with the same attribute as was added in [PR#145](https://github.com/SumoLogic/sumologic-collector-chef-cookbook/pull/145) to change the behavior. If the attribute is unset it uses the existing logic to determine the appropriate init subsystem making this backwards compatibile. (@majormoses)
@@ -107,7 +108,8 @@ Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/sy
 
 The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.
 
-[Unreleased]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.2.21...HEAD
+[Unreleased]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.2.21...v1.3.0
 [1.2.21]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.2.20...v1.2.21
 [1.2.20]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.2.19...v1.2.20
 [1.2.19]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.2.18...v1.2.19
