@@ -31,7 +31,7 @@ class Chef
             rights new_resource.rights
           end
           # please fix me!
-          sensitive(/password/i === config_json) # rubocop:disable Style/CaseEquality
+          sensitive(config_json === /password/i) # rubocop:disable Style/CaseEquality
         end
       end
 
