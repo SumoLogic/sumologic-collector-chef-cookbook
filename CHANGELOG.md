@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Changed
+- delete legacy ChefSpec matchers (@RoboticCheese)
 
 ## [1.3.0] - 2018-04-19
 ### Added
