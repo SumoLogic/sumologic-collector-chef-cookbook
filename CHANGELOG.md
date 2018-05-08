@@ -7,6 +7,9 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 ### Changed
 - delete legacy ChefSpec matchers (@RoboticCheese)
 
+### Fixed
+- fix collector provider installation detection for 19.216-33 on Systemd platforms (@RoboticCheese)
+
 ## [1.3.0] - 2018-04-19
 ### Added
 - using node run state added as a viable option to supply credentials
