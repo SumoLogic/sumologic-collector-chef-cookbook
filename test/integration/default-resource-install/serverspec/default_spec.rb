@@ -13,3 +13,10 @@ describe file("#{sumo_dir}/config/user.properties") do
   its(:content) { is_expected.to match(/accessid=00000000000/) }
   its(:content) { is_expected.to match(/accesskey=0000000000000000000000000/) }
 end
+
+svc = os[:family] == 'windows' ? 'sumo-collector' : 'collector'
+
+describe service(svc) do
+  it { should_not be_running }
+  it { should_not be_enabled }
+end
