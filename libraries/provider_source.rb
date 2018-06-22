@@ -57,6 +57,8 @@ class Chef
         hash['source']['defaultDateFormat'] = new_resource.default_date_format unless new_resource.default_date_format.nil?
         hash['source']['filters'] = new_resource.filters unless new_resource.filters.nil?
         hash['source']['alive'] = new_resource.alive unless new_resource.alive.nil?
+        hash['source']['cutoffTimestamp'] = new_resource.cuttoff_timestamp unless new_resource.cuttoff_timestamp.nil?
+        hash['source']['cutoffRelativeTime'] = new_resource.cuttoff_relative_time unless new_resource.cuttoff_relative_time.nil?
         hash
       end
 
