@@ -110,12 +110,9 @@ end
 private
 
 def installed?
-  case node['platform_family']
-  when 'windows'
-    ::Win32::Service.exists? 'sumo-collector'
-  else
-    ::File.exist? '/etc/init.d/collector'
-  end
+  path = ::File.join(new_resource.dir,
+                     "uninstall#{'.exe' if node['platform_family'] == 'windows'}")
+  ::File.exist?(path)
 end
 
 def installer_bin
