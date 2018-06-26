@@ -4,15 +4,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+## [1.4.0] - 2018-06-26
+### Added
+- Added `cutoffTimestamp` and `cutoffRelativeTime` properties.
+
 ### Changed
 - delete legacy ChefSpec matchers (@RoboticCheese)
 
 ### Fixed
 - fix collector provider installation detection for 19.216-33 on Systemd platforms (@RoboticCheese)
-
-## [1.3.1] - 2018-06-22
-### Added
-- Added `cutoffTimestamp` and `cutoffRelativeTime` properties.
 
 ## [1.3.0] - 2018-04-19
 ### Added
@@ -117,7 +118,8 @@ Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/sy
 
 The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.
 
-[Unreleased]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.2.21...v1.3.0
 [1.2.21]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.2.20...v1.2.21
 [1.2.20]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.2.19...v1.2.20
