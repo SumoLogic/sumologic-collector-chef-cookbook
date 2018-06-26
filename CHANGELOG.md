@@ -5,6 +5,10 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 
 ## [Unreleased]
 
+## [1.3.1] - 2018-06-22
+### Added
+- Added `cutoffTimestamp` and `cutoffRelativeTime` properties.
+
 ## [1.3.0] - 2018-04-19
 ### Added
 - using node run state added as a viable option to supply credentials

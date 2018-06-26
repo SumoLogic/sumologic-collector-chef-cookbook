@@ -42,6 +42,8 @@ class Chef
       attribute :default_date_format, kind_of: String
       attribute :filters, kind_of: Array
       attribute :alive, kind_of: [TrueClass, FalseClass]
+      attribute :cuttoff_timestamp, kind_of: String
+      attribute :cuttoff_relative_time, kind_of: String
     end
   end
 end

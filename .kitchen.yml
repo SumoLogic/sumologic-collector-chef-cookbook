@@ -87,6 +87,7 @@ suites:
       - recipe[source-resource::script_create]
       - recipe[source-resource::syslog_create]
       - recipe[source-resource::graphite_create]
+      - recipe[source-resource::local_file_cutoff]
     attributes:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
