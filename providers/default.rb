@@ -22,6 +22,7 @@ action :install do
     new_resource.sumo_access_key('0000000000000000000000000')
     installer_cmd = [installer_bin, installer_opts].join(' ').strip
     run_installer installer_cmd
+    sumo_service :disable
   end
 end
 
