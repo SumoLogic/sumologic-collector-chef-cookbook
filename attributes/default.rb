@@ -168,4 +168,3 @@ default['sumologic']['init_style'] = nil
 
 # Toggle to enable some helpful logic if the system is already set up in sync source mode
 default['sumologic']['already_in_sync_source_mode'] = false
-
