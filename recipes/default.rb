@@ -31,15 +31,17 @@
 if File.exist? node['sumologic']['installDir']
   Chef::Log.info "Sumo Logic Collector found."
   # If collector is already in sync source mode, just uncomment these following lines to update the sources
-  # include_recipe 'sumologic-collector::sumoconf'
-  # if node['sumologic']['use_json_path_dir'] == true
-  #	# use the recipe sumojsondir if your source configurations are in a directory
-  #	include_recipe 'sumologic-collector::sumojsondir'
-  # else
-  #	# use the recipe sumojson if your source configurations are in a single json file
-  #	include_recipe 'sumologic-collector::sumojson'
-  # end
-  # include_recipe 'sumologic-collector::restart'
+  if node['sumologic']['already_in_sync_source_mode'] == true
+    include_recipe 'sumologic-collector::sumoconf'
+    if node['sumologic']['use_json_path_dir'] == true
+  	  # use the recipe sumojsondir if your source configurations are in a directory
+      include_recipe 'sumologic-collector::sumojsondir'
+    else
+      # use the recipe sumojson if your source configurations are in a single json file
+      include_recipe 'sumologic-collector::sumojson'
+    end
+    include_recipe 'sumologic-collector::restart'
+  end
   case node['platform_family']
   when 'rhel', 'amazon', 'linux', 'debian'
     service 'collector' do
