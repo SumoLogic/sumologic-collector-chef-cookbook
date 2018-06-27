@@ -34,7 +34,7 @@ if File.exist? node['sumologic']['installDir']
   if node['sumologic']['already_in_sync_source_mode'] == true
     include_recipe 'sumologic-collector::sumoconf'
     if node['sumologic']['use_json_path_dir'] == true
-  	  # use the recipe sumojsondir if your source configurations are in a directory
+      # use the recipe sumojsondir if your source configurations are in a directory
       include_recipe 'sumologic-collector::sumojsondir'
     else
       # use the recipe sumojson if your source configurations are in a single json file
