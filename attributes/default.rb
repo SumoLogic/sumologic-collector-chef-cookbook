@@ -165,3 +165,6 @@ default['sumologic']['chef_vault_version'] = nil
 # the source of trusth on supported init subsystemds:
 # https://github.com/chef/chef/tree/v13.4.19/lib/chef/provider/service
 default['sumologic']['init_style'] = nil
+
+# Toggle to enable some helpful logic if the system is already set up in sync source mode
+default['sumologic']['already_in_sync_source_mode'] = false
