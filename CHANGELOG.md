@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Added
+- Added `aready_in_sync_source_mode` property to remove need to fork and edit cookbook.
 
 ## [1.4.0] - 2018-06-26
 ### Added
