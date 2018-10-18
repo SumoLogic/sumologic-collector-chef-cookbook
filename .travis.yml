@@ -2,32 +2,9 @@ language: ruby
 sudo: false
 cache:
   - bundler
-before_install:
-  - gem install bundler
-
-# might add this back later
-# addons:
-#   apt:
-#     sources:
-#       - chef-current-trusty
-#     packages:
-#       - chefdk
-
-# Install bundle, to hell with saving a minute as it causes users to
-# search and realize that this is coming from some unpinned chefdk install
-install:
-  - echo "bundle install"
-  - bundle install
-
-# ruby versions to test
 rvm:
 - 2.3.0
-
-script:
-  - bundle exec rubocop --version
-  - bundle exec rubocop
-  - bundle exec foodcritic --version
-  - bundle exec foodcritic . --exclude spec
+script: bundle exec rake style
   # we might want the do some stuff with chefdk later here but do not want to do
   # that before other types of lint based testing.
   # you might want to do something like `eval "$(/opt/chefdk/bin/chef shell-init bash)" && $SOME_CHEFDK_BINARY`

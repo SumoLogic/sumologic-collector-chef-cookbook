@@ -11,7 +11,7 @@ gem 'kitchen-vagrant'
 gem 'test-kitchen'
 
 group :lint do
-  gem 'foodcritic', '~> 11.2.0'
+  gem 'foodcritic', '~> 14.2.0'
   gem 'rainbow'
   gem 'rubocop', '~> 0.48.0'
 end
