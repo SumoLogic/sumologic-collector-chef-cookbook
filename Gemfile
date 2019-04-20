@@ -12,6 +12,7 @@ gem 'test-kitchen'
 
 group :lint do
   gem 'foodcritic', '~> 11.2.0'
+  gem 'gherkin', '~> 5.1'
   gem 'rainbow'
   gem 'rubocop', '~> 0.48.0'
 end
