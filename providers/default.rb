@@ -180,6 +180,7 @@ def installer_opts # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexit
   args << "-dir #{new_resource.dir}"
   args << "-Vcollector.name=#{new_resource.collector_name}" unless new_resource.collector_name.nil?
   args << "-Vcollector.url=#{new_resource.collector_url}" unless new_resource.collector_url.nil?
+  args << "-Vcollector.secureFiles=#{new_resource.collector_secure_files}" unless new_resource.collector_secure_files.nil?
   args << "-Vsumo.token_and_url=#{new_resource.sumo_token_and_url}" unless new_resource.sumo_token_and_url.nil?
   args << "-Vsumo.accessid=#{new_resource.sumo_access_id}" unless new_resource.sumo_access_id.nil?
   args << "-Vsumo.accesskey=#{new_resource.sumo_access_key}" unless new_resource.sumo_access_key.nil?
