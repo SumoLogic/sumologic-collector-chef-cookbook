@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Added 
+- Added securefiles boolean flag in installer to enable or disable enhanced file security.
 
 ## [1.4.0] - 2018-06-26
 ### Added
