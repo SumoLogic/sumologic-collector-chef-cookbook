@@ -185,6 +185,7 @@ for more information about these attributes.
 | `source` | `String` | URL to download collector installer from | none (uses the latest installer from SumoLogic) | `false` | `:install`, `:install_and_configure` |
 | `collector_name` | `String` | Name of this Collector | `nil` | `false` | `:install_and_configure`, `:configure` |
 | `collector_url` | `String` | URL used to register Collector for data collection API | `nil` | `false` | `:install_and_configure`, `:configure` |
+| `collector_secure_files` | `Boolean` | Enable or disable enhanced file security | `nil` | `false` | `:install_and_configure`, `:install` |
 | `host_name` | `String` | Hostname of this collector + default hostname of sources on it | `nil` | `false` | `:install_and_configure`, `:configure` |
 | `description` | `String` | Description of this collector | `nil` | `false` | `:install_and_configure`, `:configure` |
 | `category` | `String` | Default category for sources on this collector | `nil` | `false` | `:install_and_configure`, `:configure` |

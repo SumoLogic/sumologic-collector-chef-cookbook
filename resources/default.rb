@@ -17,6 +17,7 @@ attribute :skip_registration, kind_of: [TrueClass, FalseClass], default: false
 # Configuration attributes
 attribute :collector_name, kind_of: String, default: nil
 attribute :collector_url, kind_of: String, default: nil
+attribute :collector_secure_files, kind_of: [TrueClass, FalseClass], default: nil
 attribute :host_name, kind_of: String, default: nil
 attribute :description, kind_of: String, default: nil
 attribute :category, kind_of: String, default: nil
