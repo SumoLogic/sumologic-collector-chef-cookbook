@@ -143,6 +143,7 @@ end
 def run_installer(installer_cmd)
   execute 'Install Sumo Collector' do
     command "#{Chef::Config[:file_cache_path]}/#{installer_cmd}"
+    sensitive true
     timeout 3600
   end
 end
