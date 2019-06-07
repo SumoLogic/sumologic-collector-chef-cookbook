@@ -4,10 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+## [1.4.0] - 2019-06-07
 ### Added 
 - Added securefiles boolean flag in installer to enable or disable enhanced file security.
 
 ## [1.4.0] - 2018-06-26
+### Changed
+- Changed sensitive true flag to installer executable to hide secret data
+
 ### Added
 - Added `cutoffTimestamp` and `cutoffRelativeTime` properties.
 
