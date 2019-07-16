@@ -42,6 +42,7 @@ attribute :time_zone, kind_of: String, default: nil
 attribute :target_cpu, kind_of: Integer, default: nil
 attribute :wrapper_java_initmemory, kind_of: Integer, default: nil
 attribute :wrapper_java_maxmemory, kind_of: Integer, default: nil
+attribute :fields, kind_of: Hash, default: nil
 
 # Misc
 attribute :installed, kind_of: [TrueClass, FalseClass], default: false
