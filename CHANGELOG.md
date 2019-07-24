@@ -7,6 +7,9 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 ### Added 
 - Added securefiles boolean flag in installer to enable or disable enhanced file security.
 
+### Fixed
+- Set default provider installer_source to use attributes so the URL can be overridden if necessary.
+
 ## [1.4.0] - 2018-06-26
 ### Added
 - Added `cutoffTimestamp` and `cutoffRelativeTime` properties.
