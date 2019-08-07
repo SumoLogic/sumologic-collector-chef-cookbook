@@ -6,6 +6,7 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 ## [Unreleased]
 ### Added 
 - Added securefiles boolean flag in installer to enable or disable enhanced file security.
+- added fields support to user.properties
 
 ## [1.4.0] - 2018-06-26
 ### Added

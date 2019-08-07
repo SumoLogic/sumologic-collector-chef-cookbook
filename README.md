@@ -211,6 +211,7 @@ for more information about these attributes.
 | `runas_username` | `String` | Which user the daemon will run as | `nil` | `false` | `:install_and_configure`, `:install` |
 | `winrunas_password` | `String` | On Windows, the password for the user the service will run as | `nil` | `false` | `:install_and_configure`, `:install` |
 | `skip_registration` | `Boolean` | When `true` the collector will not register upon installation | `false` | `nil` | `:install_and_configure` |
+| `fields` | `Hash` | Sets the fields property in user.properties used by ingest budgets and other future features | `nil` | `false` | `:install_and_configure`, `:configure` |
 
 sumologic_collector_installer
 ---------

@@ -36,3 +36,4 @@ name=<%= @resource.collector_name %>
 <%= "targetCPU=#{@resource.target_cpu}" unless @resource.target_cpu.nil? %>
 <%= "wrapper.java.initmemory=#{@resource.wrapper_java_initmemory}" unless @resource.wrapper_java_initmemory.nil? %>
 <%= "wrapper.java.maxmemory=#{@resource.wrapper_java_maxmemory}" unless @resource.wrapper_java_maxmemory.nil? %>
+<%= "fields=#{@resource.fields.map { |key, val| "#{key}=#{val}"}.join(",")}" unless @resource.fields.nil? %>
