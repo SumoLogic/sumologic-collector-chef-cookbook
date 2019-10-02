@@ -8,6 +8,10 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 - Added securefiles boolean flag in installer to enable or disable enhanced file security.
 - added fields support to user.properties
 
+## Changed
+- Deprecated flags disableScript/ActionSource removed.
+- Script / Action Sources are disabled by default.
+
 ## [1.4.0] - 2018-06-26
 ### Added
 - Added `cutoffTimestamp` and `cutoffRelativeTime` properties.
