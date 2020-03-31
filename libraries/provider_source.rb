@@ -26,6 +26,7 @@ class Chef
           mode new_resource.mode
           checksum new_resource.checksum
           backup new_resource.backup
+          path source_json_path
           if Platform.windows?
             inherits new_resource.inherits
             rights new_resource.rights
