@@ -67,7 +67,12 @@ class Chef
       end
 
       def source_json_path
-        "#{new_resource.source_json_directory}/#{new_resource.source_name}.json"
+        # allow a full path to be specified with the name attribute
+        if new_resource.source_name.start_with?('/') && new_resource.source_name.end_with?('.json')
+          new_resource.source_name
+        else
+          "#{new_resource.source_json_directory}/#{new_resource.source_name}.json"
+        end
       end
 
       def source_type_map
