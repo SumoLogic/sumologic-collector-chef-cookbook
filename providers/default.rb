@@ -120,13 +120,9 @@ def installer_bin
 end
 
 def installer_source
-  case node['platform_family']
-  when 'windows'
-    node['kernel']['machine'] =~ /^x86_64$/ ? 'https://collectors.sumologic.com/rest/download/win64' : 'https://collectors.sumologic.com/rest/download/windows'
-  else
-    url = 'https://collectors.sumologic.com/rest/download/linux'
-    "#{url}/#{node['kernel']['machine'] =~ /^i[36']86$/ ? '32' : '64'}"
-  end
+  # the attributes file already has logic in it to evaluate the platform and architecture so rather than re-evaluating
+  # we can just directly reference the downloadUrl attribute and get the correct URL
+  node['sumologic']['downloadUrl']
 end
 
 def download_installer
