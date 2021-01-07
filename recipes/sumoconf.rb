@@ -87,6 +87,11 @@ template node['sumologic']['sumo_conf_path'] do
   end
 
   # this may look strange, but one pair will be nil, so it all works out
-  variables(accessID: credentials[:accessID],
-            accessKey: credentials[:accessKey])
+  if node.run_state['sumo_key_id'] && node.run_state['sumo_key_secret']
+    variables(accessID: credentials['accessID'],
+              accessKey: credentials['accessKey'])
+  else
+    variables(accessID: credentials[:accessID],
+              accessKey: credentials[:accessKey])
+  end
 end
