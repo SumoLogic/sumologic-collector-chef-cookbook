@@ -201,9 +201,9 @@ for more information about these attributes.
 | `sync_sources` | `String` | Sets the JSON file describing sources to configure on registration, which will be continuously monitored and synchronized with the Collector's configuration | `nil` | `false` | `:install_and_configure`, `:configure` |
 | `ephemeral` | `Boolean` | When `true`, the Collector will be deleted after goes offline for a certain period of time | `false` | `false` | `:install_and_configure`, `:configure` |
 | `clobber` | `Boolean` | When `true`, if there is any existing Collector with the same name, that Collector will be deleted | `false` | `false` | `:install_and_configure`, `:configure` |
-| `disable_script_source` | `Boolean` | If your organization's internal policies restrict the use of scripts, you can disable the creation of script-based Script Sources. When this parameter is passed, this option is removed from the Sumo Logic Web Application, and Script Source cannot be configured | `false` | `false` | `:install_and_configure`, `:configure` |
-| `disable_action_source` | `Boolean` | If your organization's internal policies restrict the use of script actions, you can disable the creation of script-based action sources. When this parameter is passed, action sources will not execute on this collector. | `false` | `false` | `:install_and_configure`, `:configure` |
 | `disable_upgrade` | `Boolean` | If true, the collector rejects upgrade requests from Sumo. | `false` | `false` | `:install_and_configure`, `:configure` |
+| `enable_script_source` | `Boolean` | Script Sources are disabled by default. You can enable them by setting this parameter to true. | `false` | `false` | `:install_and_configure`, `:configure` |
+| `enable_action_source` | `Boolean` | Script Action Sources are disabled by default. You can enable them by setting this parameter to true. | `false` | `false` | `:install_and_configure`, `:configure` |
 | `time_zone` | `String` | The default time zone for sources on this collector | `nil` | `false` | `:install_and_configure`, `:configure` |
 | `target_cpu` | `Integer` | Target to which to limit the CPU usage of this collector | `nil` | `false` | `:install_and_configure`, `:configure` |
 | `wrapper_java_initmemory` | `Integer` | Override the initial Java heap size | `nil` | `false` | `:configure` |

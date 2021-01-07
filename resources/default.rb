@@ -35,8 +35,8 @@ attribute :sources, kind_of: String, default: nil
 attribute :sync_sources, kind_of: String, default: nil
 attribute :ephemeral, kind_of: [TrueClass, FalseClass], default: false
 attribute :clobber, kind_of: [TrueClass, FalseClass], default: false
-attribute :disable_script_source, kind_of: [TrueClass, FalseClass], default: false
-attribute :disable_action_source, kind_of: [TrueClass, FalseClass], default: false
+attribute :enable_script_source, kind_of: [TrueClass, FalseClass], default: false
+attribute :enable_action_source, kind_of: [TrueClass, FalseClass], default: false
 attribute :disable_upgrade, kind_of: [TrueClass, FalseClass], default: false
 attribute :time_zone, kind_of: String, default: nil
 attribute :target_cpu, kind_of: Integer, default: nil
