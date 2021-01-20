@@ -1,5 +1,5 @@
-Contributing to cookbook-elasticsearch
-======================================
+Contributing
+============
 
 ### Workflow for contributing
 
