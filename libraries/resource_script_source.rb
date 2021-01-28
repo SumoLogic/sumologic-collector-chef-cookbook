@@ -6,6 +6,8 @@ require_relative 'resource_source'
 class Chef
   class Resource
     class SumoSourceScript < Chef::Resource::SumoSource
+      provides :sumo_source_script if respond_to?(:provides)
+
       attribute :source_type, kind_of: Symbol, default: :script, equal_to: [:script]
       attribute :commands, kind_of: Array, required: true
       attribute :file, kind_of: String
