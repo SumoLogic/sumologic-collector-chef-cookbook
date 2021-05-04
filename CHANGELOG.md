@@ -3,6 +3,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 ## [Unreleased]
+### Fixed
+- fixes an issue with the install action caused by a missing attribute
 
 ## [1.5.0] - 2021-01-06
 ### Added 
