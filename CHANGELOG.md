@@ -3,6 +3,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 ## [Unreleased]
+### Changed
+- Chef 16 support. HWRP-style resources now require either the use of `resource_name` or `provides`
+
 ### Fixed
 - fixes an issue with the install action caused by a missing attribute
 

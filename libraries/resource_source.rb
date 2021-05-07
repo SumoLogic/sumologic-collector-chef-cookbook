@@ -6,6 +6,8 @@ require 'chef/platform/query_helpers'
 class Chef
   class Resource
     class SumoSource < Chef::Resource::LWRPBase
+      provides :sumo_source if respond_to?(:provides)
+
       default_action :create
 
       actions :create

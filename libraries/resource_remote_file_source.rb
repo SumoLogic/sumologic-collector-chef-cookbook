@@ -6,6 +6,8 @@ require_relative 'resource_source'
 class Chef
   class Resource
     class SumoSourceRemoteFile < Chef::Resource::SumoSource
+      provides :sumo_source_remote_file if respond_to?(:provides)
+
       attribute :source_type, kind_of: Symbol, default: :remote_file, equal_to: [:remote_file]
       attribute :remote_hosts, kind_of: Array, required: true
       attribute :remote_port, kind_of: Integer, required: true
