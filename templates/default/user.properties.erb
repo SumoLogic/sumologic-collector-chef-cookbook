@@ -29,8 +29,8 @@ name=<%= @resource.collector_name %>
 <%= "syncSources=#{@resource.sync_sources}" unless @resource.sync_sources.nil? %>
 <%= "ephemeral=#{@resource.ephemeral}" unless @resource.ephemeral.nil? %>
 <%= "clobber=#{@resource.clobber}" unless @resource.clobber.nil? %>
-<%= "enableScriptSource=#{@resource.enable_script_source}" unless @resource.disable_script_source.nil? %>
-<%= "enableActionSource=#{@resource.enable_action_source}" unless @resource.disable_action_source.nil? %>
+<%= "enableScriptSource=#{@resource.enable_script_source}" unless @resource.enable_script_source.nil? %>
+<%= "enableActionSource=#{@resource.enable_action_source}" unless @resource.enable_action_source.nil? %>
 <%= "disableUpgrade=#{@resource.disable_upgrade}" unless @resource.disable_upgrade.nil? %>
 <%= "timeZone=#{@resource.time_zone}" unless @resource.time_zone.nil? %>
 <%= "targetCPU=#{@resource.target_cpu}" unless @resource.target_cpu.nil? %>

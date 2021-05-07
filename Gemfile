@@ -11,6 +11,7 @@ gem 'kitchen-vagrant'
 gem 'test-kitchen'
 
 group :lint do
+  gem 'cucumber-core', '~> 3.2.1'
   gem 'foodcritic', '~> 11.2.0'
   gem 'gherkin', '~> 5.1'
   gem 'rainbow'
