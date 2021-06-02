@@ -1,16 +1,23 @@
 # CHANGELOG for sumologic-collector
+
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
-## [Unreleased]
-### Changed
-- Chef 16 support. HWRP-style resources now require either the use of `resource_name` or `provides`
 
-### Fixed
-- fixes an issue with the install action caused by a missing attribute
+## [Unreleased changes]
+
+## [1.6.0] - 2021-06-02
+### Added
+- Support chef 16 by setting `provides` on custom resources [#179]
+
+### Changed
+- fix missing method error [#180]
+
+[#179]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/pull/179
+[#180]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/pull/180
 
 ## [1.5.0] - 2021-01-06
-### Added 
+### Added
 - Added securefiles boolean flag in installer to enable or disable enhanced file security.
 - added fields support to user.properties
 
@@ -126,13 +133,15 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 ## [0.1.0] - 2015-09-02
 - Initial release of sumologic-collector
 
-
 - - -
+
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
 
 The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.
 
-[Unreleased]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.4.0...HEAD
+[Unreleased changes]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.5.0...v1.6.0
+[1.5.0]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.2.21...v1.3.0
 [1.2.21]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.2.20...v1.2.21
