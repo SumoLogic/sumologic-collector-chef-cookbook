@@ -20,3 +20,8 @@ bin/*
 .kitchen.local.yml
 
 metadata.json
+
+nodes
+cinc_guid
+chef_guid
+local-mode-cache

@@ -30,4 +30,18 @@ After successfull installation you can ssh to the virtual machine with:
 vagrant ssh
 ```
 
-NOTICE: The directory with sumologic-collector-chef-cookbook repository on the host is synced with `/sumologic/` directory on the virtual machine.
+To run test:
+
+```bash
+cd /sumologic/sumologic-collector
+make test
+```
+
+To run example cookbook:
+
+```bash
+cd /sumologic/sumologic-collector/vagrant
+make run
+```
+
+NOTICE: The directory with sumologic-collector-chef-cookbook repository on the host is synced with `/sumologic/sumologic-collector` directory on the virtual machine.
