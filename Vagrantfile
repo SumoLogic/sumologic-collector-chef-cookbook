@@ -23,5 +23,5 @@ Vagrant.configure('2') do |config|
 
   config.vm.provision 'shell', path: 'vagrant/provision.sh'
 
-  config.vm.synced_folder ".", "/sumologic"
+  config.vm.synced_folder ".", "/sumologic/sumologic-collector"
 end

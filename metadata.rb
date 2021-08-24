@@ -2,7 +2,7 @@
 
 name 'sumologic-collector'
 maintainer 'Sumo Logic'
-maintainer_email 'opensource@sumologic.com'
+maintainer_email 'collection@sumologic.com'
 issues_url 'https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issues' if respond_to?(:issues_url)
 source_url 'https://github.com/SumoLogic/sumologic-collector-chef-cookbook' if respond_to?(:source_url)
 license 'Apache-2.0'
