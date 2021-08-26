@@ -26,13 +26,16 @@ action :install do
 end
 
 action :install_and_configure do
-  if @current_resource.installed
-    Chef::Log.debug "Sumo Logic Collector already installed to #{new_resource.dir}"
-  else
-    download_installer
-    installer_cmd = [installer_bin, installer_opts].join(' ').strip
-    run_installer installer_cmd
-  end
+  # Keep access_id and access_key, because install clean up them
+  accessid = new_resource.sumo_access_id
+  accesskey = new_resource.sumo_access_key
+  run_action :install
+
+  # restore access_id and access_key
+  new_resource.sumo_access_id(accessid)
+  new_resource.sumo_access_key(accesskey)
+  new_resource.skip_registration(false)
+  run_action :configure
 end
 
 action :configure do

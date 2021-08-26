@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased changes]
+### Changed
+- fix install_and_configure behavior [#185]
+
+[#185]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issue/185
 
 ## [1.6.0] - 2021-06-02
 ### Added
