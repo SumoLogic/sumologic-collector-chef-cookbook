@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased changes]
+
+## [1.6.1] - 2021-08-27
 ### Changed
 - fix install_and_configure behavior [#185]
 
@@ -143,7 +145,8 @@ Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/sy
 
 The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.
 
-[Unreleased changes]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.6.0...HEAD
+[Unreleased changes]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.6.1...HEAD
+[1.6.1]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.3.0...v1.4.0
