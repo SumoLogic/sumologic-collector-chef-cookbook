@@ -6,7 +6,7 @@ maintainer_email 'collection@sumologic.com'
 license 'Apache-2.0'
 version '0.0.0'
 chef_version '>= 11' if respond_to?(:chef_version)
-depends 'sumologic-collector', '>= 1.6.0'
+depends 'sumologic-collector', '>= 1.6.1'
 
 %w[
   debian
