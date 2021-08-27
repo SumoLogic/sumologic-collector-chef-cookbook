@@ -23,3 +23,9 @@ curl -L https://www.opscode.com/chef/install.sh | sudo bash
 # accepts licenses
 chef-solo --chef-license=accept || true
 su vagrant -c 'chef-solo --chef-license=accept' || true
+
+# install chef-workstation
+curl https://packages.chef.io/files/stable/chef-workstation/21.2.278/ubuntu/20.04/chef-workstation_21.2.278-1_amd64.deb \
+    -o chef-workstation_21.2.278-1_amd64.deb \
+    && dpkg --install chef-workstation_21.2.278-1_amd64.deb \
+    && rm chef-workstation_21.2.278-1_amd64.deb
