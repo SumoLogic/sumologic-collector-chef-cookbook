@@ -47,6 +47,7 @@ class Chef
         hash['source']['name'] = new_resource.name
         hash['source']['description'] = new_resource.description unless new_resource.description.nil?
         hash['source']['category'] = new_resource.category unless new_resource.category.nil?
+        hash['source']['fields'] = new_resource.fields unless new_resource.fields.nil?
         hash['source']['hostName'] = new_resource.host_name unless new_resource.host_name.nil?
         hash['source']['timeZone'] = new_resource.time_zone unless new_resource.time_zone.nil?
         hash['source']['automaticDateParsing'] = new_resource.automatic_date_parsing unless new_resource.automatic_date_parsing.nil?

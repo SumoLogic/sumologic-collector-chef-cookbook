@@ -19,7 +19,7 @@ for more details. The steps the cookbook follows:
 
 1. Verify that the collector folder exists.
 2. (Optional) Recreate `sumo.conf` and `sumo.json` (or the json files under the json folder).
-3. Restart the collector for the changes to take effect.   
+3. Restart the collector for the changes to take effect.
 
 The collector Requires outbound access to https://collectors.sumologic.com.
 Edit `sumo.json` (or the json files under the json folder) to add/edit/remove sources.  After installation you can
@@ -357,6 +357,10 @@ listed above.
 sumo_source_local_file 'local_file' do
   source_json_directory node['sumologic']['sumo_json_path']
   path_expression '/tmp/example'
+  fields {
+    _siemforward: true,
+    parser: '/MY_EXAMPLE_PARSER'
+  }
 end
 ```
 

@@ -4,9 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
-### Added 
+### Added
 - Added securefiles boolean flag in installer to enable or disable enhanced file security.
 - added fields support to user.properties
+- added `fields` support to sources (@majormoses)
 
 ### Changed
 - Deprecated flags disableScript/ActionSource removed.
