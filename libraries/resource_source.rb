@@ -46,6 +46,7 @@ class Chef
       attribute :alive, kind_of: [TrueClass, FalseClass]
       attribute :cuttoff_timestamp, kind_of: String
       attribute :cuttoff_relative_time, kind_of: String
+      attribute :fields, kind_of: [Hash, NilClass], default: nil
     end
   end
 end
