@@ -176,7 +176,7 @@ def sumo_service(action = :nothing) # rubocop:disable Metrics/AbcSize
 end
 
 # we should make this more effecient but lets get CI passing again so we can recieve contributions
-def installer_opts # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity, CyclomaticComplexity
+def installer_opts # rubocop:disable Metrics/AbcSize
   args = []
   args << '-console'
   args << '-q'
