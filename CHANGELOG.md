@@ -8,6 +8,7 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 
 ### Added
 - added `fields` support to sources (@majormoses)
+
 ## [1.6.1] - 2021-08-27
 ### Changed
 - fix install_and_configure behavior [#185]
