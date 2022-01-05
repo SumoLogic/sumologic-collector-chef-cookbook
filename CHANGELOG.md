@@ -4,10 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
-## [Unreleased changes]
-
+## [1.6.2] - 2022-01-05
 ### Added
-- added `fields` support to sources (@majormoses)
+- added `fields` support to sources (@majormoses) [#189]
+
+[#189]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issue/189
 
 ## [1.6.1] - 2021-08-27
 ### Changed
