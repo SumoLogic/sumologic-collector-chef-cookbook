@@ -381,6 +381,10 @@ The following attribute parameters are in addition to the generic parameters
 listed above.
 
 - `log_names` - **required**
+- `eventFormat` - 0 for legacy format or 1 for JSON format
+- `eventMessage` - Use with JSON format. 0 Complete, 1 Message (recommended), 2 metadata only.
+- `allowlist` - Available in Collector version 19.351-4 and later. A comma-separated list of event IDs.
+- `denylist` - Available in Collector version 19.351-4 and later. A comma-separated list of event IDs.
 
 ### Examples
 
@@ -388,6 +392,17 @@ listed above.
 sumo_source_local_windows_event_log 'local_win_event_log' do
   source_json_directory node['sumologic']['sumo_json_path']
   log_names ['security', 'application']
+end
+```
+
+Use JSON log format instead of legacy format.
+
+```ruby
+sumo_source_local_windows_event_log 'local_win_event_log' do
+  source_json_directory node['sumologic']['sumo_json_path']
+  log_names ['security', 'application']
+  eventFormat 1
+  eventMessage 1
 end
 ```
 
