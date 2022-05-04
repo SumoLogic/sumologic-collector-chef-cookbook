@@ -60,6 +60,10 @@ class Chef
         hash['source']['alive'] = new_resource.alive unless new_resource.alive.nil?
         hash['source']['cutoffTimestamp'] = new_resource.cuttoff_timestamp unless new_resource.cuttoff_timestamp.nil?
         hash['source']['cutoffRelativeTime'] = new_resource.cuttoff_relative_time unless new_resource.cuttoff_relative_time.nil?
+        hash['source']['eventFormat'] = new_resource.eventFormat unless new_resource.eventFormat.nil?
+        hash['source']['eventMessage'] = new_resource.eventMessage unless new_resource.eventMessage.nil?
+        hash['source']['allowlist'] = new_resource.allowlist unless new_resource.allowlist.nil?
+        hash['source']['denylist'] = new_resource.denylist unless new_resource.denylist.nil?
         hash
       end
 
