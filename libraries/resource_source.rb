@@ -47,6 +47,10 @@ class Chef
       attribute :cuttoff_timestamp, kind_of: String
       attribute :cuttoff_relative_time, kind_of: String
       attribute :fields, kind_of: [Hash, NilClass], default: nil
+      attribute :eventFormat, kind_of: Integer
+      attribute :eventMessage, kind_of: Integer
+      attribute :allowlist, kind_of: String
+      attribute :denylist, kind_of: String
     end
   end
 end
