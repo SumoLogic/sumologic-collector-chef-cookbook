@@ -11,8 +11,8 @@ class Chef
       def config_hash
         hash = super
         hash['source']['logNames'] = new_resource.log_names
-        hash['source']['eventFormat'] = new_resource.event_format
-        hash['source']['eventMessage'] = new_resource.event_message
+        hash['source']['eventFormat'] = EVENT_FORMAT[new_resource.event_format]
+        hash['source']['eventMessage'] = EVENT_MESSAGE[new_resource.event_message]
         hash['source']['allowlist'] = new_resource.allowlist
         hash['source']['denylist'] = new_resource.denylist
         hash
