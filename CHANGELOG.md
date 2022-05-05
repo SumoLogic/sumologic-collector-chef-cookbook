@@ -6,9 +6,9 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 
 ## [1.6.3] - 2022-05-05
 ### Added
-- added Windows JSON support `eventFormat`,`eventMessage`,`allowlist`,`denylist` support to sources (@rjury-sumo) [#187]
+- added Windows JSON support to sources (@rjury-sumo) [#187]
 
-[#189]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issues/187
+[#187]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issues/187
 
 ## [1.6.2] - 2022-01-05
 ### Added
