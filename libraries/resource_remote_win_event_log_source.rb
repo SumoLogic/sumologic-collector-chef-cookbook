@@ -14,6 +14,10 @@ class Chef
       attribute :password, kind_of: String, required: true
       attribute :hosts, kind_of: Array, required: true
       attribute :log_names, kind_of: Array, required: true
+      attribute :event_format, kind_of: Integer, default: 0, equal_to: [0, 1]
+      attribute :event_message, kind_of: Integer, default: 1, equal_to: [0, 1, 2]
+      attribute :allowlist, kind_of: String
+      attribute :denylist, kind_of: String
     end
   end
 end
