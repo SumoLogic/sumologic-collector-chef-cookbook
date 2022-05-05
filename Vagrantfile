@@ -12,7 +12,7 @@ Vagrant.configure('2') do |config|
   config.disksize.size = '50GB'
   config.vm.box_check_update = false
   config.vm.host_name = 'sumologic-collector-chef-cookbook'
-  config.vm.network :private_network, ip: "192.168.78.46"
+  config.vm.network :private_network, ip: "192.168.56.46"
 
   config.vm.provider 'virtualbox' do |vb|
     vb.gui = false
