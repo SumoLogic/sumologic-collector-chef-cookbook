@@ -2,6 +2,7 @@
 
 require 'chef/provider/lwrp_base'
 require_relative 'provider_source'
+require_relative 'types'
 
 class Chef
   class Provider

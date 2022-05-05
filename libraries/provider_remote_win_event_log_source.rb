@@ -2,7 +2,6 @@
 
 require 'chef/provider/lwrp_base'
 require_relative 'provider_local_win_event_log_source'
-require_relative 'types'
 
 class Chef
   class Provider
