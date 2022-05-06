@@ -381,7 +381,7 @@ The following attribute parameters are in addition to the generic parameters
 listed above.
 
 - `log_names` - **required**
-- `enable_json_events` - if `true`, the following attributes are going to be respected:
+- `enable_json_events` - This is `false` by default, but if `true`, the following attributes are going to be respected:
 
   - `eventFormat` - `:legacy` for legacy format or `:json` for JSON format
   - `eventMessage` - Use with JSON format. `:complete`, `:message` (recommended), or `:metadata` for metadata only.
@@ -464,7 +464,7 @@ sumo_source_remote_windows_event_log
 See the [Sumo Logic documentation](https://help.sumologic.com/Send_Data/Sources/Use_JSON_to_Configure_Sources)
 for more information about these attributes.
 
-The following attribute parameters are in addition to the generic parameters
+The following attribute parameters are in addition to the generic and [sumo_source_local_windows_event_log](#sumosourcelocalwindowseventlog) parameters
 listed above.
 
 - `domain` - **required**
