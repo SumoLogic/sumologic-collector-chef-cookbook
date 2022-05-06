@@ -381,10 +381,10 @@ The following attribute parameters are in addition to the generic parameters
 listed above.
 
 - `log_names` - **required**
-- `enable_json_events` - This is `false` by default, but if `true`, the following attributes are going to be respected:
+- `enable_json_events` - This is `false` by default, but if set to `true`, the following attributes are going to be respected:
 
-  - `eventFormat` - `:legacy` for legacy format or `:json` for JSON format
-  - `eventMessage` - Use with JSON format. `:complete`, `:message` (recommended), or `:metadata` for metadata only.
+  - `event_format` - `:legacy` for legacy format or `:json` for JSON format
+  - `event_message` - Use with JSON format. `:complete`, `:message` (recommended), or `:metadata` for metadata only.
   - `allowlist` - Available in Collector version 19.351-4 and later. A comma-separated list of event IDs.
   - `denylist` - Available in Collector version 19.351-4 and later. A comma-separated list of event IDs.
 
@@ -398,15 +398,17 @@ sumo_source_local_windows_event_log 'local_win_event_log' do
 end
 ```
 
-Use JSON log format instead of legacy format.
+Use JSON log format instead of legacy format:
 
 ```ruby
 sumo_source_local_windows_event_log 'local_win_event_log' do
   source_json_directory node['sumologic']['sumo_json_path']
   log_names ['security', 'application']
   enable_json_events true
-  eventFormat :json
-  eventMessage :message
+  event_format :json
+  event_message :message
+  allowlist ""
+  denylist ""
 end
 ```
 
@@ -483,6 +485,26 @@ sumo_source_remote_windows_event_log 'remote_win_event_log' do
   password 'password'
   hosts ['myremotehost1']
   log_names ['security', 'application']
+  enable_json_events false
+end
+```
+
+Use JSON log format instead of legacy format:
+
+```ruby
+sumo_source_remote_windows_event_log 'remote_win_event_log' do
+  source_json_directory node['sumologic']['sumo_json_path']
+  domain 'mydomain'
+  username 'user'
+  password 'password'
+  hosts ['myremotehost1']
+  log_names ['security', 'application']
+  enable_json_events true
+  event_format :json
+  event_message :message
+  allowlist ""
+  denylist ""
+
 end
 ```
 
