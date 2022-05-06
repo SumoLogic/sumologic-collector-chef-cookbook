@@ -4,11 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
-## [1.6.3] - 2022-05-05
+## Unreleased
 ### Added
-- added Windows JSON support to sources (@rjury-sumo) [#187]
+- feat: add JSON support to windows sources [#193]
 
-[#187]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issues/187
+[#193]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issues/193
 
 ## [1.6.2] - 2022-01-05
 ### Added
