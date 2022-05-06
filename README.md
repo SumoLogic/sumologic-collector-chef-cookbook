@@ -381,7 +381,7 @@ The following attribute parameters are in addition to the generic parameters
 listed above.
 
 - `log_names` - **required**
-- `enable_json_events` - if `true`, the following attributes are going to be respect:
+- `enable_json_events` - if `true`, the following attributes are going to be respected:
 
   - `eventFormat` - `:legacy` for legacy format or `:json` for JSON format
   - `eventMessage` - Use with JSON format. `:complete`, `:message` (recommended), or `:metadata` for metadata only.
