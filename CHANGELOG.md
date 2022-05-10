@@ -8,7 +8,7 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 ### Added
 - feat: add JSON support to windows sources [#193]
 
-[#193]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issues/193
+[#193]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/pull/193
 
 ## [1.6.2] - 2022-01-05
 ### Added
