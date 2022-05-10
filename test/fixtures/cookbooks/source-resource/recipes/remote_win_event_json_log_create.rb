@@ -8,7 +8,6 @@ sumo_source_remote_windows_event_log 'remote_win_event_json_log' do
   hosts ['myremotehost1']
   log_names %w[security application]
 
-  enable_json_events true
   event_format :legacy
   event_message :message
   allowlist "el1,el2"
