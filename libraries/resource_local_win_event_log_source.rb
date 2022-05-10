@@ -11,8 +11,8 @@ class Chef
 
       attribute :source_type, kind_of: Symbol, default: :local_windows_event_log, equal_to: [:local_windows_event_log]
       attribute :log_names, kind_of: Array, required: true
-      attribute :event_format, kind_of: Symbol, default: :json, equal_to: EVENT_FORMAT.keys
-      attribute :event_message, kind_of: Symbol, default: :message, equal_to: EVENT_MESSAGE.keys
+      attribute :event_format, kind_of: Symbol, default: :legacy, equal_to: EVENT_FORMAT.keys
+      attribute :event_message, kind_of: Symbol, default: :complete, equal_to: EVENT_MESSAGE.keys
       attribute :allowlist, kind_of: String
       attribute :denylist, kind_of: String
     end
