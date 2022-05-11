@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
-## Unreleased
+## [1.7.0] - 2022-05-11
 ### Added
 - feat: add JSON support to windows sources [#193]
 
@@ -155,7 +155,9 @@ Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/sy
 
 The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.
 
-[Unreleased changes]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.6.1...HEAD
+[Unreleased changes]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.7.0...HEAD
+[1.7.0]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.6.2...v1.7.0
+[1.6.2]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.6.1...v1.6.2
 [1.6.1]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/compare/v1.4.0...v1.5.0
