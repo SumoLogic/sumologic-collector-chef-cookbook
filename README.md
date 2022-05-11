@@ -383,7 +383,7 @@ listed above.
 - `log_names` - **required**
 - `event_format` - `:legacy` for legacy format or `:json` for JSON format. `:legacy` is default.
 - `event_message` - Use with JSON format. `:complete`, `:message` (recommended), or `:metadata` for metadata only.
-  `:complete` is default.
+  `:message` is default.
 - `allowlist` - Available in Collector version 19.351-4 and later. A comma-separated list of event IDs.
   This is an empty string as default.
 - `denylist` - Available in Collector version 19.351-4 and later. A comma-separated list of event IDs.
