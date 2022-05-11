@@ -381,6 +381,13 @@ The following attribute parameters are in addition to the generic parameters
 listed above.
 
 - `log_names` - **required**
+- `event_format` - `:legacy` for legacy format or `:json` for JSON format. `:legacy` is default.
+- `event_message` - Use with JSON format. `:complete`, `:message` (recommended), or `:metadata` for metadata only.
+  `:message` is default.
+- `allowlist` - Available in Collector version 19.351-4 and later. A comma-separated list of event IDs.
+  This is an empty string as default.
+- `denylist` - Available in Collector version 19.351-4 and later. A comma-separated list of event IDs.
+  This is an empty string as default.
 
 ### Examples
 
@@ -388,6 +395,19 @@ listed above.
 sumo_source_local_windows_event_log 'local_win_event_log' do
   source_json_directory node['sumologic']['sumo_json_path']
   log_names ['security', 'application']
+end
+```
+
+Use JSON log format instead of legacy format:
+
+```ruby
+sumo_source_local_windows_event_log 'local_win_event_log' do
+  source_json_directory node['sumologic']['sumo_json_path']
+  log_names ['security', 'application']
+  event_format :json
+  event_message :message
+  allowlist ""
+  denylist ""
 end
 ```
 
@@ -445,7 +465,7 @@ sumo_source_remote_windows_event_log
 See the [Sumo Logic documentation](https://help.sumologic.com/Send_Data/Sources/Use_JSON_to_Configure_Sources)
 for more information about these attributes.
 
-The following attribute parameters are in addition to the generic parameters
+The following attribute parameters are in addition to the generic and [sumo_source_local_windows_event_log](#sumosourcelocalwindowseventlog) parameters
 listed above.
 
 - `domain` - **required**
@@ -464,6 +484,24 @@ sumo_source_remote_windows_event_log 'remote_win_event_log' do
   password 'password'
   hosts ['myremotehost1']
   log_names ['security', 'application']
+end
+```
+
+Use JSON log format instead of legacy format:
+
+```ruby
+sumo_source_remote_windows_event_log 'remote_win_event_log' do
+  source_json_directory node['sumologic']['sumo_json_path']
+  domain 'mydomain'
+  username 'user'
+  password 'password'
+  hosts ['myremotehost1']
+  log_names ['security', 'application']
+  event_format :json
+  event_message :message
+  allowlist ""
+  denylist ""
+
 end
 ```
 
