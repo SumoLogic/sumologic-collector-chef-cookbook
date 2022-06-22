@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
+## [Unreleased]
+### Added
+- new `action` of `:remove` to cleanup sumo collectors [#191]
+
 ## [1.7.0] - 2022-05-11
 ### Added
 - feat: add JSON support to windows sources [#193]
