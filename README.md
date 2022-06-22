@@ -338,6 +338,7 @@ sumo_source_local_file
 `default` = `:create`
 
 - `:create` - creates a JSON Source configuration
+- `:remove` - removes a previously configured JSON source configuration
 
 ### Attribute Parameters
 

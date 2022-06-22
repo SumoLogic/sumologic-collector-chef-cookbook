@@ -35,6 +35,12 @@ class Chef
         end
       end
 
+      action :remove do
+        file source_json_path do
+          action :delete
+        end
+      end
+
       def api_version
         'v1'
       end
