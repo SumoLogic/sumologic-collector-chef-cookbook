@@ -7,6 +7,7 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 ## [Unreleased]
 ### Added
 - new `action` of `:remove` to cleanup sumo collectors [#191]
+- Support arm (aarch64) rpm installation
 
 ## [1.7.0] - 2022-05-11
 ### Added
