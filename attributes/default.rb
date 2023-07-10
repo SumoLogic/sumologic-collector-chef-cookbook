@@ -68,7 +68,7 @@ default['sumologic']['collectorTarUrl'] = 'https://collectors.sumologic.com/rest
 default['sumologic']['collectorTarName'] = 'sumocollector.tar.gz'
 
 # RPMs
-default['sumologic']['collectorRPMUrl'] = 'https://collectors.sumologic.com/rest/download/rpm/64'
+default['sumologic']['collectorRPMUrl'] = node['kernel']['machine'] == 'aarch64' ? 'https://collectors.sumologic.com/rest/download/rpm/aarch/64' : 'https://collectors.sumologic.com/rest/download/rpm/64'
 # DEB
 default['sumologic']['collectorDEBUrl'] = 'https://collectors.sumologic.com/rest/download/deb/64'
 
