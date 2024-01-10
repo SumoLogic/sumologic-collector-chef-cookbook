@@ -4,10 +4,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
-## [Unreleased]
+## [1.8.0] - 2024-01-10
+
 ### Added
+
 - new `action` of `:remove` to cleanup sumo collectors [#191]
 - Support arm (aarch64) rpm installation [#196]
+
+[1.8.0]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/releases/v1.8.0
+[#191]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/pull/191
+[#196]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/pull/196
 
 ## [1.7.0] - 2022-05-11
 ### Added
