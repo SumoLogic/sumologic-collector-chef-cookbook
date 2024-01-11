@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
-## [1.8.0] - 2024-01-10
+## [1.8.0] - 2024-01-12
 
 ### Added
 
