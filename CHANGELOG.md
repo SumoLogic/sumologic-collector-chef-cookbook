@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
+## [Unreleased]
+### Added
+- Support arm (aarch64) Debian installation [#198]
+
+[#198]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/pull/198
+
 ## [1.8.0] - 2024-01-12
 
 ### Added
