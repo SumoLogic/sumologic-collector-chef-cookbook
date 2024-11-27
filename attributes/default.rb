@@ -70,7 +70,7 @@ default['sumologic']['collectorTarName'] = 'sumocollector.tar.gz'
 # RPMs
 default['sumologic']['collectorRPMUrl'] = node['kernel']['machine'] == 'aarch64' ? 'https://collectors.sumologic.com/rest/download/rpm/aarch/64' : 'https://collectors.sumologic.com/rest/download/rpm/64'
 # DEB
-default['sumologic']['collectorDEBUrl'] = 'https://collectors.sumologic.com/rest/download/deb/64'
+default['sumologic']['collectorDEBUrl'] = node['kernel']['machine'] == 'aarch64' ? 'https://collectors.sumologic.com/rest/download/deb/aarch/64' : 'https://collectors.sumologic.com/rest/download/deb/64'
 
 # Platform Specific Attributes
 case node['platform']
