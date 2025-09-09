@@ -64,13 +64,13 @@ default['sumologic']['proxy'] = {
   'port' => nil
 }
 
-default['sumologic']['collectorTarUrl'] = 'https://collectors.sumologic.com/rest/download/tar'
+default['sumologic']['collectorTarUrl'] = 'https://download-collector.sumologic.com/rest/download/tar'
 default['sumologic']['collectorTarName'] = 'sumocollector.tar.gz'
 
 # RPMs
-default['sumologic']['collectorRPMUrl'] = node['kernel']['machine'] == 'aarch64' ? 'https://collectors.sumologic.com/rest/download/rpm/aarch/64' : 'https://collectors.sumologic.com/rest/download/rpm/64'
+default['sumologic']['collectorRPMUrl'] = node['kernel']['machine'] == 'aarch64' ? 'https://download-collector.sumologic.com/rest/download/rpm/aarch/64' : 'https://download-collector.sumologic.com/rest/download/rpm/64'
 # DEB
-default['sumologic']['collectorDEBUrl'] = 'https://collectors.sumologic.com/rest/download/deb/64'
+default['sumologic']['collectorDEBUrl'] = 'https://download-collector.sumologic.com/rest/download/deb/64'
 
 # Platform Specific Attributes
 case node['platform']
@@ -86,7 +86,7 @@ when 'redhat', 'centos', 'scientific', 'fedora', 'suse', 'amazon', 'oracle', 'de
   default['sumologic']['installerCmd'] = "sh #{default['sumologic']['installerName']} -q -dir #{default['sumologic']['installDir']}"
 
   # Download Path - Either 32bit or 64bit according to the architecture
-  default['sumologic']['downloadURL'] = node['kernel']['machine'] =~ /^i[36']86$/ ? 'https://collectors.sumologic.com/rest/download/linux/32' : 'https://collectors.sumologic.com/rest/download/linux/64'
+  default['sumologic']['downloadURL'] = node['kernel']['machine'] =~ /^i[36']86$/ ? 'https://download-collector.sumologic.com/rest/download/linux/32' : 'https://download-collector.sumologic.com/rest/download/linux/64'
 
   # Path to 'sumo.conf'
   default['sumologic']['sumo_conf_path'] = '/etc/sumo.conf'
@@ -116,7 +116,7 @@ when 'windows'
   default['sumologic']['installerCmd'] = "start /wait #{default['sumologic']['installerName']} -q -dir #{default['sumologic']['installDir']}"
 
   # Download Path - Either 32bit or 64bit according to the architecture
-  default['sumologic']['downloadURL'] = node['kernel']['machine'] =~ /^x86_64$/ ? 'https://collectors.sumologic.com/rest/download/win64' : 'https://collectors.sumologic.com/rest/download/windows'
+  default['sumologic']['downloadURL'] = node['kernel']['machine'] =~ /^x86_64$/ ? 'https://download-collector.sumologic.com/rest/download/win64' : 'https://download-collector.sumologic.com/rest/download/windows'
 
   # Path to 'sumo.conf'
   default['sumologic']['sumo_conf_path'] = 'C:/sumo/sumo.conf'
