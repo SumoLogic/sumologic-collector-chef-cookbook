@@ -255,7 +255,7 @@ for more information about these attributes.
 ```ruby
 # Installs the Collector on Windows and skips registration
 sumologic_collector_installer 'c:\sumo' do
-  source 'https://collectors.sumologic.com/rest/download/win64'
+  source 'https://download-collector.sumologic.com/rest/download/win64'
   sumo_access_id node['SUMO_ACCESS_ID']
   sumo_access_key node['SUMO_ACCESS_KEY']
   skip_registration true

@@ -4,6 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
+## [Unreleased]
+
+### Changed
+
+- Updated download URL for installed colletor [#201]
+
+[#201]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/pull/201
+
 ## [1.8.0] - 2024-01-12
 
 ### Added
