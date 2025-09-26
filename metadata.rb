@@ -8,7 +8,7 @@ source_url 'https://github.com/SumoLogic/sumologic-collector-chef-cookbook' if r
 license 'Apache-2.0'
 description 'Installs/Configures sumologic-collector'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '1.8.0'
+version '1.9.0'
 chef_version '>= 11' if respond_to?(:chef_version)
 
 %w[
