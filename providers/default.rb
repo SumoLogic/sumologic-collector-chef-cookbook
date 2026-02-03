@@ -125,9 +125,9 @@ end
 def installer_source
   case node['platform_family']
   when 'windows'
-    node['kernel']['machine'] =~ /^x86_64$/ ? 'https://collectors.sumologic.com/rest/download/win64' : 'https://collectors.sumologic.com/rest/download/windows'
+    node['kernel']['machine'] =~ /^x86_64$/ ? 'https://download-collector.sumologic.com/rest/download/win64' : 'https://download-collector.sumologic.com/rest/download/windows'
   else
-    url = 'https://collectors.sumologic.com/rest/download/linux'
+    url = 'https://download-collector.sumologic.com/rest/download/linux'
     "#{url}/#{node['kernel']['machine'] =~ /^i[36']86$/ ? '32' : '64'}"
   end
 end
