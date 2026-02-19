@@ -1,0 +1,42 @@
+name: PR Build
+
+on:
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  pr-build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '2.6'
+        bundler-cache: true
+        
+    - name: Install dependencies
+      run: bundle install
+      
+    - name: Run RuboCop
+      run: |
+        bundle exec rubocop --version
+        bundle exec rubocop
+        
+    - name: Run Foodcritic
+      run: |
+        bundle exec foodcritic --version
+        bundle exec foodcritic . --exclude spec
+        
+    - name: Check PR title and description
+      run: |
+        if [ -z "${{ github.event.pull_request.title }}" ]; then
+          echo "PR title is missing"
+          exit 1
+        fi
+        echo "PR title: ${{ github.event.pull_request.title }}"
+        echo "PR description: ${{ github.event.pull_request.body }}"
