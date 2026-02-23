@@ -5,7 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 
-## [Unreleased]
+## [1.9.1] - 2026-02-23
+
 ### Added
 - Support arm (aarch64) Debian installation [#198]
 
