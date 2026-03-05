@@ -8,6 +8,7 @@ gem 'chef-zero', '~> 5.3'
 gem 'chefspec'
 gem 'kitchen-inspec'
 gem 'kitchen-vagrant'
+gem 'kitchen-docker'
 gem 'test-kitchen'
 
 group :lint do

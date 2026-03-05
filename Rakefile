@@ -28,9 +28,6 @@ task style: ['style:chef', 'style:ruby']
 desc 'Run ChefSpec examples'
 RSpec::Core::RakeTask.new(:spec)
 
-desc 'Run all tests on Travis'
-task travis: %w[style spec]
-
 # Integration tests. Kitchen.ci
 namespace :integration do
   desc 'Run Test Kitchen with Vagrant'
@@ -43,6 +40,16 @@ namespace :integration do
   task :ec2 do
     Kitchen.logger = Kitchen.default_file_logger
     @loader = Kitchen::Loader::YAML.new(project_config: './.kitchen.ec2.yml')
+    config = Kitchen::Config.new(loader: @loader)
+    config.instances.each do |instance|
+      instance.test(:always)
+    end
+  end
+
+  desc 'Run Test Kitchen with Docker'
+  task :docker do
+    Kitchen.logger = Kitchen.default_file_logger
+    @loader = Kitchen::Loader::YAML.new(project_config: './.kitchen.docker.yml')
     config = Kitchen::Config.new(loader: @loader)
     config.instances.each do |instance|
       instance.test(:always)

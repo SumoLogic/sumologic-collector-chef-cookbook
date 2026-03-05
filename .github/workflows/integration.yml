@@ -1,0 +1,33 @@
+name: Integration Tests
+
+on:
+  pull_request:
+    branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '2.6'
+        bundler-cache: true
+        
+    - name: Install dependencies
+      run: bundle install
+    
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Run Test Kitchen (Docker)
+      run: bundle exec rake integration:docker
+      env:
+        SUMO_ACCESS_ID: ${{ secrets.SUMO_ACCESS_ID }}
+        SUMO_ACCESS_KEY: ${{ secrets.SUMO_ACCESS_KEY }}
