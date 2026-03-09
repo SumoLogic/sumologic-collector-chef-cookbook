@@ -1,5 +1,5 @@
 {
   "id": "api-creds",
   "accessID": "<@SUMO_ACCESS_ID@>",
-  "accessKey": "<@SUMO_ACCESS_KEY@>",
+  "accessKey": "<@SUMO_ACCESS_KEY@>"
 }

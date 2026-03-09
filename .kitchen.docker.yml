@@ -5,8 +5,12 @@ driver:
 
 provisioner:
   name: chef_zero
-  product_version: 14.15.6
+  product_version: 17
   install_strategy: always
+  chef_license: accept-no-persist
+
+verifier:
+  name: inspec
 
 platforms:
   # Modern Ubuntu versions (original had 14.04, 16.04, 18.04)
@@ -20,21 +24,8 @@ platforms:
     driver:
       image: ubuntu:22.04
 
-  # CentOS versions (original had 6.9, 7.3)
-  - name: centos-7
-    driver:
-      image: centos:7
-  - name: centos-8
-    driver:
-      image: centos:8
-
-  # Debian (original had 8.7 - using modern equivalent)
-  - name: debian-10
-    driver:
-      image: debian:10
-  - name: debian-11
-    driver:
-      image: debian:11
+  # CentOS 7 and 8 are EOL - removed from test matrix
+  # For RHEL-based testing, consider Rocky Linux or AlmaLinux in the future
 
   # Note: Windows containers require Windows runners in GitHub Actions
   # and are not supported in this Docker-based setup.

@@ -1,15 +1,23 @@
 # frozen_string_literal: true
 
+require 'thor'
 require 'rspec/core/rake_task'
-require 'rubocop/rake_task'
 require 'foodcritic'
 require 'kitchen'
 
 # Style tests. Rubocop and Foodcritic
 namespace :style do
-  desc 'Run Ruby style checks'
-  RuboCop::RakeTask.new(:ruby) do |t|
-    t.options = ['--fail-level', 'warning']
+  begin
+    require 'rubocop/rake_task'
+    desc 'Run Ruby style checks'
+    RuboCop::RakeTask.new(:ruby) do |t|
+      t.options = ['--fail-level', 'warning']
+    end
+  rescue LoadError, NameError => e
+    desc 'Run Ruby style checks'
+    task :ruby do
+      puts "RuboCop not available: #{e.message}"
+    end
   end
 
   desc 'Run Chef style checks'

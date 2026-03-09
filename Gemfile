@@ -2,24 +2,25 @@
 
 source 'https://rubygems.org'
 
-gem 'buff-extensions', '~> 2.0'
-gem 'chef', '~> 12.0'
-gem 'chef-zero', '~> 5.3'
-gem 'chefspec'
+ruby '>= 3.1'
+
+# Test Kitchen and drivers
+gem 'bcrypt_pbkdf', '>= 1.1.1'
+gem 'inspec-core', '~> 5.22.55'
+gem 'kitchen-docker'
 gem 'kitchen-inspec'
 gem 'kitchen-vagrant'
-gem 'kitchen-docker'
-gem 'test-kitchen'
+gem 'test-kitchen', '~> 3.6'
+
+# Chef tooling
+gem 'berkshelf', '~> 7.0'
+gem 'chef', '~> 17.0'
 
 group :lint do
-  gem 'cucumber-core', '~> 3.2.1'
-  gem 'foodcritic', '~> 11.2.0'
-  gem 'gherkin', '~> 5.1'
-  gem 'rainbow'
-  gem 'rubocop', '~> 0.48.0'
+  gem 'foodcritic'
+  gem 'rubocop'
 end
 
 group :unit do
-  gem 'berkshelf', '~> 5.6'
-  gem 'fauxhai'
+  gem 'chefspec'
 end

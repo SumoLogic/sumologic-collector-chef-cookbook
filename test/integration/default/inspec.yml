@@ -1,0 +1,8 @@
+name: default
+title: Sumologic Collector Default Tests
+maintainer: Sumo Logic
+license: Apache-2.0
+summary: Verify that sumologic-collector default recipe installs and configures correctly
+version: 1.0.0
+supports:
+  - platform-family: linux

@@ -7,7 +7,7 @@ issues_url 'https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issue
 source_url 'https://github.com/SumoLogic/sumologic-collector-chef-cookbook' if respond_to?(:source_url)
 license 'Apache-2.0'
 description 'Installs/Configures sumologic-collector'
-long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+long_description File.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '1.9.1'
 chef_version '>= 11' if respond_to?(:chef_version)
 

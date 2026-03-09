@@ -72,7 +72,7 @@ end
 conf_source = node['sumologic']['conf_template'] || 'sumo.conf.erb'
 
 # Create the conf file's parent directory (generally for Windows support)
-directory ::File.dirname(node['sumologic']['sumo_conf_path']) do
+directory File.dirname(node['sumologic']['sumo_conf_path']) do
   recursive true
 end
 

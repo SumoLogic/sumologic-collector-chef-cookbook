@@ -20,9 +20,10 @@ def load_properties(properties_filename)
     properties_file.read.each_line do |line|
       line.strip!
       next unless line[0] != '#' && line[0] != '='
+
       i = line.index('=')
       if i
-        properties[line[0..i - 1].strip] = line[i + 1..-1].strip
+        properties[line[0..(i - 1)].strip] = line[(i + 1)..].strip
       else
         properties[line] = ''
       end
