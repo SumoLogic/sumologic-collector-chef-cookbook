@@ -1,8 +1,8 @@
 sumologic-collector Cookbook
 ============================
 [![Cookbook Version](https://img.shields.io/cookbook/v/sumologic-collector.svg?style=flat)](https://supermarket.chef.io/cookbooks/sumologic-collector)
-[![Build Status](https://travis-ci.org/SumoLogic/sumologic-collector-chef-cookbook.svg?branch=master)](https://travis-ci.org/SumoLogic/sumologic-collector-chef-cookbook)
-[![Build Status](https://jenkins-01.eastus.cloudapp.azure.com/job/sumologic-collector-cookbook/badge/icon)](https://jenkins-01.eastus.cloudapp.azure.com/job/sumologic-collector-cookbook/)
+[![Build](https://github.com/SumoLogic/sumologic-collector-chef-cookbook/actions/workflows/workflow-build.yml/badge.svg)](https://github.com/SumoLogic/sumologic-collector-chef-cookbook/actions/workflows/workflow-build.yml)
+[![PR Build](https://github.com/SumoLogic/sumologic-collector-chef-cookbook/actions/workflows/pull_requests.yml/badge.svg)](https://github.com/SumoLogic/sumologic-collector-chef-cookbook/actions/workflows/pull_requests.yml)
 
 This cookbook installs the Sumo Logic collector or updates an existing one if it was set to use [Local Configuration Mangement](https://help.sumologic.com/Send_Data/Local_Configuration_File_Management). Installation on Linux uses the shell script
 installer and on Windows uses the exe installer. Here are the steps it follows:
@@ -60,52 +60,27 @@ on your node configuration, so specifics will not be described in this README.md
 Attributes
 ----------
 
-<table>
-  <tr>
-    <td>['sumologic']['ephemeral']</td>
-    <td>Boolean</td>
-    <td>Sumo Logic Ephemeral Setting</td>
-    <td>Required</td>
-  </tr>
-  <tr>
-    <td>['sumologic']['installDir'] </td>
-    <td>String</td>
-    <td>Sumo Logic Install Directory</td>
-    <td>Required</td>
-  </tr>
-  <tr>
-    <td>['sumologic']['credentials']['bag_name']</td>
-    <td>String</td>
-    <td>Name of the data bag.</td>
-    <td>Required</td>
-  </tr>
-  <tr>
-    <td>['sumologic']['credentials']['item_name']</td>
-    <td>String</td>
-    <td>Name of the item within the data bag. </td>
-    <td>Required</td>
-  </tr>
-  <tr>
-    <td>['sumologic']['credentials']['secret_file']</td>
-    <td>String</td>
-    <td>Path to the local file containing the encryption secret key.</td>
-    <td>Optional</td>
-  </tr>
-</table>
+| Attribute | Type | Description | Required |
+| --------- | ---- | ----------- | -------- |
+| `['sumologic']['ephemeral']` | Boolean | Sumo Logic Ephemeral Setting | Required |
+| `['sumologic']['installDir']` | String | Sumo Logic Install Directory | Required |
+| `['sumologic']['credentials']['bag_name']` | String | Name of the data bag | Required |
+| `['sumologic']['credentials']['item_name']` | String | Name of the item within the data bag | Required |
+| `['sumologic']['credentials']['secret_file']` | String | Path to the local file containing the encryption secret key | Optional |
 
-Resource/Provider
------------------
+# Resource/Provider
 
-sumologic_collector
----------
+## 1. sumologic_collector
 
 Provides actions for installing and managing a SumoLogic Collector
 
 ### Actions
+
 `default` = `:install_and_configure`
 
 #### :install
 Installs an unconfigured and unregistered SumoLogic Collector. Use `:configure` to configure it later
+
 ```ruby
 sumologic_collector 'C:\sumo' do
   action :install
@@ -114,6 +89,7 @@ end
 
 #### :install_and_configure
 Installs and configures a SumoLogic Collector. This is the default action
+
 ```ruby
 sumologic_collector 'C:\sumo' do
   collector_name 'fileserver'
@@ -129,6 +105,7 @@ Configures a pre-installed but unconfigured (and unregistered) SumoLogic Collect
 
 *Note: The recommended flow to use this is to have the collector installed without
 configuration or registration by using the `:install` action*
+
 ```ruby
 sumologic_collector 'C:\sumo' do
   collector_name 'fileserver'
@@ -213,8 +190,7 @@ for more information about these attributes.
 | `skip_registration` | `Boolean` | When `true` the collector will not register upon installation | `false` | `nil` | `:install_and_configure` |
 | `fields` | `Hash` | Sets the fields property in user.properties used by ingest budgets and other future features | `nil` | `false` | `:install_and_configure`, `:configure` |
 
-sumologic_collector_installer
----------
+## 2. sumologic_collector_installer
 
 *Note: `sumologic_collector_installer` has been deprecated, please use `sumologic_collector` with the `:install_and_configure` action (the default)*
 
@@ -223,32 +199,35 @@ Allows for additional customisation of the Sumo Logic Collector installer
 ### Actions
 `default` = `:install`
 
-- `:install` - installs the Sumo Logic Collector if it is not already installed
+#### :install
+Installs the Sumo Logic Collector if it is not already installed
 
 ### Attribute Parameters
 
 See the [Sumo Logic documentation](https://help.sumologic.com/Send_Data/Installed_Collectors/Step_4._Install_the_Collector/02_Quiet_Mode_Installation_Method)
 for more information about these attributes.
 
-- `dir` - Directory where the Collector will be installed
-- `source` - URL where installer will be downloaded from
-- `collector_name`
-- `collector_url`
-- `sumo_token_and_url`
-- `sumo_access_id`
-- `sumo_access_key`
-- `proxy_host`
-- `proxy_port`
-- `proxy_user`
-- `proxy_password`
-- `proxy_ntlmdomain`
-- `sources`
-- `sync_sources`
-- `ephemeral`
-- `clobber`
-- `runas_username`
-- `winrunas_password`
-- `skip_registration`
+| Name | Description |
+| ---- | ----------- |
+| `dir` | Directory where the Collector will be installed |
+| `source` | URL where installer will be downloaded from |
+| `collector_name` | Name to assign to this Collector |
+| `collector_url` | URL used to register Collector for data collection API |
+| `sumo_token_and_url` | Encoded Setup Wizard token |
+| `sumo_access_id` | Access ID used when logging in with Access ID and Key |
+| `sumo_access_key` | Access Key used when logging in with Access ID and Key |
+| `proxy_host` | Hostname of the proxy server |
+| `proxy_port` | Port of the proxy server |
+| `proxy_user` | Username for proxy authentication |
+| `proxy_password` | Password for proxy authentication |
+| `proxy_ntlmdomain` | Sets proxy NTLM domain when a proxy server is used with NTLM authentication |
+| `sources` | Sets the JSON file describing sources to configure on registration |
+| `sync_sources` | Path to JSON file describing sources to continuously sync with the Collector |
+| `ephemeral` | When `true`, the Collector will be deleted after going offline for a certain period |
+| `clobber` | When `true`, any existing Collector with the same name will be deleted |
+| `runas_username` | User account the Collector daemon will run as |
+| `winrunas_password` | Password for the Windows user account the Collector service will run as |
+| `skip_registration` | When `true`, the Collector will not register upon installation |
 
 ### Examples
 
@@ -262,8 +241,7 @@ sumologic_collector_installer 'c:\sumo' do
 end
 ```
 
-Collector Sources
----------
+## 3. Collector Sources
 
 ### Attribute Parameters
 
@@ -272,31 +250,33 @@ The following attributes are common to all of the sources listed below.
 See the [Sumo Logic documentation](https://help.sumologic.com/Send_Data/Sources/Use_JSON_to_Configure_Sources)
 for more information about these attributes.
 
-- `owner` - owner of the JSON Source configuration file
-- `group` - group of the JSON Source configuration file
-- `mode` - file mode of the JSON Source configuration file
-- `source_name` - name of the source. **required**
-- `source_json_directory` - directory where JSON Source configuration file will be stored. **required**
-- `description`
-- `category`
-- `host_name`
-- `time_zone`
-- `automatic_date_parsing`
-- `multiline_processing_enabled`
-- `use_autoline_matching`
-- `manual_prefix_regexp`
-- `force_time_zone`
-- `default_date_format`
-- `filters`
-- `alive`
+| Name | Description |
+| ---- | ----------- |
+| `owner` | Owner of the JSON Source configuration file |
+| `group` | Group of the JSON Source configuration file |
+| `mode` | File mode of the JSON Source configuration file |
+| `source_name` | Name of the source. **required** |
+| `source_json_directory` | Directory where JSON Source configuration file will be stored. **required** |
+| `description` | Human-readable description of this source |
+| `category` | Source category to tag data collected by this source |
+| `host_name` | Hostname to associate with log data collected by this source |
+| `time_zone` | Time zone for this source |
+| `automatic_date_parsing` | When `true`, automatically detects and parses date |
+| `multiline_processing_enabled` | When `true`, enables multiline log message detection |
+| `use_autoline_matching` | When `true`, uses automatic boundary detection for multiline messages |
+| `manual_prefix_regexp` | Regular expression to use as a line boundary when `use_autoline_matching` is `false` |
+| `force_time_zone` | When `true`, forces the source to use the specified `time_zone` |
+| `default_date_format` | Default format to use when parsing timestamps |
+| `filters` | List of processing rule filters to apply to data from this source |
+| `alive` | When `false`, the source is disabled and stops collecting data |
 
-sumo_source_docker
----------
+## 4. sumo_source_docker
 
 ### Actions
 `default` = `:create`
 
-- `:create` - creates a JSON Source configuration
+#### :create
+Creates a JSON Source configuration
 
 ### Attribute Parameters
 
@@ -306,12 +286,14 @@ for more information about these attributes.
 The following attribute parameters are in addition to the generic parameters
 listed above.
 
-- `uri`
-- `specified_containers`
-- `all_containers`
-- `cert_path`
-- `source_type` - one of `:docker_stats`, `:docker_log`. **required**
-- `collect_events`
+| Name | Description |
+| ---- | ----------- |
+| `uri` | URI of the Docker daemon (e.g. `https://127.0.0.1:2376`) |
+| `specified_containers` | List of specific container names or IDs to collect from |
+| `all_containers` | When `true`, collects from all running containers |
+| `cert_path` | Path to TLS certificates for connecting to the Docker daemon |
+| `source_type` | Type of Docker source: one of `:docker_stats`, `:docker_log`. **required** |
+| `collect_events` | When `true`, also collects Docker events |
 
 ### Examples
 
@@ -331,14 +313,17 @@ sumo_source_docker 'docker_log' do
 end
 ```
 
-sumo_source_local_file
----------
+## 5. sumo_source_local_file
 
 ### Actions
+
 `default` = `:create`
 
-- `:create` - creates a JSON Source configuration
-- `:remove` - removes a previously configured JSON source configuration
+#### :create
+Creates a JSON Source configuration
+
+#### :remove
+Removes a previously configured JSON source configuration
 
 ### Attribute Parameters
 
@@ -348,9 +333,11 @@ for more information about these attributes.
 The following attribute parameters are in addition to the generic parameters
 listed above.
 
-- `path_expression` - **required**
-- `blacklist`
-- `encoding`
+| Name | Description |
+| ---- | ----------- |
+| `path_expression` | Glob expression of file path(s) to collect. **required** |
+| `blacklist` | Glob expression of file path(s) to exclude from collection |
+| `encoding` | Character encoding of the log file (e.g. `UTF-8`, `ASCII`) |
 
 ### Examples
 
@@ -365,13 +352,13 @@ sumo_source_local_file 'local_file' do
 end
 ```
 
-sumo_source_local_windows_event_log
----------
+## 6. sumo_source_local_windows_event_log
 
 ### Actions
 `default` = `:create`
 
-- `:create` - creates a JSON Source configuration
+#### :create
+Creates a JSON Source configuration
 
 ### Attribute Parameters
 
@@ -381,14 +368,13 @@ for more information about these attributes.
 The following attribute parameters are in addition to the generic parameters
 listed above.
 
-- `log_names` - **required**
-- `event_format` - `:legacy` for legacy format or `:json` for JSON format. `:legacy` is default.
-- `event_message` - Use with JSON format. `:complete`, `:message` (recommended), or `:metadata` for metadata only.
-  `:message` is default.
-- `allowlist` - Available in Collector version 19.351-4 and later. A comma-separated list of event IDs.
-  This is an empty string as default.
-- `denylist` - Available in Collector version 19.351-4 and later. A comma-separated list of event IDs.
-  This is an empty string as default.
+| Name | Description |
+| ---- | ----------- |
+| `log_names` | List of Windows Event Log channels to collect from (e.g. `['security', 'application']`). **required** |
+| `event_format` | Format for collected events: `:legacy` for legacy format or `:json` for JSON format. `:legacy` is default. |
+| `event_message` | Used with JSON format. `:complete`, `:message` (recommended), or `:metadata` for metadata only. `:message` is default. |
+| `allowlist` | Available in Collector version 19.351-4 and later. A comma-separated list of event IDs to include. Empty string by default. |
+| `denylist` | Available in Collector version 19.351-4 and later. A comma-separated list of event IDs to exclude. Empty string by default. |
 
 ### Examples
 
@@ -412,13 +398,13 @@ sumo_source_local_windows_event_log 'local_win_event_log' do
 end
 ```
 
-sumo_source_remote_file
----------
+## 6. sumo_source_remote_file
 
 ### Actions
 `default` = `:create`
 
-- `:create` - creates a JSON Source configuration
+#### :create
+Creates a JSON Source configuration
 
 ### Attribute Parameters
 
@@ -428,15 +414,17 @@ for more information about these attributes.
 The following attribute parameters are in addition to the generic parameters
 listed above.
 
-- `remote_hosts` - **required**
-- `remote_port` - **required**
-- `remote_user` - **required**
-- `remote_password` - **required**
-- `key_path` - **required**
-- `key_password`
-- `path_expression` - **required**
-- `auth_method` - one of `key` or `password`.
-- `blacklist`
+| Name | Description |
+| ---- | ----------- |
+| `remote_hosts` | List of remote host addresses to collect files from. **required** |
+| `remote_port` | SSH port on the remote host. **required** |
+| `remote_user` | Username to use for the remote SSH connection. **required** |
+| `remote_password` | Password to use for the remote SSH connection. **required** |
+| `key_path` | Path to the SSH private key file for key-based authentication. **required** |
+| `key_password` | Passphrase for the SSH private key file |
+| `path_expression` | Glob expression of file path(s) to collect on the remote host. **required** |
+| `auth_method` | Authentication method: `key` for key-based or `password` for password-based. |
+| `blacklist` | Glob expression of file path(s) to exclude from collection on the remote host ---- |
 
 ### Examples
 
@@ -453,13 +441,13 @@ sumo_source_remote_file 'remote_file' do
 end
 ```
 
-sumo_source_remote_windows_event_log
----------
+## 7. sumo_source_remote_windows_event_log
 
 ### Actions
 `default` = `:create`
 
-- `:create` - creates a JSON Source configuration
+#### :create
+Creates a JSON Source configuration
 
 ### Attribute Parameters
 
@@ -469,11 +457,13 @@ for more information about these attributes.
 The following attribute parameters are in addition to the generic and [sumo_source_local_windows_event_log](#sumosourcelocalwindowseventlog) parameters
 listed above.
 
-- `domain` - **required**
-- `username` - **required**
-- `password` - **required**
-- `hosts` - **required**
-- `log_names` - **required**
+| Name | Description |
+| ---- | ----------- |
+| `domain` | Windows domain of the remote hosts. **required** |
+| `username` | Username for authenticating with the remote Windows hosts. **required** |
+| `password` | Password for authenticating with the remote Windows hosts. **required** |
+| `hosts` | List of remote Windows host addresses to collect event logs from. **required** |
+| `log_names` | List of Windows Event Log channels to collect from (e.g. `['security', 'application']`). **required** |
 
 ### Examples
 
@@ -506,13 +496,13 @@ sumo_source_remote_windows_event_log 'remote_win_event_log' do
 end
 ```
 
-sumo_source_script
----------
+## 8. sumo_source_script
 
 ### Actions
 `default` = `:create`
 
-- `:create` - creates a JSON Source configuration
+#### :create
+Creates a JSON Source configuration
 
 ### Attribute Parameters
 
@@ -522,12 +512,14 @@ for more information about these attributes.
 The following attribute parameters are in addition to the generic parameters
 listed above.
 
-- `commands` - **required**
-- `file`
-- `working_dir`
-- `timeout`
-- `script`
-- `cron_expression`
+| Name | Description |
+| ---- | ----------- |
+| `commands` | List of command strings to execute the script (e.g. `['/bin/bash']`). **required** |
+| `file` | |
+| `working_dir` | Working directory in which the script will be executed |
+| `timeout` | |
+| `script` | |
+| `cron_expression` | Cron expression controlling how often the script runs (e.g. `'0 * * * *'`) |
 
 ### Examples
 
@@ -539,13 +531,13 @@ sumo_source_script 'script' do
 end
 ```
 
-sumo_source_syslog
----------
+## 9. sumo_source_syslog
 
 ### Actions
 `default` = `:create`
 
-- `:create` - creates a JSON Source configuration
+#### :create
+Creates a JSON Source configuration
 
 ### Attribute Parameters
 
@@ -555,8 +547,10 @@ for more information about these attributes.
 The following attribute parameters are in addition to the generic parameters
 listed above.
 
-- `protocol`
-- `port`
+| Name | Description |
+| ---- | ----------- |
+| `protocol` | Network protocol to listen on: `TCP` or `UDP` |
+| `port` | Port number to listen on for incoming syslog messages |
 
 ### Examples
 
@@ -566,13 +560,13 @@ sumo_source_syslog 'syslog' do
 end
 ```
 
-sumo_source_graphite_metrics
----------
+## 10. sumo_source_graphite_metrics
 
 ### Actions
 `default` = `:create`
 
-- `:create` - creates a JSON Source configuration
+#### :create
+Creates a JSON Source configuration
 
 ### Attribute Parameters
 
@@ -582,8 +576,10 @@ for more information about these attributes.
 The following attribute parameters are in addition to the generic parameters
 listed above.
 
-- `protocol`
-- `port`
+| Name | Description |
+| ---- | ----------- |
+| `protocol` | Network protocol to listen on: `TCP` or `UDP` |
+| `port` | Port number to listen on for incoming Graphite metrics |
 
 ### Examples
 
