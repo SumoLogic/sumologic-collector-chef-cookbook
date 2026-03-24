@@ -3,14 +3,12 @@
 name 'sumologic-collector'
 maintainer 'Sumo Logic'
 maintainer_email 'collection@sumologic.com'
-issues_url 'https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issues' if respond_to?(:issues_url)
-source_url 'https://github.com/SumoLogic/sumologic-collector-chef-cookbook' if respond_to?(:source_url)
-license 'Apache-2.0'
+issues_url 'https://github.com/SumoLogic/sumologic-collector-chef-cookbook/issues'
+source_url 'https://github.com/SumoLogic/sumologic-collector-chef-cookbook'
 description 'Installs/Configures sumologic-collector'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '1.9.1'
-chef_version '>= 11' if respond_to?(:chef_version)
-
+version 'v1.9.1'
+chef_version '>= 12'
 %w[
   debian
   ubuntu
