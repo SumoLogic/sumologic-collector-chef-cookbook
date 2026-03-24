@@ -3,6 +3,15 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
+## [Unreleased]
+
+### Breaking change
+
+- Updated the minimum chef version to 12.5, from 11.0.
+
+### Changed
+
+- Changed md files to fix some issues.
 
 
 ## [1.9.1] - 2026-02-23
