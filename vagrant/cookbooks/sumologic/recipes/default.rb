@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 sumologic_collector '/opt/SumoCollector' do
   action :remove
 end

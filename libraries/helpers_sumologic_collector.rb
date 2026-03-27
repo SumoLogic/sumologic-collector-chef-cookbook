@@ -38,6 +38,7 @@ module SumologicCollector
       def registration_status(dir)
         result = result_status(dir)
         return result unless result.nil?
+
         log_status(dir)
       end
 
@@ -64,13 +65,15 @@ module SumologicCollector
       def log_status(dir)
         file = File.join(dir, 'logs/collector.log')
         return nil unless File.exist?(file)
+
         status = File.read(file).lines.find do |l|
           l.include?('Notifying installer of registration result: ' \
                      'RegistrationResult(')
         end
         return nil unless status
         return true if status.include?('RegistrationResult(true,')
-        return false if status.include?('RegistrationResult(false,')
+
+        false if status.include?('RegistrationResult(false,')
       end
 
       #

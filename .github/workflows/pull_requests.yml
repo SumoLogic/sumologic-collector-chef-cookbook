@@ -16,21 +16,16 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '2.6'
+        ruby-version: '3.1'
         bundler-cache: true
         
     - name: Install dependencies
       run: bundle install
       
-    - name: Run RuboCop
+    - name: Run complete test suite
       run: |
-        bundle exec rubocop --version
-        bundle exec rubocop
-        
-    - name: Run Foodcritic
-      run: |
-        bundle exec foodcritic --version
-        bundle exec foodcritic . --exclude spec
+        bundle exec rake --version
+        bundle exec rake style spec
         
     - name: Check PR title and description
       run: |
