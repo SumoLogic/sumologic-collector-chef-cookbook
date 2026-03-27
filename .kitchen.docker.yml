@@ -17,9 +17,9 @@ platforms:
   # - name: ubuntu-18.04
   #   driver:
   #     image: ubuntu:18.04
-  - name: ubuntu-20.04
-    driver:
-      image: ubuntu:20.04
+  # - name: ubuntu-20.04
+  #   driver:
+  #     image: ubuntu:20.04
   - name: ubuntu-22.04
     driver:
       image: ubuntu:22.04
