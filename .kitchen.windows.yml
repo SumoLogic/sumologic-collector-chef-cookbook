@@ -1,7 +1,6 @@
 ---
 driver:
-  name: docker
-  privileged: true
+  name: exec
 
 provisioner:
   name: chef_zero
@@ -13,71 +12,56 @@ verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-22.04
-    driver:
-      image: ubuntu:22.04
-  - name: ubuntu-20.04
-    driver:
-      image: ubuntu:20.04
-  - name: debian-10
-    driver:
-      image: debian:10
-  - name: debian-11
-    driver:
-      image: debian:11
-  - name: debian-12
-    driver:
-      image: debian:12
+  - name: windows-2022
+  - name: windows-2019
 
 suites:
-  - name: default
+  - name: windows
     data_bags_path: test/integration/data_bags
     run_list:
       - recipe[data-bag-faker]
-      - recipe[sumologic-collector::default]
+      - recipe[sumologic-collector::windows]
     attributes:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
-      
+
   - name: default-resource
     run_list:
       - recipe[default-resource]
     attributes:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
-      
+
   - name: default-resource-install
     run_list:
       - recipe[default-resource::install]
-      
+
   - name: default-resource-configure
     run_list:
       - recipe[default-resource::configure]
     attributes:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
-      
+
   - name: default-resource-remove
     run_list:
       - recipe[default-resource::remove]
-      
+
   - name: installer-resource
     run_list:
       - recipe[installer-resource]
     attributes:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
-      
+
   - name: source-resource
     run_list:
       - recipe[source-resource]
-      - recipe[source-resource::docker_create]
       - recipe[source-resource::local_file_create]
+      - recipe[source-resource::local_win_event_log_create]
       - recipe[source-resource::remote_file_create]
+      - recipe[source-resource::remote_win_event_log_create]
       - recipe[source-resource::script_create]
-      - recipe[source-resource::syslog_create]
-      - recipe[source-resource::graphite_create]
-      - recipe[source-resource::local_file_cutoff]
     attributes:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>

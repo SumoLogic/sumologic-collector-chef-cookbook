@@ -1,0 +1,63 @@
+name: Reusable Integration Test Runner
+
+on:
+  workflow_call:
+    inputs:
+      runs-on:
+        description: 'The GitHub Actions runner to use (e.g. ubuntu-latest, windows-2022)'
+        required: true
+        type: string
+      driver:
+        description: 'The Test Kitchen driver to use (e.g. docker, exec)'
+        required: true
+        type: string
+      kitchen-config:
+        description: 'Path to the Kitchen config file to use'
+        required: true
+        type: string
+      platform:
+        description: 'Platform filter regex for Test Kitchen (e.g. ubuntu-22, debian-10)'
+        required: false
+        type: string
+        default: ''
+    secrets:
+      SUMO_ACCESS_ID:
+        required: true
+      SUMO_ACCESS_KEY:
+        required: true
+
+jobs:
+  integration-test:
+    runs-on: ${{ inputs.runs-on }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.1'
+        bundler-cache: true
+
+    - name: Install dependencies
+      run: bundle install
+
+    # Docker setup (Linux only)
+    - name: Set up Docker
+      if: inputs.driver == 'docker'
+      uses: docker/setup-buildx-action@v3
+
+    # Run Test Kitchen - filter by platform if specified
+    - name: Run Test Kitchen
+      run: |
+        if [ -n "${{ inputs.platform }}" ]; then
+          bundle exec kitchen test "${{ inputs.platform }}" --concurrency=1
+        else
+          bundle exec kitchen test --concurrency=1
+        fi
+      shell: bash
+      env:
+        KITCHEN_YAML: ${{ inputs.kitchen-config }}
+        SUMO_ACCESS_ID: ${{ secrets.SUMO_ACCESS_ID }}
+        SUMO_ACCESS_KEY: ${{ secrets.SUMO_ACCESS_KEY }}

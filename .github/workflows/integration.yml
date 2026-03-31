@@ -7,27 +7,45 @@ on:
     branches: [ main, master ]
 
 jobs:
-  integration:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.1'
-        bundler-cache: true
-        
-    - name: Install dependencies
-      run: bundle install
-    
-    - name: Set up Docker
-      uses: docker/setup-buildx-action@v3
-      
-    - name: Run Test Kitchen (Docker)
-      run: bundle exec rake integration:docker
-      env:
-        SUMO_ACCESS_ID: ${{ secrets.SUMO_ACCESS_ID }}
-        SUMO_ACCESS_KEY: ${{ secrets.SUMO_ACCESS_KEY }}
+  # Linux integration tests using Docker driver
+  linux-integration:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - ubuntu-22.04
+          - ubuntu-20.04
+          - debian-10
+          - debian-11
+          - debian-12
+    name: "Linux (${{ matrix.platform }})"
+    uses: ./.github/workflows/_workflow_IT-runner.yaml
+    with:
+      runs-on: ubuntu-latest
+      driver: docker
+      kitchen-config: .kitchen.docker.yml
+      platform: ${{ matrix.platform }}
+    secrets:
+      SUMO_ACCESS_ID: ${{ secrets.SUMO_ACCESS_ID }}
+      SUMO_ACCESS_KEY: ${{ secrets.SUMO_ACCESS_KEY }}
+
+  # Windows integration tests
+  windows-integration:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: windows-2022
+            runs-on: windows-2022
+          - platform: windows-2019
+            runs-on: windows-2019
+    name: "Windows (${{ matrix.platform }})"
+    uses: ./.github/workflows/_workflow_IT-runner.yaml
+    with:
+      runs-on: ${{ matrix.runs-on }}
+      driver: exec
+      kitchen-config: .kitchen.windows.yml
+      platform: ${{ matrix.platform }}
+    secrets:
+      SUMO_ACCESS_ID: ${{ secrets.SUMO_ACCESS_ID }}
+      SUMO_ACCESS_KEY: ${{ secrets.SUMO_ACCESS_KEY }}
