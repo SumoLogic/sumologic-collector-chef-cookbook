@@ -7,7 +7,7 @@ Contributing
 
 1. Create an issue or open a PR. If you aren't sure your PR will solve the issue, or may be controversial, we commend opening an issue separately and linking to it in your PR, so that if the PR is not accepted, the issue will remain and be tracked.
 
-1.  Close (and reference) issues by the `closes #XXX` or `fixes #XXX` notation in the commit message. Please use a descriptive, useful commit message that could be used to understand why a particular change was made.
+1. Close (and reference) issues by the `closes #XXX` or `fixes #XXX` notation in the commit message. Please use a descriptive, useful commit message that could be used to understand why a particular change was made.
 
 1. Keep pushing commits to the initial branch, `--amend`-ing if necessary. Please don't mix fixing unrelated issues in a single branch.
 
@@ -19,7 +19,6 @@ Contributing
 
 1. After reviewing commits for documentation, passing CI tests, and good descriptive commit messages, merge it with either "squash and merge" or "rebase and merge" do not use the
 "merge pull request" as it does not do a fast forward first.
-
 
 ### Releasing
 
