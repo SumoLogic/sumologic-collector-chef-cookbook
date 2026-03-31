@@ -12,19 +12,24 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform:
-          - ubuntu-22.04
-          - ubuntu-20.04
-          - debian-10
-          - debian-11
-          - debian-12
+        include:
+          - platform: ubuntu-22.04
+            kitchen-platform: ubuntu-2204
+          - platform: ubuntu-20.04
+            kitchen-platform: ubuntu-2004
+          - platform: debian-10
+            kitchen-platform: debian-10
+          - platform: debian-11
+            kitchen-platform: debian-11
+          - platform: debian-12
+            kitchen-platform: debian-12
     name: "Linux (${{ matrix.platform }})"
     uses: ./.github/workflows/_workflow_IT-runner.yaml
     with:
       runs-on: ubuntu-latest
       driver: docker
       kitchen-config: .kitchen.docker.yml
-      platform: ${{ matrix.platform }}
+      platform: ${{ matrix.kitchen-platform }}
     secrets:
       SUMO_ACCESS_ID: ${{ secrets.SUMO_ACCESS_ID }}
       SUMO_ACCESS_KEY: ${{ secrets.SUMO_ACCESS_KEY }}
