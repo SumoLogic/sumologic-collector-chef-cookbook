@@ -19,9 +19,6 @@ platforms:
   - name: ubuntu-20.04
     driver:
       image: ubuntu:20.04
-  - name: debian-10
-    driver:
-      image: debian:10
   - name: debian-11
     driver:
       image: debian:11

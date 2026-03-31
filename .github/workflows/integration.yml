@@ -17,8 +17,6 @@ jobs:
             kitchen-platform: ubuntu-2204
           - platform: ubuntu-20.04
             kitchen-platform: ubuntu-2004
-          - platform: debian-10
-            kitchen-platform: debian-10
           - platform: debian-11
             kitchen-platform: debian-11
           - platform: debian-12
