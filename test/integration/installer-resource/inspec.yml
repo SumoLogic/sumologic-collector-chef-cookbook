@@ -1,0 +1,9 @@
+---
+name: installer-resource
+title: Sumologic Collector Installer Resource Tests
+maintainer: Sumo Logic
+license: Apache-2.0
+summary: Verifies Sumo Logic Collector installer resource
+supports:
+  - platform-family: linux
+  - platform-family: windows

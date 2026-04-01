@@ -1,0 +1,8 @@
+---
+name: windows
+title: Sumologic Collector Windows Tests
+maintainer: Sumo Logic
+license: Apache-2.0
+summary: Verifies Sumo Logic Collector on Windows
+supports:
+  - platform-family: windows

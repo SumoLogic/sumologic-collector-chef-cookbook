@@ -1,0 +1,9 @@
+---
+name: source-resource
+title: Sumologic Collector Source Resource Tests
+maintainer: Sumo Logic
+license: Apache-2.0
+summary: Verifies Sumo Logic Collector source resources
+supports:
+  - platform-family: linux
+  - platform-family: windows

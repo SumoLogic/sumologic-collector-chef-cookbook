@@ -1,34 +1,19 @@
 ---
 driver:
-  name: vagrant
+  name: exec
 
 provisioner:
   name: chef_zero
+  product_name: chef
+  product_version: 17.10.114
+  install_strategy: always
+  chef_license: accept-no-persist
 
 verifier:
   name: inspec
 
 platforms:
-  - name: centos-6.9
-  - name: centos-7.3
-  - name: debian-8.7
-  - name: ubuntu-14.04
-  - name: ubuntu-16.04
-  - name: ubuntu-18.04
-  - name: windows-2008r2
-    driver:
-      box: opentable/win-2008r2-standard-amd64-nocm
-    transport:
-      name: winrm
-      password: vagrant
-      username: vagrant
-  - name: windows-2012r2
-    driver:
-      box: opentable/win-2012r2-standard-amd64-nocm
-    transport:
-      name: winrm
-      password: vagrant
-      username: vagrant
+  - name: ubuntu-latest
 
 suites:
   - name: default
@@ -39,56 +24,42 @@ suites:
     attributes:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
-    excludes:
-      - windows-2008r2
-      - windows-2012r2
-  - name: windows
-    data_bags_path: test/integration/data_bags
-    run_list:
-      - recipe[data-bag-faker]
-      - recipe[sumologic-collector::windows]
-    attributes:
-      SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
-      SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
-    excludes:
-      - centos-6.9
-      - centos-7.3
-      - debian-8.7
-      - ubuntu-14.04
-      - ubuntu-16.04
-      - ubuntu-18.04
+
   - name: default-resource
     run_list:
       - recipe[default-resource]
     attributes:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+
   - name: default-resource-install
     run_list:
       - recipe[default-resource::install]
+
   - name: default-resource-configure
     run_list:
       - recipe[default-resource::configure]
     attributes:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+
   - name: default-resource-remove
     run_list:
       - recipe[default-resource::remove]
+
   - name: installer-resource
     run_list:
       - recipe[installer-resource]
     attributes:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+
   - name: source-resource
     run_list:
       - recipe[source-resource]
       - recipe[source-resource::docker_create]
       - recipe[source-resource::local_file_create]
-      - recipe[source-resource::local_win_event_log_create]
       - recipe[source-resource::remote_file_create]
-      - recipe[source-resource::remote_win_event_log_create]
       - recipe[source-resource::script_create]
       - recipe[source-resource::syslog_create]
       - recipe[source-resource::graphite_create]
@@ -96,6 +67,3 @@ suites:
     attributes:
       SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
       SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
-    excludes:
-      - windows-2008r2
-      - windows-2012r2

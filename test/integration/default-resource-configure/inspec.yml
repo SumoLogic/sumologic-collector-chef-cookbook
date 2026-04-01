@@ -1,0 +1,9 @@
+---
+name: default-resource-configure
+title: Sumologic Collector Default Resource Configure Tests
+maintainer: Sumo Logic
+license: Apache-2.0
+summary: Verifies Sumo Logic Collector resource configure action
+supports:
+  - platform-family: linux
+  - platform-family: windows

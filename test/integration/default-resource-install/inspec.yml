@@ -1,0 +1,9 @@
+---
+name: default-resource-install
+title: Sumologic Collector Default Resource Install Tests
+maintainer: Sumo Logic
+license: Apache-2.0
+summary: Verifies Sumo Logic Collector resource install action
+supports:
+  - platform-family: linux
+  - platform-family: windows
