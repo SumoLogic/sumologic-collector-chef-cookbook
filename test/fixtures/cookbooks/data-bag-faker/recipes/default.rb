@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Chef::Log.warn('***************** Creating a fake Data Bag with real Sumo key')
+Chef::Log.warn('***************** Creating a fake Data Bag with real Sumo keyuhb8uihiubn')
 
 sumo_access_id = node['SUMO_ACCESS_ID'] # set in .kitchen.yml
 sumo_access_id_var = '<@SUMO_ACCESS_ID@>'
