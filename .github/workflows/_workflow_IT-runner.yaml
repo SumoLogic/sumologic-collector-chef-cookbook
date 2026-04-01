@@ -52,9 +52,9 @@ jobs:
     - name: Run Test Kitchen
       run: |
         if [ -n "${{ inputs.platform }}" ]; then
-          bundle exec kitchen test "${{ inputs.platform }}" --concurrency=1
+          bundle exec kitchen test "${{ inputs.platform }}" --concurrency=1 -l debug
         else
-          bundle exec kitchen test --concurrency=1
+          bundle exec kitchen test --concurrency=1 -l debug
         fi
       shell: bash
       env:

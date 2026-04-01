@@ -11,8 +11,7 @@ provisioner:
   chef_license: accept-no-persist
 
 verifier:
-  name: serverspec
-  sudo: true
+  name: inspec
 
 platforms:
   - name: ubuntu-22.04
