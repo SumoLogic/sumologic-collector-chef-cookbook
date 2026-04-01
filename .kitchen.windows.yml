@@ -4,7 +4,8 @@ driver:
 
 provisioner:
   name: chef_zero
-  product_version: 17
+  product_name: chef
+  product_version: 17.10.114
   install_strategy: always
   chef_license: accept-no-persist
 
@@ -12,8 +13,8 @@ verifier:
   name: inspec
 
 platforms:
+  - name: windows-2025
   - name: windows-2022
-  - name: windows-2019
 
 suites:
   - name: windows

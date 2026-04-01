@@ -5,12 +5,14 @@ driver:
 
 provisioner:
   name: chef_zero
-  product_version: 17
+  product_name: chef
+  product_version: 17.10.114
   install_strategy: always
   chef_license: accept-no-persist
 
 verifier:
-  name: inspec
+  name: serverspec
+  sudo: true
 
 platforms:
   - name: ubuntu-22.04
