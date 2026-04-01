@@ -5,9 +5,12 @@ driver:
 provisioner:
   name: chef_zero
   product_name: chef
-  product_version: 17.10.114
+  product_version: 17
   install_strategy: always
   chef_license: accept-no-persist
+  # Override default 'sudo -E' to prevent passing Bundler/Gem env vars
+  # from the runner's Ruby 3.1 into Chef's embedded Ruby 3.0
+  sudo_command: sudo
 
 verifier:
   name: inspec
