@@ -66,6 +66,7 @@ suites:
       
   - name: source-resource
     run_list:
+      - recipe[sumologic-collector::cleanup]
       - recipe[source-resource]
       - recipe[source-resource::docker_create]
       - recipe[source-resource::local_file_create]
