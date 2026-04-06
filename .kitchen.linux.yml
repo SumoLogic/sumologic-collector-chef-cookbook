@@ -1,0 +1,29 @@
+---
+# Kitchen config for running integration tests natively on GitHub Actions
+# Ubuntu runners (no Docker). Uses the exec driver to converge directly
+# on the host machine.
+
+driver:
+  name: exec
+
+provisioner:
+  name: chef_zero
+  product_version: 17
+  install_strategy: always
+  chef_license: accept-no-persist
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu
+
+suites:
+  - name: default
+    data_bags_path: test/integration/data_bags
+    run_list:
+      - recipe[data-bag-faker]
+      - recipe[sumologic-collector::default]
+    attributes:
+      SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+      SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>

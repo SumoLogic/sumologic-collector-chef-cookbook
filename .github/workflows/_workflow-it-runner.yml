@@ -1,0 +1,37 @@
+name: Integration Test Runner
+
+on:
+  workflow_call:
+    inputs:
+      runner:
+        description: 'GitHub Actions runner label (e.g. ubuntu-latest, ubuntu-22.04)'
+        required: true
+        type: string
+    secrets:
+      SUMO_ACCESS_ID:
+        required: true
+      SUMO_ACCESS_KEY:
+        required: true
+
+jobs:
+  integration:
+    runs-on: ${{ inputs.runner }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.1'
+        bundler-cache: true
+
+    - name: Install dependencies
+      run: bundle install
+
+    - name: Run Test Kitchen (native)
+      run: bundle exec rake integration:linux
+      env:
+        SUMO_ACCESS_ID: ${{ secrets.SUMO_ACCESS_ID }}
+        SUMO_ACCESS_KEY: ${{ secrets.SUMO_ACCESS_KEY }}
