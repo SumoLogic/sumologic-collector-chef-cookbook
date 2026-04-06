@@ -8,9 +8,13 @@ driver:
 
 provisioner:
   name: chef_zero
-  product_version: 17
+  product_version: 18
   install_strategy: always
   chef_license: accept-no-persist
+  # Replace the default "sudo -E" with a version that strips GEM_* vars.
+  # On GitHub runners the system rubygems env leaks into Chef's embedded
+  # Ruby via sudo -E, causing openssl gem version conflicts.
+  sudo_command: 'sudo -E env -u GEM_HOME -u GEM_PATH -u GEM_ROOT'
 
 verifier:
   name: inspec
