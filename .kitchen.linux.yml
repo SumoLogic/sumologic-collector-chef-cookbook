@@ -8,6 +8,9 @@ driver:
 
 provisioner:
   name: chef_zero
+  lifecycle:
+    post_converge:
+      - sudo rm -f /etc/sumo.json
   product_version: 17
   install_strategy: always
   chef_license: accept-no-persist
