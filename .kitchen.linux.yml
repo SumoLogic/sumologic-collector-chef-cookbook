@@ -8,7 +8,7 @@ driver:
 
 provisioner:
   name: chef_zero
-  product_version: 18
+  product_version: 17
   install_strategy: always
   chef_license: accept-no-persist
   # Replace the default "sudo -E" with a version that strips GEM_* vars.
