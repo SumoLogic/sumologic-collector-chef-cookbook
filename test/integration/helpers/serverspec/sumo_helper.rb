@@ -28,7 +28,7 @@ class Sumologic
     end
 
     def api_endpoint
-      'https://api.us2.sumologic.com/api/v1'
+      ENV.fetch('SUMO_API_ENDPOINT', 'https://api.us2.sumologic.com/api/v1')
     end
 
     def sources
@@ -49,10 +49,10 @@ class Sumologic
 
     def api_request(options = {})
       parse_json = options.key?(:parse_json) ? options[:parse_json] : true
-      response = if !api_timeout.nil?
-                   api_request_timeout(options)
-                 else
+      response = if api_timeout.nil?
                    api_request_http_call(options)
+                 else
+                   api_request_timeout(options)
                  end
 
       if parse_json
@@ -76,7 +76,7 @@ class Sumologic
     end
 
     def list_collectors
-      uri = URI.parse(api_endpoint + '/collectors')
+      uri = URI.parse("#{api_endpoint}/collectors")
       request = Net::HTTP::Get.new(uri.request_uri)
       api_request(uri: uri, request: request)
     end
@@ -109,15 +109,13 @@ class Sumologic
       request = Net::HTTP::Post.new(u.request_uri)
       request.body = JSON.dump(source: source_data)
       request.content_type = 'application/json'
-      response = api_request(uri: u, request: request, parse_json: false)
-      response
+      api_request(uri: u, request: request, parse_json: false)
     end
 
     def delete_source!(source_id)
       u = URI.parse(api_endpoint + "/collectors/#{source_id}")
       request = Net::HTTP::Delete.new(u.request_uri)
-      response = api_request(uri: u, request: request, parse_json: false)
-      response
+      api_request(uri: u, request: request, parse_json: false)
     end
 
     def update_source!(source_id, source_data)
@@ -126,8 +124,7 @@ class Sumologic
       request.body = JSON.dump(source: source_data.merge(id: source_id))
       request.content_type = 'application/json'
       request['If-Match'] = get_etag(source_id)
-      response = api_request(uri: u, request: request, parse_json: false)
-      response
+      api_request(uri: u, request: request, parse_json: false)
     end
 
     def get_etag(source_id)
@@ -139,9 +136,8 @@ class Sumologic
 
     def search(query)
       u = URI.parse(api_endpoint + "/logs/search?q=#{query}")
-      request = Net:: HTTP::Get.new(u.request_uri)
-      response = api_request(uri: u, request: request)
-      response
+      request = Net::HTTP::Get.new(u.request_uri)
+      api_request(uri: u, request: request)
     end
 
     private
@@ -156,6 +152,7 @@ class Sumologic
       request.basic_auth(api_username, api_password)
       response = http.request(request)
       raise ApiError, "Unable to get source list #{response.inspect}" unless response.is_a?(Net::HTTPSuccess)
+
       response
     end
 

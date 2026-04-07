@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-use_inline_resources
-
 def whyrun_supported?
   true
 end
@@ -39,9 +37,7 @@ action :install_and_configure do
 end
 
 action :configure do
-  if !@current_resource.installed
-    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
-  else
+  if @current_resource.installed
     sumo_service
     template "#{new_resource.dir}/config/user.properties" do
       source 'user.properties.erb'
@@ -53,64 +49,64 @@ action :configure do
         notifies :restart, new_resource
       end
     end
+  else
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   end
 end
 
 action :remove do
-  if !@current_resource.installed
-    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
-  else
+  if @current_resource.installed
     uninstall_cmd = node['platform_family'] == 'windows' ? 'uninstall.exe -console' : './uninstall'
     execute 'Remove Sumologic Collector' do
       command "#{uninstall_cmd} -q"
       cwd new_resource.dir
     end
+  else
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   end
 end
 
 action :start do
-  if !@current_resource.installed
-    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
-  else
+  if @current_resource.installed
     sumo_service :start
     wait_if_initial_startup
+  else
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   end
 end
 
 action :stop do
-  if !@current_resource.installed
-    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
-  else
+  if @current_resource.installed
     sumo_service :stop
+  else
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   end
 end
 
 action :restart do
-  if !@current_resource.installed
-    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
-  else
+  if @current_resource.installed
     sumo_service :restart
     wait_if_initial_startup
+  else
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   end
 end
 
 action :enable do
-  if !@current_resource.installed
-    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
-  else
+  if @current_resource.installed
     sumo_service :enable
+  else
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   end
 end
 
 action :disable do
-  if !@current_resource.installed
-    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
-  else
+  if @current_resource.installed
     sumo_service :disable
+  else
+    Chef::Log.info "Collector Directory is not found at #{new_resource.dir}. Will not do anything."
   end
 end
-
-private
 
 def installed?
   path = ::File.join(new_resource.dir,

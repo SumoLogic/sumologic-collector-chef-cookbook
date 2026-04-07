@@ -1,0 +1,80 @@
+---
+# Kitchen config for running integration tests natively on GitHub Actions
+# Ubuntu runners (no Docker). Uses the exec driver to converge directly
+# on the host machine.
+
+driver:
+  name: exec
+
+provisioner:
+  name: chef_zero
+  lifecycle:
+    post_converge:
+      - sudo rm -f /etc/sumo.json
+  product_version: 17
+  install_strategy: always
+  chef_license: accept-no-persist
+  # Replace the default "sudo -E" with a version that strips GEM_* vars.
+  # On GitHub runners the system rubygems env leaks into Chef's embedded
+  # Ruby via sudo -E, causing openssl gem version conflicts.
+  sudo_command: 'sudo -E env -u GEM_HOME -u GEM_PATH -u GEM_ROOT'
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu
+
+suites:
+  - name: default
+    data_bags_path: test/integration/data_bags
+    run_list:
+      - recipe[data-bag-faker]
+      - recipe[sumologic-collector::default]
+    attributes:
+      SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+      SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+  
+  - name: default-resource
+    run_list:
+      - recipe[default-resource]
+    attributes:
+      SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+      SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+      
+  - name: default-resource-install
+    run_list:
+      - recipe[default-resource::install]
+      
+  - name: default-resource-configure
+    run_list:
+      - recipe[default-resource::configure]
+    attributes:
+      SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+      SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+      
+  - name: default-resource-remove
+    run_list:
+      - recipe[default-resource::remove]
+      
+  - name: installer-resource
+    run_list:
+      - recipe[installer-resource]
+    attributes:
+      SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+      SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+      
+  - name: source-resource
+    run_list:
+      - recipe[sumologic-collector::cleanup]
+      - recipe[source-resource]
+      - recipe[source-resource::docker_create]
+      - recipe[source-resource::local_file_create]
+      - recipe[source-resource::remote_file_create]
+      - recipe[source-resource::script_create]
+      - recipe[source-resource::syslog_create]
+      - recipe[source-resource::graphite_create]
+      - recipe[source-resource::local_file_cutoff]
+    attributes:
+      SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+      SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>

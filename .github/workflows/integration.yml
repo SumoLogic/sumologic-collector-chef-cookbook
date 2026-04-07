@@ -1,0 +1,22 @@
+name: Integration Tests
+
+on:
+  pull_request:
+    branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+
+jobs:
+  integration:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner:
+          - ubuntu-latest
+          - ubuntu-22.04
+    uses: ./.github/workflows/_workflow-it-runner.yml
+    with:
+      runner: ${{ matrix.runner }}
+    secrets:
+      SUMO_ACCESS_ID: ${{ secrets.SUMO_ACCESS_ID }}
+      SUMO_ACCESS_KEY: ${{ secrets.SUMO_ACCESS_KEY }}

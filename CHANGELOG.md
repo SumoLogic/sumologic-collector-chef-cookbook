@@ -13,6 +13,10 @@ This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keep
 
 - Changed md files to fix some issues.
 
+### Added
+
+- Added ITs in ci pipeline
+
 
 ## [1.9.1] - 2026-02-23
 

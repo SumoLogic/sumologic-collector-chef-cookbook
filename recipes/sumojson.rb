@@ -30,20 +30,16 @@
 
 # If there is a json_source specified via attributes use that one
 # otherwise pick a default json template based on platform family.
-if node['sumologic']['json_template']
-  json_source = node['sumologic']['json_template']
-else
-  case node['platform_family']
-  when 'rhel', 'amazon', 'linux'
-    json_source = 'sumo-rhel.json.erb'
-  when 'debian'
-    json_source = 'sumo-debian.json.erb'
-  when 'windows'
-    json_source = 'sumo-windows.json.erb'
-  else
-    json_source = 'sumo.json.erb'
-  end
-end
+json_source = node['sumologic']['json_template'] || case node['platform_family']
+                                                    when 'rhel', 'amazon', 'linux'
+                                                      'sumo-rhel.json.erb'
+                                                    when 'debian'
+                                                      'sumo-debian.json.erb'
+                                                    when 'windows'
+                                                      'sumo-windows.json.erb'
+                                                    else
+                                                      'sumo.json.erb'
+                                                    end
 
 sources = []
 if node['sumologic']['sources']
@@ -58,7 +54,7 @@ if node['sumologic']['sources']
 end
 
 # Create the json file's parent directory (generally for Windows support)
-directory ::File.dirname(node['sumologic']['sumo_json_path']) do
+directory File.dirname(node['sumologic']['sumo_json_path']) do
   recursive true
 end
 

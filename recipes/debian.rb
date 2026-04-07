@@ -13,6 +13,6 @@ if node['platform'] == 'debian' && Gem::Version.new(node['platform_version']) >=
   execute 'sumo-systemd-reload' do
     command 'sudo /bin/systemctl --system daemon-reload && sudo systemctl restart collector.service'
     action :run
-    not_if { ::File.exist?('/run/systemd/generator.late/collector.service') }
+    not_if { File.exist?('/run/systemd/generator.late/collector.service') }
   end
 end

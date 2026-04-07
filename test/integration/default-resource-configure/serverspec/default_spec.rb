@@ -15,8 +15,8 @@ describe file("#{sumo_dir}/config/user.properties") do
   its(:content) { is_expected.to match(/hostName=example\.com/) }
   its(:content) { is_expected.to match(/description=A Test Kitchen instance/) }
   its(:content) { is_expected.to match(/category=Misc/) }
-  its(:content) { is_expected.to match(/accessid=#{ENV['SUMO_ACCESS_ID']}/) }
-  its(:content) { is_expected.to match(/accesskey=#{ENV['SUMO_ACCESS_KEY']}/) }
+  its(:content) { is_expected.to match(/accessid=#{ENV.fetch('SUMO_ACCESS_ID', nil)}/) }
+  its(:content) { is_expected.to match(/accesskey=#{ENV.fetch('SUMO_ACCESS_KEY', nil)}/) }
   its(:content) { is_expected.to match(/ephemeral=true/) }
   its(:content) { is_expected.to match(/proxyHost=proxy.test.com/) }
   its(:content) { is_expected.to match(/proxyPort=8080/) }

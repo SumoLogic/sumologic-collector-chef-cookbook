@@ -1,0 +1,85 @@
+---
+driver:
+  name: docker
+  privileged: true
+
+provisioner:
+  name: chef_zero
+  product_version: 17
+  install_strategy: always
+  chef_license: accept-no-persist
+
+verifier:
+  name: inspec
+
+platforms:
+  # Modern Ubuntu versions (original had 14.04, 16.04, 18.04)
+  - name: ubuntu-18.04
+    driver:
+      image: ubuntu:18.04
+  - name: ubuntu-20.04
+    driver:
+      image: ubuntu:20.04
+  - name: ubuntu-22.04
+    driver:
+      image: ubuntu:22.04
+
+  # CentOS 7 and 8 are EOL - removed from test matrix
+  # For RHEL-based testing, consider Rocky Linux or AlmaLinux in the future
+
+  # Note: Windows containers require Windows runners in GitHub Actions
+  # and are not supported in this Docker-based setup.
+  # Use rake integration:vagrant for Windows testing locally.
+
+suites:
+  - name: default
+    data_bags_path: test/integration/data_bags
+    run_list:
+      - recipe[data-bag-faker]
+      - recipe[sumologic-collector::default]
+    attributes:
+      SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+      SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+      
+  # - name: default-resource
+  #   run_list:
+  #     - recipe[default-resource]
+  #   attributes:
+  #     SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+  #     SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+      
+  # - name: default-resource-install
+  #   run_list:
+  #     - recipe[default-resource::install]
+      
+  # - name: default-resource-configure
+  #   run_list:
+  #     - recipe[default-resource::configure]
+  #   attributes:
+  #     SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+  #     SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+      
+  # - name: default-resource-remove
+  #   run_list:
+  #     - recipe[default-resource::remove]
+      
+  # - name: installer-resource
+  #   run_list:
+  #     - recipe[installer-resource]
+  #   attributes:
+  #     SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+  #     SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
+      
+  # - name: source-resource
+  #   run_list:
+  #     - recipe[source-resource]
+  #     - recipe[source-resource::docker_create]
+  #     - recipe[source-resource::local_file_create]
+  #     - recipe[source-resource::remote_file_create]
+  #     - recipe[source-resource::script_create]
+  #     - recipe[source-resource::syslog_create]
+  #     - recipe[source-resource::graphite_create]
+  #     - recipe[source-resource::local_file_cutoff]
+  #   attributes:
+  #     SUMO_ACCESS_ID: <%= ENV['SUMO_ACCESS_ID'] %>
+  #     SUMO_ACCESS_KEY: <%= ENV['SUMO_ACCESS_KEY'] %>
