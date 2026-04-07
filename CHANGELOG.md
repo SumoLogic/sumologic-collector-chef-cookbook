@@ -3,20 +3,23 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG (now) follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
-## [Unreleased]
+
+## [1.10.0] - 2026-04-07
 
 ### Breaking change
 
-- Updated the minimum chef version to 12.5, from 11.0.
+- Updated the minimum chef version to 12.5, from 11.0. [#207]
 
 ### Changed
 
-- Changed md files to fix some issues.
+- Changed markdown files to fix some issues and improve quality [#207]
 
 ### Added
 
-- Added ITs in ci pipeline
+- Added ITs in ci pipeline [#210]
 
+[#207]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/pull/207
+[#210]: https://github.com/SumoLogic/sumologic-collector-chef-cookbook/pull/210
 
 ## [1.9.1] - 2026-02-23
 
